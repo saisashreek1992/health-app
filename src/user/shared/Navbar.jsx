@@ -175,13 +175,13 @@ const Navbar = () => {
                     <FiBell className="navbar__Btn-Box-Mobile--Icon" aria-hidden="true" />
                   </button>
                 </div>
-                <div className="mt-3 space-y-1 px-2">
+                <div className="navbar__List-Items-Mobile">
                   {userNavigation.map((item) => (
                     <Disclosure.Button
                       key={item.name}
                       as="a"
                       href={item.href}
-                      className="block rounded-md px-3 py-2 text-base font-medium text-gray-400 hover:bg-gray-700 hover:text-white"
+                      className="navbar__List-Item-Mobile"
                     >
                       {item.name}
                     </Disclosure.Button>

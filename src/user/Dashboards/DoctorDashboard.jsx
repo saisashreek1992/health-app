@@ -9,18 +9,18 @@ const DoctorDashboard = () => {
         
         <Navbar />
         <main>
-          <div className="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">
+          <div className="dashboard__Main-Content">
             {/* Replace with your content */}
-            <div className="px-4 py-6 sm:px-0">
+            <div className="dashboard__Main-Inner-Content">
               <ul
-                className="nav nav-tabs nav-justified flex flex-col md:flex-row flex-wrap list-none border-b-0 pl-0 mb-4"
+                className="nav tabs__List-Container"
                 id="tabs-tabJustify"
                 role="tablist"
               >
-                <li className="nav-item flex-grow text-center" role="presentation">
+                <li className="tabs__List-Item" role="presentation">
                   <a
                     href="#tabs-appointmentJustify"
-                    className="nav-link w-full block font-medium text-md leading-tight uppercase border-x-0 border-t-0 border-b-2 border-transparent px-6 py-3 my-2 hover:border-transparent hover:bg-gray-100 focus:border-transparent active"
+                    className="tabs__List-Link"
                     id="tabs-appointment-tabJustify"
                     data-bs-toggle="pill"
                     data-bs-target="#tabs-appointmentJustify"
@@ -31,10 +31,10 @@ const DoctorDashboard = () => {
                     Appointments
                   </a>
                 </li>
-                <li className="nav-item flex-grow text-center" role="presentation">
+                <li className="tabs__List-Item" role="presentation">
                   <a
                     href="#tabs-mypatientsJustify"
-                    className="nav-link w-full block font-medium text-md leading-tight uppercase border-x-0 border-t-0 border-b-2 border-transparent px-6 py-3 my-2 hover:border-transparent hover:bg-gray-100 focus:border-transparent"
+                    className="tabs__List-Link"
                     id="tabs-mypatients-tabJustify"
                     data-bs-toggle="pill"
                     data-bs-target="#tabs-mypatientsJustify"
@@ -45,10 +45,10 @@ const DoctorDashboard = () => {
                     MyPatients
                   </a>
                 </li>
-                <li className="nav-item flex-grow text-center" role="presentation">
+                <li className="tabs__List-Item" role="presentation">
                   <a
                     href="#tabs-chatJustify"
-                    className="nav-link w-full block font-medium text-md leading-tight uppercase border-x-0 border-t-0 border-b-2 border-transparent px-6 py-3 my-2 hover:border-transparent hover:bg-gray-100 focus:border-transparent"
+                    className="tabs__List-Link"
                     id="tabs-chat-tabJustify"
                     data-bs-toggle="pill"
                     data-bs-target="#tabs-chatJustify"
@@ -60,14 +60,14 @@ const DoctorDashboard = () => {
                   </a>
                 </li>
               </ul>
-              <div className="tab-content" id="tabs-tabContentJustify">
+              <div className="tabs__Content" id="tabs-tabContentJustify">
                 <div
                   className="tab-pane fade show active"
                   id="tabs-appointmentJustify"
                   role="tabpanel"
                   aria-labelledby="tabs-appointment-tabJustify"
                 >
-                  <p className="text-center text-xl font-medium">Appointment Section</p>
+                  <p className="tabs__Text">Appointment Section</p>
                 </div>
                 <div
                   className="tab-pane fade"
@@ -75,7 +75,7 @@ const DoctorDashboard = () => {
                   role="tabpanel"
                   aria-labelledby="tabs-mypatients-tabJustify"
                 >
-                  <p className="text-center text-xl font-medium">My Patients Section</p>
+                  <p className="tabs__Text">My Patients Section</p>
                 </div>
                 <div
                   className="tab-pane fade"
@@ -83,7 +83,7 @@ const DoctorDashboard = () => {
                   role="tabpanel"
                   aria-labelledby="tabs-chat-tabJustify"
                 >
-                  <p className="text-center text-xl font-medium">Chat Section</p>
+                  <p className="tabs__Text">Chat Section</p>
                 </div>
               </div>
             </div>
