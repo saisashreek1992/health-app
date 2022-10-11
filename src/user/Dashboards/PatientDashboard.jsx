@@ -213,7 +213,7 @@ const PatientDashboard = () => {
         </main>
       </div>
       <footer className="relative text-center text-white">
-        <div className="container pt-9 bg-gray-600 w-full fixed bottom-0 left-0">
+        <div className="container w-full pt-9 bg-gray-600 fixed bottom-0 left-0 right-0">
           <div className="flex justify-center mb-9">
             <a
               href="/userrole/:roleid/dashboard/patient/mydata/"
