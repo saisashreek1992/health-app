@@ -17,10 +17,11 @@ import PatientPersonalInfo from './pages/form-validations/patient/PatientPersona
 import CreateForm from './pages/form-validations/patient/CreateForm';
 import UploadDietChart from './pages/form-validations/patient/UploadDietChart';
 
-// Doctor Dashboard Page Imports
+// Patient Dashboard Page Imports
 import PatientDashboard from './user/Dashboards/PatientDashboard';
 import PatientMyData from './user/shared/Patient-MyData';
 import PatientPrescriptions from './user/shared/Patient-Prescriptions';
+import PatientForm from './pages/form-validations/patient/PatientForm';
 
 //Common Page Imports
 import UserChat from './user/shared/UserChat';
@@ -43,6 +44,7 @@ const App = () => {
         <Route path='/userrole/:roleid/dashboard/doctor/create/dietchart/' element={<UploadDietChart />} />
         <Route path='/userrole/:roleid/dashboard/patient/' element={<PatientDashboard />} />
         <Route path='/userrole/:roleid/dashboard/patient/mydata/' element={<PatientMyData />} />
+        <Route path='/userrole/:roleid/dashboard/patient/mydata/forms/' element={<PatientForm />} />
         <Route path='/userrole/:roleid/dashboard/patient/prescriptions/' element={<PatientPrescriptions />} />
         <Route path='/userrole/:roleid/dashboard/common/chat/' element={<UserChat />} />
         <Route path='/userrole/:roleid/dashboard/admin/' element={<Admin />} />

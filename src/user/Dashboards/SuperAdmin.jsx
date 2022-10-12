@@ -12,19 +12,9 @@ const user = {
 const navigation = [
   {
     name: "Dashboard",
-    href: "/userrole/:roleid/dashboard/patient/",
+    href: "/userrole/:roleid/dashboard/admin/",
     current: true,
   },
-  {
-    name: "All Enrolments",
-    href: "/userrole/:roleid/dashboard/patient/",
-    current: true
-  },
-  {
-    name: "My Info",
-    href: "/userrole/:roleid/dashboard/patient/",
-    current: true
-  }
 ];
 
 const userNavigation = [
@@ -37,7 +27,7 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-const PatientDashboard = () => {
+const SuperAdmin = () => {
   return (
     <>
       <div className="min-h-full">
@@ -201,37 +191,120 @@ const PatientDashboard = () => {
             </>
           )}
         </Disclosure>
-
+        <header className="bg-white shadow">
+          <div className="mx-auto max-w-7xl py-6 px-4 sm:px-6 lg:px-8">
+            <h1 className="text-3xl font-bold tracking-tight text-gray-900">
+              Dashboard - SUPER ADMIN
+            </h1>
+          </div>
+        </header>
         <main>
           <div className="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">
             {/* Replace with your content */}
             <div className="px-4 py-6 sm:px-0">
-              <div className="h-96 rounded-lg border-4 border-dashed border-gray-200" />
+            <ul
+                className="nav nav-tabs nav-justified flex flex-col md:flex-row flex-wrap list-none border-b-0 pl-0 mb-4"
+                id="tabs-tabJustify"
+                role="tablist"
+              >
+                <li className="nav-item flex-grow text-center" role="presentation">
+                  <a
+                    href="#tabs-summaryJustify"
+                    className="nav-link w-full block font-medium text-md leading-tight uppercase border-x-0 border-t-0 border-b-2 border-transparent px-6 py-3 my-2 hover:border-transparent hover:bg-gray-100 focus:border-transparent active"
+                    id="tabs-summary-tabJustify"
+                    data-bs-toggle="pill"
+                    data-bs-target="#tabs-summaryJustify"
+                    role="tab"
+                    aria-controls="tabs-summaryJustify"
+                    aria-selected="true"
+                  >
+                    Summary
+                  </a>
+                </li>
+                <li className="nav-item flex-grow text-center" role="presentation">
+                  <a
+                    href="#tabs-controlsJustify"
+                    className="nav-link w-full block font-medium text-md leading-tight uppercase border-x-0 border-t-0 border-b-2 border-transparent px-6 py-3 my-2 hover:border-transparent hover:bg-gray-100 focus:border-transparent"
+                    id="tabs-controls-tabJustify"
+                    data-bs-toggle="pill"
+                    data-bs-target="#tabs-controlsJustify"
+                    role="tab"
+                    aria-controls="tabs-controlsJustify"
+                    aria-selected="false"
+                  >
+                    Access Controls
+                  </a>
+                </li>
+                <li className="nav-item flex-grow text-center" role="presentation">
+                  <a
+                    href="#tabs-chartsJustify"
+                    className="nav-link w-full block font-medium text-md leading-tight uppercase border-x-0 border-t-0 border-b-2 border-transparent px-6 py-3 my-2 hover:border-transparent hover:bg-gray-100 focus:border-transparent"
+                    id="tabs-charts-tabJustify"
+                    data-bs-toggle="pill"
+                    data-bs-target="#tabs-chartsJustify"
+                    role="tab"
+                    aria-controls="tabs-chartsJustify"
+                    aria-selected="false"
+                  >
+                    Forms &amp; Diet Charts
+                  </a>
+                </li>
+                <li className="nav-item flex-grow text-center" role="presentation">
+                  <a
+                    href="#tabs-dataJustify"
+                    className="nav-link w-full block font-medium text-md leading-tight uppercase border-x-0 border-t-0 border-b-2 border-transparent px-6 py-3 my-2 hover:border-transparent hover:bg-gray-100 focus:border-transparent"
+                    id="tabs-data-tabJustify"
+                    data-bs-toggle="pill"
+                    data-bs-target="#tabs-dataJustify"
+                    role="tab"
+                    aria-controls="tabs-dataJustify"
+                    aria-selected="false"
+                  >
+                    Data
+                  </a>
+                </li>
+              </ul>
+              <div className="tab-content" id="tabs-tabContentJustify">
+                <div
+                  className="tab-pane fade show active"
+                  id="tabs-summaryJustify"
+                  role="tabpanel"
+                  aria-labelledby="tabs-summary-tabJustify"
+                >
+                  <p className="text-center text-xl font-medium">Summary Section</p>
+                </div>
+                <div
+                  className="tab-pane fade"
+                  id="tabs-controlsJustify"
+                  role="tabpanel"
+                  aria-labelledby="tabs-controls-tabJustify"
+                >
+                  <p className="text-center text-xl font-medium">Access Controls Section</p>
+                </div>
+                <div
+                  className="tab-pane fade"
+                  id="tabs-chartsJustify"
+                  role="tabpanel"
+                  aria-labelledby="tabs-charts-tabJustify"
+                >
+                  <p className="text-center text-xl font-medium">Charts Section</p>
+                </div>
+                <div
+                  className="tab-pane fade"
+                  id="tabs-dataJustify"
+                  role="tabpanel"
+                  aria-labelledby="tabs-data-tabJustify"
+                >
+                  <p className="text-center text-xl font-medium">Data Section</p>
+                </div>
+              </div>
             </div>
             {/* /End replace */}
           </div>
         </main>
       </div>
-      <footer className="relative text-center text-white">
-        <div className="container w-full pt-9 bg-gray-600 fixed bottom-0 left-0 right-0">
-          <div className="flex justify-center mb-9">
-            <a
-              href="/userrole/:roleid/dashboard/patient/mydata/"
-              className="mr-9 text-white"
-            >
-              My Data
-            </a>
-            <a href="/userrole/:roleid/dashboard/patient/prescriptions/" className="mr-9 text-white">
-              Prescriptions
-            </a>
-            <a href="/userrole/:roleid/dashboard/common/chat/" className="mr-9 text-white">
-              Chat
-            </a>
-          </div>
-        </div>
-      </footer>
     </>
   );
 };
 
-export default PatientDashboard;
+export default SuperAdmin;

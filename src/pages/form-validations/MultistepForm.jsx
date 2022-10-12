@@ -2,6 +2,11 @@ import React, { Fragment } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { FiBell, FiX, FiMenu } from "react-icons/fi";
 
+import { Stepper } from 'react-form-stepper';
+import CreatePatient from "./patient/CreatePatient";
+import PatientHealthInfo from "./patient/PatientHealthInfo";
+import PatientPersonalInfo from "./patient/PatientPersonalInfo";
+
 const user = {
   name: "Tom Cook",
   email: "tom@example.com",
@@ -12,19 +17,9 @@ const user = {
 const navigation = [
   {
     name: "Dashboard",
-    href: "/userrole/:roleid/dashboard/patient/",
+    href: "/userrole/:roleid/dashboard/doctor/",
     current: true,
   },
-  {
-    name: "All Enrolments",
-    href: "/userrole/:roleid/dashboard/patient/",
-    current: true
-  },
-  {
-    name: "My Info",
-    href: "/userrole/:roleid/dashboard/patient/",
-    current: true
-  }
 ];
 
 const userNavigation = [
@@ -37,7 +32,7 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-const PatientDashboard = () => {
+const MultistepForm = () => {
   return (
     <>
       <div className="min-h-full">
@@ -206,32 +201,17 @@ const PatientDashboard = () => {
           <div className="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">
             {/* Replace with your content */}
             <div className="px-4 py-6 sm:px-0">
-              <div className="h-96 rounded-lg border-4 border-dashed border-gray-200" />
+              <Stepper steps={[{ label: 'CreatePatient' }, { label: 'PatientHealthInfo' }, { label: 'PatientPersonalInfo' }]} activeStep={0} />
+                <CreatePatient />
+                <PatientHealthInfo />
+                <PatientPersonalInfo />
             </div>
             {/* /End replace */}
           </div>
         </main>
       </div>
-      <footer className="relative text-center text-white">
-        <div className="container w-full pt-9 bg-gray-600 fixed bottom-0 left-0 right-0">
-          <div className="flex justify-center mb-9">
-            <a
-              href="/userrole/:roleid/dashboard/patient/mydata/"
-              className="mr-9 text-white"
-            >
-              My Data
-            </a>
-            <a href="/userrole/:roleid/dashboard/patient/prescriptions/" className="mr-9 text-white">
-              Prescriptions
-            </a>
-            <a href="/userrole/:roleid/dashboard/common/chat/" className="mr-9 text-white">
-              Chat
-            </a>
-          </div>
-        </div>
-      </footer>
     </>
   );
 };
 
-export default PatientDashboard;
+export default MultistepForm;
