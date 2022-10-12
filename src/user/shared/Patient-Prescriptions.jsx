@@ -1,6 +1,8 @@
 import React, { Fragment } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { FiBell, FiX, FiMenu } from "react-icons/fi";
+import PatienPrescriptionsInfo from "../../pages/form-validations/patient/PatienPrescriptionsInfo";
+import PatientAppointmentInfo from "../../pages/form-validations/patient/PatientAppointmentInfo";
 
 const user = {
   name: "Tom Cook",
@@ -18,13 +20,13 @@ const navigation = [
   {
     name: "All Enrolments",
     href: "/userrole/:roleid/dashboard/patient/",
-    current: true
+    current: true,
   },
   {
     name: "My Info",
     href: "/userrole/:roleid/dashboard/patient/",
-    current: true
-  }
+    current: true,
+  },
 ];
 
 const userNavigation = [
@@ -270,7 +272,45 @@ const PatientPrescriptions = () => {
                   role="tabpanel"
                   aria-labelledby="tabs-appointment-tabJustify"
                 >
-                  <p className="text-center text-xl font-medium">Forms</p>
+                  <PatienPrescriptionsInfo />
+                  <div className="flex justify-evenly py-9">
+                    <div className="block p-6 rounded-lg shadow-lg bg-white max-w-sm">
+                      <h5 className="text-gray-900 text-xl leading-tight font-medium mb-2">
+                        Prescribed Diet Chart
+                        <span className="text-xs inline-block mx-3 py-1 px-2.5 leading-none text-center whitespace-nowrap align-baseline font-bold bg-green-500 text-white rounded-full">
+                          Latest
+                        </span>
+                      </h5>
+                      <p className="text-gray-700 text-base mb-4">
+                        Some quick example text to build on the card title and
+                        make up the bulk of the card's content.
+                      </p>
+                      <button
+                        type="button"
+                        className="inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
+                      >
+                        View
+                      </button>
+                    </div>
+                    <div className="block p-6 rounded-lg shadow-lg bg-white max-w-sm">
+                      <h5 className="text-gray-900 text-xl leading-tight font-medium mb-2">
+                        Prescribed Diet Chart
+                        <span className="text-xs inline-block mx-3 py-1 px-2.5 leading-none text-center whitespace-nowrap align-baseline font-bold bg-red-500 text-white rounded-full">
+                          Old
+                        </span>
+                      </h5>
+                      <p className="text-gray-700 text-base mb-4">
+                        Some quick example text to build on the card title and
+                        make up the bulk of the card's content.
+                      </p>
+                      <button
+                        type="button"
+                        className="inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
+                      >
+                        View
+                      </button>
+                    </div>
+                  </div>
                 </div>
                 <div
                   className="tab-pane fade"
@@ -278,7 +318,7 @@ const PatientPrescriptions = () => {
                   role="tabpanel"
                   aria-labelledby="tabs-mypatients-tabJustify"
                 >
-                  <p className="text-center text-xl font-medium">Forms</p>
+                 <PatientAppointmentInfo /> 
                 </div>
                 <div
                   className="tab-pane fade"
@@ -303,10 +343,16 @@ const PatientPrescriptions = () => {
             >
               My Data
             </a>
-            <a href="/userrole/:roleid/dashboard/patient/prescriptions/" className="mr-9 text-white font-bold">
+            <a
+              href="/userrole/:roleid/dashboard/patient/prescriptions/"
+              className="mr-9 text-white font-bold"
+            >
               Prescriptions
             </a>
-            <a href="/userrole/:roleid/dashboard/common/chat/" className="mr-9 text-white">
+            <a
+              href="/userrole/:roleid/dashboard/common/chat/"
+              className="mr-9 text-white"
+            >
               Chat
             </a>
           </div>

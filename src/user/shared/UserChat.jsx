@@ -37,7 +37,7 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-const PatientDashboard = () => {
+const UserChat = () => {
   return (
     <>
       <div className="min-h-full">
@@ -201,7 +201,11 @@ const PatientDashboard = () => {
             </>
           )}
         </Disclosure>
-
+        <header className="bg-white shadow">
+          <div className="mx-auto max-w-7xl py-6 px-4 sm:px-6 lg:px-8">
+            <h1 className="text-3xl font-bold tracking-tight text-gray-900">Dashboard - Chat Page</h1>
+          </div>
+        </header>
         <main>
           <div className="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">
             {/* Replace with your content */}
@@ -213,7 +217,7 @@ const PatientDashboard = () => {
         </main>
       </div>
       <footer className="relative text-center text-white">
-        <div className="container w-full pt-9 bg-gray-600 fixed bottom-0 left-0 right-0">
+        <div className="container pt-9 bg-gray-600 w-full fixed bottom-0 left-0">
           <div className="flex justify-center mb-9">
             <a
               href="/userrole/:roleid/dashboard/patient/mydata/"
@@ -221,10 +225,13 @@ const PatientDashboard = () => {
             >
               My Data
             </a>
-            <a href="/userrole/:roleid/dashboard/patient/prescriptions/" className="mr-9 text-white">
+            <a
+              href="/userrole/:roleid/dashboard/patient/prescriptions/"
+              className="mr-9 text-white"
+            >
               Prescriptions
             </a>
-            <a href="/userrole/:roleid/dashboard/common/chat/" className="mr-9 text-white">
+            <a href="/userrole/:roleid/dashboard/common/chat/" className="mr-9 text-white font-bold">
               Chat
             </a>
           </div>
@@ -234,4 +241,4 @@ const PatientDashboard = () => {
   );
 };
 
-export default PatientDashboard;
+export default UserChat;
