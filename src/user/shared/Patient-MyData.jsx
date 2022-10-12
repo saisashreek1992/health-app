@@ -2,8 +2,6 @@ import React, { Fragment } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { FiBell, FiX, FiMenu } from "react-icons/fi";
 
-import FloatingForm from "../../pages/shared/Floating-Form";
-
 const user = {
   name: "Tom Cook",
   email: "tom@example.com",
@@ -290,15 +288,14 @@ const PatientMyData = () => {
                 >
                   <p className="text-center text-xl font-medium">Forms</p>
                 </div>
-              </div>              
-            </div>            
+              </div>
+            </div>
             {/* /End replace */}
-            <FloatingForm />            
           </div>
-        </main>        
+        </main>
       </div>
       <footer className="relative text-center text-white">
-        <div className="container w-full pt-9 bg-gray-600 fixed bottom-0 left-0 right-0">
+        <div className="container pt-9 bg-gray-600 w-full fixed bottom-0 left-0">
           <div className="flex justify-center mb-9">
             <a
               href="/userrole/:roleid/dashboard/patient/mydata/"
