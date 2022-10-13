@@ -1,15 +1,13 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
 import { FiEye, FiEdit } from "react-icons/fi";
 
-const PatientAppointmentInfo = () => {
-  let navigate = useNavigate();
+const PatientObservation = () => {
   return (
     <>
       <div className="flex justify-start my-5">
         <div className="block p-6 rounded-lg shadow-lg bg-white max-w-sm">
           <h5 className="text-gray-900 text-xl leading-tight font-medium mb-2">
-            Create Appointment's
+            Create Observations
           </h5>
           <p className="text-gray-700 text-base mb-4">
             Some quick example text to build on the card title and make up the
@@ -19,15 +17,15 @@ const PatientAppointmentInfo = () => {
             type="button"
             className="inline-block px-6 py-2.5 bg-teal-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-teal-700 hover:shadow-lg focus:bg-teal-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-teal-800 active:shadow-lg transition duration-150 ease-in-out"
             data-bs-toggle="modal"
-            data-bs-target="#createAppointment"
+            data-bs-target="#createObservations"
           >
-            Create Appointment
+            Create Observations
           </button>
           <div
             className="modal fade fixed top-0 left-0 hidden w-full h-full outline-none overflow-x-hidden overflow-y-auto"
-            id="createAppointment"
+            id="createObservations"
             tabindex="-1"
-            aria-labelledby="createAppointmentLabel"
+            aria-labelledby="createObservationsLabel"
             aria-hidden="true"
           >
             <div className="modal-dialog relative w-auto pointer-events-none">
@@ -49,35 +47,19 @@ const PatientAppointmentInfo = () => {
                 <div className="modal-body relative p-4">
                   <div className="form__Grid--Rows-none">
                     <div className="form__Cols--Span-6">
-                      <label htmlFor="staff" className="form__Label-Heading">
-                        Select Staff
-                      </label>
-                      <select
-                        id="staff"
-                        name="staff"
-                        autoComplete="staff-name"
-                        className="form__Select"
-                      >
-                        <option>Select Staff</option>
-                        <option>Staff 1</option>
-                        <option>Staff 2</option>
-                        <option>Staff 3</option>
-                        <option>Staff 4</option>
-                      </select>
-                    </div>
-                    <div className="form__Cols--Span-6">
                       <label
-                        htmlFor="appointment-date"
+                        htmlFor="observation-info"
                         className="form__Label-Heading"
                       >
-                        Select Appointment Date
+                        Enter Patients Observation
                       </label>
-                      <input
-                        type="date"
-                        name="appointment-date"
-                        id="appointment-date"
+                      <textarea
+                        rows={3}
+                        name="observation-info"
+                        id="observation-info"
                         autoComplete="given-name"
-                        className="form__Input"
+                        className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+                        placeholder="Enter Patients Observation"
                       />
                     </div>
                   </div>
@@ -94,7 +76,7 @@ const PatientAppointmentInfo = () => {
                     type="button"
                     className="px-6 py-2.5 bg-teal-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-teal-700 hover:shadow-lg focus:bg-teal-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-teal-800 active:shadow-lg transition duration-150 ease-in-out ml-1"
                   >
-                    Create &amp; Save Appointment
+                    Create &amp; Save Observation
                   </button>
                 </div>
               </div>
@@ -102,6 +84,7 @@ const PatientAppointmentInfo = () => {
           </div>
         </div>
       </div>
+
       <div className="my-10">
         <table className="min-w-full table-auto">
           <thead className="bg-gray-200">
@@ -110,16 +93,13 @@ const PatientAppointmentInfo = () => {
                 Sl No.
               </th>
               <th className="text-lg font-bold text-gray-900 px-2 py-4">
-                Doctor Name
+                Observed Name
               </th>
               <th className="text-lg font-bold text-gray-900 px-2 py-4">
                 Patient Name
               </th>
               <th className="text-lg font-bold text-gray-900 px-2 py-4">
-                Appointment Date
-              </th>
-              <th className="text-lg font-bold text-gray-900 px-2 py-4">
-                Actions
+                Observed Date
               </th>
             </tr>
           </thead>
@@ -137,19 +117,6 @@ const PatientAppointmentInfo = () => {
               <td className="px-6 py-4 whitespace-nowrap text-base font-medium text-gray-900 text-center">
                 11-10-2022
               </td>
-              <td className="px-6 py-4 whitespace-nowrap text-base font-medium text-gray-900 text-center">
-                <div className="flex flex-row justify-center">
-                  <div className="inline-block p-6">
-                    <FiEye
-                      className="h-6 w-6 hover:text-green-500"
-                      onClick={() => navigate('/userrole/:roleid/dashboard/patient/meeting/info/')}
-                    />
-                  </div>
-                  <div className="inline-block p-6">
-                    <FiEdit className="h-6 w-6 hover:text-blue-500" />
-                  </div>
-                </div>
-              </td>
             </tr>
             <tr className="bg-white border-b">
               <td className="px-6 py-4 whitespace-nowrap text-base font-medium text-gray-900 text-center">
@@ -163,18 +130,6 @@ const PatientAppointmentInfo = () => {
               </td>
               <td className="px-6 py-4 whitespace-nowrap text-base font-medium text-gray-900 text-center">
                 11-10-2022
-              </td>
-              <td className="px-6 py-4 whitespace-nowrap text-base font-medium text-gray-900 text-center">
-                <div className="flex flex-row justify-center">
-                  <div className="inline-block p-6">
-                    <FiEye className="h-6 w-6 hover:text-green-500" 
-                      onClick={() => navigate('/userrole/:roleid/dashboard/patient/meeting/info/')}
-                    />
-                  </div>
-                  <div className="inline-block p-6">
-                    <FiEdit className="h-6 w-6 hover:text-blue-500" />
-                  </div>
-                </div>
               </td>
             </tr>
             <tr className="bg-white border-b">
@@ -190,18 +145,6 @@ const PatientAppointmentInfo = () => {
               <td className="px-6 py-4 whitespace-nowrap text-base font-medium text-gray-900 text-center">
                 11-10-2022
               </td>
-              <td className="px-6 py-4 whitespace-nowrap text-base font-medium text-gray-900 text-center">
-                <div className="flex flex-row justify-center">
-                  <div className="inline-block p-6">
-                    <FiEye className="h-6 w-6 hover:text-green-500"
-                      onClick={() => navigate('/userrole/:roleid/dashboard/patient/meeting/info/')}
-                     />
-                  </div>
-                  <div className="inline-block p-6">
-                    <FiEdit className="h-6 w-6 hover:text-blue-500" />
-                  </div>
-                </div>
-              </td>
             </tr>
           </tbody>
         </table>
@@ -210,4 +153,4 @@ const PatientAppointmentInfo = () => {
   );
 };
 
-export default PatientAppointmentInfo;
+export default PatientObservation;

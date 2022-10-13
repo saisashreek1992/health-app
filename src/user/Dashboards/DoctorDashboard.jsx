@@ -1,6 +1,8 @@
 import React from "react";
 import Navbar from "../shared/Navbar";
 import FloatingButton from "../../pages/shared/Floating-Button";
+import DoctorAppointment from "../../pages/form-validations/doctor/DoctorAppointment";
+import DoctorVisitor from "../../pages/form-validations/doctor/DoctorVisitor";
 
 const DoctorDashboard = () => {
   return (
@@ -67,7 +69,7 @@ const DoctorDashboard = () => {
                   role="tabpanel"
                   aria-labelledby="tabs-appointment-tabJustify"
                 >
-                  <p className="tabs__Text">Appointment Section</p>
+                  <DoctorAppointment />
                 </div>
                 <div
                   className="tab-pane fade"
@@ -75,7 +77,7 @@ const DoctorDashboard = () => {
                   role="tabpanel"
                   aria-labelledby="tabs-mypatients-tabJustify"
                 >
-                  <p className="tabs__Text">My Patients Section</p>
+                  <DoctorVisitor />
                 </div>
                 <div
                   className="tab-pane fade"
