@@ -1,17 +1,74 @@
-import React from "react";
+import React, { useState} from "react";
 import { FaGoogle } from "react-icons/fa";
 
+import InputLog from "../../Components/InputLog";
+import { VALIDATOR_EMAIL, VALIDATOR_MINLENGTH } from "../../utils/validators";
+import { useForm} from "../../hooks/form-hooks";
+
 const LoginForm = () => {
+
+  const [isLogged, setIsLogged] = useState(false);
+
+  const [formState, inputHandler, setFormData] = useForm(
+    {
+      emailAddress: {
+        value: "",
+        isValid: false,
+      },
+      password: {
+        value: "",
+        isValid: false,
+      },
+    },
+    false
+  );
+
+  const loggedHandler = () => {
+    if (!isLogged) {
+      setFormData(
+        {
+          ...formState.inputs,
+          name: undefined
+        },
+        formState.inputs.emailAddress.isValid && formState.inputs.password.isValid
+      );
+    }
+    else {
+      setFormData(
+        {
+          ...formState.inputs,
+          name: {
+            value: "",
+            isValid: false
+          }
+        },
+        false
+      );
+    }
+    setIsLogged((prevLogg) => (!prevLogg));
+  };
+
   return (
     <>
       <form
         className="login__Form-Box"
-        action="#"
         method="POST"
+        onClick={loggedHandler}
       >
         <input type="hidden" name="remember" defaultValue="true" />
         <div className="login__Form-Input">
           <div>
+            <InputLog
+              element="input"
+              id="emailAddress"
+              type="email"
+              label="Email Address"
+              placeholder="Enter Email Address"
+              validators={[VALIDATOR_EMAIL()]}
+              errorText="Please Enter Valid Email Address"
+              onInput={inputHandler}
+             />
+            {/*
             <label htmlFor="email-address" className="login__Form-Input--Label">
               Email address
             </label>
@@ -24,8 +81,20 @@ const LoginForm = () => {
               className="login__Form-Input--Email"
               placeholder="Email address"
             />
+            */}
           </div>
           <div>
+          <InputLog
+              element="input"
+              id="pasword"
+              type="password"
+              label="Password"
+              placeholder="Enter Password"
+              validators={[VALIDATOR_MINLENGTH(8)]}
+              errorText="Please Enter Valid Password"
+              onInput={inputHandler}
+             />
+             {/*
             <label htmlFor="password" className="login__Form-Input--Label">
               Password
             </label>
@@ -38,6 +107,7 @@ const LoginForm = () => {
               className="login__Form-Input--Password"
               placeholder="Password"
             />
+            */}
           </div>
         </div>
 
