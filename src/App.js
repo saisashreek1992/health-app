@@ -30,6 +30,8 @@ import UserChat from './user/shared/UserChat';
 
 //SUPER PAGE IMPORTS
 import Admin from "./user/Dashboards/SuperAdmin";
+import EnrolmentsView from './pages/form-validations/admin/EnrolmentsView';
+import EmployeSummary from './pages/form-validations/admin/EmployeSummary';
 
 const App = () => {
   return (
@@ -52,6 +54,8 @@ const App = () => {
         <Route path='/userrole/:roleid/dashboard/patient/meeting/info/' element={<PatientMeetingInfo />} />
         <Route path='/userrole/:roleid/dashboard/common/chat/' element={<UserChat />} />
         <Route path='/userrole/:roleid/dashboard/admin/' element={<Admin />} />
+        <Route path='/userrole/:roleid/dashboard/admin/patient/enrolment/view/' element={<EnrolmentsView />} />
+        <Route path='/userrole/:roleid/dashboard/admin/summary/employee/view/' element={<EmployeSummary />} />
       </Routes>
     </BrowserRouter>
   );
