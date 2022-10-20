@@ -67,20 +67,20 @@ const AccessControl = () => {
                   />
                 </div>
                 <div className="form__Cols--Span-6">
-                  <label htmlFor="staff" className="form__Label-Heading">
-                    Select Staff
+                  <label htmlFor="role" className="form__Label-Heading">
+                    Select Role
                   </label>
                   <select
-                    id="staff"
-                    name="staff"
-                    autoComplete="staff-name"
+                    id="role"
+                    name="role"
+                    autoComplete="role-name"
                     className="form__Select"
                   >
-                    <option>Select Staff</option>
-                    <option>Staff 1</option>
-                    <option>Staff 2</option>
-                    <option>Staff 3</option>
-                    <option>Staff 4</option>
+                    <option>Select Role</option>
+                    <option>Role 1</option>
+                    <option>Role 2</option>
+                    <option>Role 3</option>
+                    <option>Role 4</option>
                   </select>
                 </div>
                 <div className="form__Cols--Span-6">

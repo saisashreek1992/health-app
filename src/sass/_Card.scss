@@ -8,6 +8,14 @@
         &--Evenly {
             @apply flex justify-evenly;
         }
+
+        &--Btwn {
+            @apply flex justify-between;
+        }
+
+        &--Around {
+            @apply flex justify-around;
+        }
     }
 
     &__Block {
@@ -33,6 +41,10 @@
         }
         &--Green {
             @apply bg-green-500 text-white;
+        }
+
+        &--Sky {
+            @apply bg-sky-500 text-white;
         }
     }
 
@@ -96,6 +108,18 @@
             }
             &:active {
                 @apply active:bg-green-800 active:shadow-lg;
+            }
+        }
+
+        &--Bg-Sky {
+            &:hover {
+                @apply hover:bg-sky-700 hover:shadow-lg;
+            }
+            &:focus {
+                @apply focus:bg-sky-700 focus:shadow-lg focus:outline-none focus:ring-0;
+            }
+            &:active {
+                @apply active:bg-sky-800 active:shadow-lg;
             }
         }
     }
