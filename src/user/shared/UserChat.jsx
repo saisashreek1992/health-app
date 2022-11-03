@@ -1,6 +1,8 @@
 import React from "react";
 import PatientNav from "./PatientNav";
 
+import ChatUI from "../../pages/shared/ChatUI";
+
 const UserChat = () => {
   return (
     <>
@@ -12,17 +14,15 @@ const UserChat = () => {
           </div>
         </header>
         <main>
-          <div className="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-7xl py-2 sm:px-6 lg:px-8">
             {/* Replace with your content */}
-            <div className="px-4 py-6 sm:px-0">
-              <div className="h-96 rounded-lg border-4 border-dashed border-gray-200" />
-            </div>
+            <ChatUI />
             {/* /End replace */}
           </div>
         </main>
       </div>
       <footer className="relative text-center text-white">
-        <div className="container pt-9 bg-gray-600 w-full fixed bottom-0 left-0">
+        <div className="container -my-5 pt-9 bg-gray-600 w-full h-auto fixed bottom-0 left-0">
           <div className="flex justify-center mb-9">
             <a
               href="/userrole/:roleid/dashboard/patient/mydata/"

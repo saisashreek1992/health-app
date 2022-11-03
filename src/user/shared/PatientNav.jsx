@@ -17,6 +17,21 @@ const user = {
       href: "/userrole/:roleid/dashboard/patient/",
       current: true,
     },
+    {
+      name: "MyData",
+      href: "/userrole/:roleid/dashboard/patient/",
+      current: true,
+    },
+    {
+      name: "Prescriptions",
+      href: "/userrole/:roleid/dashboard/patient/",
+      current: true,
+    },
+    {
+      name: "Chat",
+      href: "/userrole/:roleid/dashboard/patient/",
+      current: true,
+    },
   ];
   
   const userNavigation = [

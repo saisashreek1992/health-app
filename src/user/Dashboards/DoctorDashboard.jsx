@@ -3,6 +3,7 @@ import Navbar from "../shared/Navbar";
 import FloatingButton from "../../pages/shared/Floating-Button";
 import DoctorAppointment from "../../pages/form-validations/doctor/DoctorAppointment";
 import DoctorVisitor from "../../pages/form-validations/doctor/DoctorVisitor";
+import ChatUI from "../../pages/shared/ChatUI";
 
 const DoctorDashboard = () => {
   return (
@@ -85,7 +86,7 @@ const DoctorDashboard = () => {
                   role="tabpanel"
                   aria-labelledby="tabs-chat-tabJustify"
                 >
-                  <p className="tabs__Text">Chat Section</p>
+                  <ChatUI />
                 </div>
               </div>
             </div>

@@ -2,6 +2,8 @@ import React from "react";
 import FloatingForm from "../../pages/shared/Floating-Form";
 import PatientNav from "./PatientNav";
 
+import { Form1, Form2, Form3 } from "../../pages/shared/MultiForms";
+
 const PatientMyData = () => {
   return (
     <>
@@ -75,7 +77,11 @@ const PatientMyData = () => {
                   role="tabpanel"
                   aria-labelledby="tabs-appointment-tabJustify"
                 >
-                  <p className="text-center text-xl font-medium">Forms</p>
+                  {Form1()}
+                  <br />
+                  {Form2()}
+                  <br />
+                  {Form3()}
                 </div>
                 <div
                   className="tab-pane fade"
@@ -83,7 +89,11 @@ const PatientMyData = () => {
                   role="tabpanel"
                   aria-labelledby="tabs-mypatients-tabJustify"
                 >
-                  <p className="text-center text-xl font-medium">Forms</p>
+                  {Form1()}
+                  <br />
+                  {Form2()}
+                  <br />
+                  {Form3()}
                 </div>
                 <div
                   className="tab-pane fade"
@@ -91,7 +101,11 @@ const PatientMyData = () => {
                   role="tabpanel"
                   aria-labelledby="tabs-chat-tabJustify"
                 >
-                  <p className="text-center text-xl font-medium">Forms</p>
+                  {Form1()}
+                  <br />
+                  {Form2()}
+                  <br />
+                  {Form3()}
                 </div>
               </div>              
             </div>            
@@ -100,7 +114,7 @@ const PatientMyData = () => {
           </div>
         </main>        
       </div>
-      <footer className="relative text-center text-white">
+      {/* <footer className="relative text-center text-white">
         <div className="container w-full pt-9 bg-gray-600 fixed bottom-0 left-0 right-0">
           <div className="flex justify-center mb-9">
             <a
@@ -117,7 +131,7 @@ const PatientMyData = () => {
             </a>
           </div>
         </div>
-      </footer>
+      </footer> */}
     </>
   );
 };

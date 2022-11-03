@@ -25,6 +25,22 @@ const CreateForm = () => {
                           <div className="form__Grid--Cols-6">
                             <div className="form__Cols--Span-6">
                               <label
+                                htmlFor="patient-id"
+                                className="form__Label-Heading"
+                              >
+                                Select Patient
+                              </label>
+                              <input
+                                type="text"
+                                name="patient-id"
+                                id="patient-id"
+                                autoComplete="given-name"
+                                className="form__Input"
+                                placeholder="Please Add Patient ID"
+                              />
+                            </div>
+                            <div className="form__Cols--Span-6">
+                              <label
                                 htmlFor="form-title"
                                 className="form__Label-Heading"
                               >
@@ -66,6 +82,14 @@ const CreateForm = () => {
                                 <option>Checkbox Type</option>
                                 <option>Text Area [Input will be text]</option>
                               </select>
+                            </div>
+                            <div className="form__Cols--Span-6">
+                            <button
+                                type="submit"
+                                className="form__Btn-Green"
+                              >
+                                Add More Questions
+                              </button>
                             </div>
                           </div>
                           <div className="form__Grid--Rows-none">

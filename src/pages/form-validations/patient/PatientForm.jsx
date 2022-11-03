@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import Navbar from "../../../user/shared/Navbar";
+import PatientNav from "../../../user/shared/PatientNav";
 
 const PatientForm = () => {
   let navigate = useNavigate();
@@ -10,7 +10,7 @@ const PatientForm = () => {
   return (
     <>
       <div className="dashboard__Container">
-        <Navbar />
+        <PatientNav />
         <main>
           <div className="dashboard__Main-Content">
             {/* Replace with your content */}
@@ -23,22 +23,6 @@ const PatientForm = () => {
                         <div className="form__Box-Space">
                           <div className="form__Grid--Rows-none">
                             <div className="form__Cols--Span-6">
-                              {/*  
-                              <label
-                                htmlFor="calories-low-value"
-                                className="form__Label-Heading"
-                              >
-                                Question Title
-                              </label>
-                              
-                                <input
-                                type="text"
-                                name="calories-low-value"
-                                id="calories-low-value"
-                                autoComplete="given-name"
-                                className="form__Input"
-                              />
-                              */}
                               <h2 className="text-xl text-center font-bold pt-5">
                                 Form Title
                               </h2>
