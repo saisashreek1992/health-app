@@ -1,7 +1,63 @@
-import React from "react";
+import { addDoc, collection, onSnapshot, orderBy, query, serverTimestamp } from "firebase/firestore";
+import React, { useEffect, useMemo, useState } from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
 import Profile from "../../Assets/user/profile-image.png";
+import { auth, db } from "../../firebase";
 
 const ChatUI = () => {
+  const [messages, setMessages] = useState([]);
+  const [user] = useAuthState(auth);
+  const [image, setImage] = useState('')
+ 
+
+  
+  const [input, setInput] = useState('');
+
+  const sendMessage = async (e) => {
+    const {uid, displayName} = auth.currentUser
+    e.preventDefault()
+    if(user){
+    if (input === '') {
+        alert('Please enter a valid message')
+        return
+    }
+    const {uid, displayName} = auth.currentUser
+    await addDoc(collection(db, 'messages'), {
+        text: input,
+        name: displayName,
+        uid,
+        timestamp: serverTimestamp()
+    })
+    setInput('')
+  }
+  }
+
+
+  useMemo(() =>{ 
+    if(user){
+      const {photoURL} =auth.currentUser
+      console.log(photoURL)
+      setImage(photoURL)
+    }
+    console.log(user)
+
+  
+   } , [user])
+
+  useEffect(() => {
+    const q = query(collection(db, 'messages'), orderBy('timestamp'));
+    const unsubscribe = onSnapshot(q, (querySnapshot) => {
+      let messages = [];
+      querySnapshot.forEach((doc) => {
+        messages.push({ ...doc.data(), id: doc.id });
+      });
+      setMessages(messages);
+    });
+    return () => unsubscribe();
+  }, []);
+  if(messages.length>0 ){
+    // console.log(messages)
+  }
   return (
     <>
       {/* <h1 classNameName="text-lg font-medium font-Quicksand">Chat Box App</h1> */}
@@ -362,52 +418,35 @@ const ChatUI = () => {
                       Chatting with <b>User Name</b>
                     </h2>
                   </div>
-                  <div className="messages flex-1 overflow-auto">
-                    <div className="message mb-4 flex">
-                      <div className="flex-2">
-                        <div className="w-12 h-12 relative">
-                          <img
-                            className="w-12 h-12 rounded-full mx-auto"
-                            src={Profile}
-                            alt="chat-user"
-                          />
-                          <span className="absolute w-4 h-4 bg-gray-400 rounded-full right-0 bottom-0 border-2 border-white"></span>
+
+
+                  <div className="messages flex-1 overflow-auto max-width">
+                    {messages && messages.map((msg)=>(
+                        <div className="message mb-4 flex" key={msg.id}>
+                        <div className="flex-2">
+                          <div className="w-12 h-12 relative">
+                            <img
+                              className="w-12 h-12 rounded-full mx-auto"
+                              src={Profile}
+                              alt="chat-user"
+                            />
+                            <span className="absolute w-4 h-4 bg-gray-400 rounded-full right-0 bottom-0 border-2 border-white"></span>
+                          </div>
+                        </div>
+                        <div className="flex-1 px-2">
+                          <div className="inline-block bg-gray-300 rounded-full p-2 px-6 text-gray-700">
+                            <span>
+                               {msg.text}
+                            </span>
+                          </div>
+                          <div className="pl-4">
+                            <small className="text-gray-500">15 April</small>
+                          </div>
                         </div>
                       </div>
-                      <div className="flex-1 px-2">
-                        <div className="inline-block bg-gray-300 rounded-full p-2 px-6 text-gray-700">
-                          <span>
-                            Hey there. We would like to invite you over to our
-                            office for a visit. How about it?
-                          </span>
-                        </div>
-                        <div className="pl-4">
-                          <small className="text-gray-500">15 April</small>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="message mb-4 flex">
-                      <div className="flex-2">
-                        <div className="w-12 h-12 relative">
-                          <img
-                            className="w-12 h-12 rounded-full mx-auto"
-                            src={Profile}
-                            alt="chat-user"
-                          />
-                          <span className="absolute w-4 h-4 bg-gray-400 rounded-full right-0 bottom-0 border-2 border-white"></span>
-                        </div>
-                      </div>
-                      <div className="flex-1 px-2">
-                        <div className="inline-block bg-gray-300 rounded-full p-2 px-6 text-gray-700">
-                          <span>
-                            All travel expenses are covered by us of course :D
-                          </span>
-                        </div>
-                        <div className="pl-4">
-                          <small className="text-gray-500">15 April</small>
-                        </div>
-                      </div>
-                    </div>
+                    ))}
+                  
+                   
                     <div className="message me mb-4 flex text-right">
                       <div className="flex-1 px-2">
                         <div className="inline-block bg-blue-600 rounded-full p-2 px-6 text-white">
@@ -418,38 +457,14 @@ const ChatUI = () => {
                         </div>
                       </div>
                     </div>
-                    <div className="message me mb-4 flex text-right">
-                      <div className="flex-1 px-2">
-                        <div className="inline-block bg-blue-600 rounded-full p-2 px-6 text-white">
-                          <span>I accept. Thank you very much.</span>
-                        </div>
-                        <div className="pr-4">
-                          <small className="text-gray-500">15 April</small>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="message mb-4 flex">
-                      <div className="flex-2">
-                        <div className="w-12 h-12 relative">
-                          <img
-                            className="w-12 h-12 rounded-full mx-auto"
-                            src={Profile}
-                            alt="chat-user"
-                          />
-                          <span className="absolute w-4 h-4 bg-gray-400 rounded-full right-0 bottom-0 border-2 border-white"></span>
-                        </div>
-                      </div>
-                      <div className="flex-1 px-2">
-                        <div className="inline-block bg-gray-300 rounded-full p-2 px-6 text-gray-700">
-                          <span>You are welome. We will stay in touch.</span>
-                        </div>
-                        <div className="pl-4">
-                          <small className="text-gray-500">15 April</small>
-                        </div>
-                      </div>
-                    </div>
+                   
+                  
                   </div>
+
+
                   <div className="flex-2 pt-4 pb-10">
+                  <form action="" onSubmit={sendMessage}>
+
                     <div className="write bg-white shadow flex rounded-lg">
                       <div className="flex-3 flex content-center items-center text-center p-4 pr-0">
                         <span className="block text-center text-gray-400 hover:text-gray-800">
@@ -468,13 +483,18 @@ const ChatUI = () => {
                       </div>
                       <div className="flex-1">
                         <textarea
+                         value={input}
+                         onChange={(e) => setInput(e.target.value)}
+                      
                           name="message"
                           className="outline-hidden w-full block outline-none py-4 px-4 bg-transparent"
                           rows="1"
-                          placeholder="Type a message..."
+                          placeholder="Type a messagess..."
                           autofocus
+                          
                         ></textarea>
                       </div>
+
                       <div className="flex-2 w-32 p-2 flex content-center items-center">
                         <div className="flex-1 text-center">
                           <span className="text-gray-400 hover:text-gray-800">
@@ -494,7 +514,7 @@ const ChatUI = () => {
                           </span>
                         </div>
                         <div className="flex-1">
-                          <button className="bg-blue-400 w-10 h-10 rounded-full inline-block">
+                          <button className="bg-blue-400 w-10 h-10 rounded-full inline-block" type="submit">
                             <span className="inline-block align-text-bottom">
                               <svg
                                 fill="none"
@@ -512,6 +532,8 @@ const ChatUI = () => {
                         </div>
                       </div>
                     </div>
+                    </form>
+
                   </div>
                 </div>
               </div>

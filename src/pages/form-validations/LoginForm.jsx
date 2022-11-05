@@ -5,7 +5,18 @@ import InputLog from "../../Components/InputLog";
 import { VALIDATOR_EMAIL, VALIDATOR_MINLENGTH } from "../../utils/validators";
 import { useForm} from "../../hooks/form-hooks";
 
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { auth } from "../../firebase";
+import { GoogleAuthProvider, signInWithRedirect } from "firebase/auth";
+
 const LoginForm = () => {
+
+  const googleSignIn = () => {
+    const provider = new GoogleAuthProvider()
+    signInWithRedirect(auth, provider)
+}
+const [user] = useAuthState(auth);
+   console.log(user,'user')
 
   const [isLogged, setIsLogged] = useState(false);
 
@@ -48,11 +59,14 @@ const LoginForm = () => {
     setIsLogged((prevLogg) => (!prevLogg));
   };
 
+  const signOut = () => {
+    signOut(auth)
+}
   return (
     <>
       <form
         className="login__Form-Box"
-        method="POST"
+        // method="POST"
         onClick={loggedHandler}
       >
         <input type="hidden" name="remember" defaultValue="true" />
@@ -141,22 +155,38 @@ const LoginForm = () => {
         <div className="login__Divider--Box">
           <p className="login__Divider--Text">Or</p>
         </div>
+        </form>
 
-        <div>
+        {user ? (
+           <div>
+           {user !==null && (
+           <button onClick={()=>auth.signOut()}>Signout</button>
+ 
+           )}
+         </div>
+
+        ):(
+          <div>
           <button
             type="submit"
             className="group login__Social--Btn"
+            onClick={googleSignIn}
           >
             <span className="login__Social--Span">
-              <FaGoogle
+              <FaGoogle 
+           
                 className="login__Social--Span-Icon"
                 aria-hidden="true"
               />
             </span>
-            Sign in with Google
+            Sign in with Googless
           </button>
         </div>
-      </form>
+        )}
+    
+
+       
+
     </>
   );
 };
