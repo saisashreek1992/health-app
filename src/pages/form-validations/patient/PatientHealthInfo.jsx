@@ -4,22 +4,39 @@ import { Stepper } from "react-form-stepper";
 import Navbar from "../../../user/shared/Navbar";
 
 const PatientHealthInfo = () => {
-  const [height, setHeight] = useState('')
-  const [weight, setWeight] = useState('')
-  const [caretakerName, setCaretakerName] = useState('')
-  const [relation, setRelation] = useState('')
-  const [caretakerNumber, setCaretakerNumber] = useState('')
-  const [caretakerTime, setCaretakerTime] = useState('')
-  const [healthPlan, setHealthPlan] = useState('')
-  const [planDate, setPlanDate] = useState('')
-  const [patientTeam, setPatientTeam] = useState('')
-  const location=useLocation()
-  const {number,name,email,dob,gender} =location.state
-  console.log(number,name,email,dob,gender)
+  const [height, setHeight] = useState("");
+  const [weight, setWeight] = useState("");
+  const [caretakerName, setCaretakerName] = useState("");
+  const [relation, setRelation] = useState("");
+  const [caretakerNumber, setCaretakerNumber] = useState("");
+  const [caretakerTime, setCaretakerTime] = useState("");
+  const [healthPlan, setHealthPlan] = useState("");
+  const [planDate, setPlanDate] = useState("");
+  const [patientTeam, setPatientTeam] = useState("");
+  const location = useLocation();
+  const { number, name, email, dob, gender } = location.state;
+  console.log(number, name, email, dob, gender);
   let navigate = useNavigate();
 
   const nextStep = () => {
-    navigate("/userrole/:roleid/dashboard/doctor/enrol/personalinfo/",{state:{number,name,email,dob,gender,height,weight,caretakerName,relation,caretakerNumber,caretakerTime,healthPlan,planDate,patientTeam}});
+    navigate("/userrole/:roleid/dashboard/doctor/enrol/personalinfo/", {
+      state: {
+        number,
+        name,
+        email,
+        dob,
+        gender,
+        height,
+        weight,
+        caretakerName,
+        relation,
+        caretakerNumber,
+        caretakerTime,
+        healthPlan,
+        planDate,
+        patientTeam,
+      },
+    });
   };
 
   return (
@@ -52,8 +69,8 @@ const PatientHealthInfo = () => {
                               Patient Height
                             </label>
                             <input
-                             required
-                              onChange={(e)=>setHeight(e.target.value)}
+                              required
+                              onChange={(e) => setHeight(e.target.value)}
                               type="text"
                               name="height"
                               id="hight"
@@ -69,8 +86,8 @@ const PatientHealthInfo = () => {
                               Patient Weight
                             </label>
                             <input
-                             required
-                              onChange={(e)=>setWeight(e.target.value)}
+                              required
+                              onChange={(e) => setWeight(e.target.value)}
                               type="text"
                               name="weight"
                               id="weight"
@@ -86,8 +103,8 @@ const PatientHealthInfo = () => {
                               Caretakers Full Name
                             </label>
                             <input
-                             required
-                              onChange={(e)=>setCaretakerName(e.target.value)}                           
+                              required
+                              onChange={(e) => setCaretakerName(e.target.value)}
                               type="text"
                               name="caretaker-name"
                               id="caretaker-name"
@@ -103,20 +120,22 @@ const PatientHealthInfo = () => {
                               Caretakers Relation
                             </label>
                             <select
-                             required
-                              onChange={(e)=>setRelation(e.target.value)}
+                              required
+                              onChange={(e) => setRelation(e.target.value)}
                               id="relation"
                               name="relation"
                               autoComplete="relation-name"
                               className="form__Select"
                             >
                               <option>Select Caretakers Relation</option>
-                              <option value='Father'>Father</option>
-                              <option value='Mother'>Mother</option>
-                              <option value='Son'>Son</option>
-                              <option value='Daughter'>Daughter</option>
-                              <option value='Son-In-Law'>Son-In-Law</option>
-                              <option value='Daughter-In-Law'>Daughter-In-Law</option>
+                              <option value="Father">Father</option>
+                              <option value="Mother">Mother</option>
+                              <option value="Son">Son</option>
+                              <option value="Daughter">Daughter</option>
+                              <option value="Son-In-Law">Son-In-Law</option>
+                              <option value="Daughter-In-Law">
+                                Daughter-In-Law
+                              </option>
                             </select>
                           </div>
                           <div className="form__Cols--Span-6">
@@ -127,8 +146,10 @@ const PatientHealthInfo = () => {
                               Caretakers Phone Number
                             </label>
                             <input
-                             required
-                             onChange={(e)=>setCaretakerNumber(e.target.value)}
+                              required
+                              onChange={(e) =>
+                                setCaretakerNumber(e.target.value)
+                              }
                               type="tel"
                               name="caretaker-number"
                               id="caretaker-number"
@@ -144,8 +165,8 @@ const PatientHealthInfo = () => {
                               Caretakers Preferred Time
                             </label>
                             <input
-                             required
-                              onChange={(e)=>setCaretakerTime(e.target.value)}
+                              required
+                              onChange={(e) => setCaretakerTime(e.target.value)}
                               type="time"
                               name="pref-time"
                               id="pref-time"
@@ -161,16 +182,16 @@ const PatientHealthInfo = () => {
                               Health Plan
                             </label>
                             <select
-                             required
-                              onChange={(e)=>setHealthPlan(e.target.value)}
+                              required
+                              onChange={(e) => setHealthPlan(e.target.value)}
                               id="health-plan"
                               name="health-plan"
                               autoComplete="health-plan-name"
                               className="form__Select"
                             >
                               <option>Select Health Plan</option>
-                              <option value='plan A'>Plan A</option>
-                              <option value='plan B'>Plan B</option>
+                              <option value="plan A">Plan A</option>
+                              <option value="plan B">Plan B</option>
                               {/* <option>Plan C</option>
                               <option>Plan D</option> */}
                             </select>
@@ -183,7 +204,7 @@ const PatientHealthInfo = () => {
                               Health Plan Date (Start + End)
                             </label>
                             <input
-                              onChange={(e)=>setPlanDate(e.target.value)}
+                              onChange={(e) => setPlanDate(e.target.value)}
                               type="date"
                               required
                               name="plan-date"
@@ -200,7 +221,7 @@ const PatientHealthInfo = () => {
                               Patient Team
                             </label>
                             <select
-                              onChange={(e)=>setPatientTeam(e.target.value)}
+                              onChange={(e) => setPatientTeam(e.target.value)}
                               id="patient-team"
                               required
                               name="patient-team"
@@ -208,8 +229,8 @@ const PatientHealthInfo = () => {
                               className="form__Select"
                             >
                               <option>Select Patient Team</option>
-                              <option value='Team A'>Team A</option>
-                              <option value='Team B'> Team B</option>
+                              <option value="Team A">Team A</option>
+                              <option value="Team B"> Team B</option>
                               <option>Team C</option>
                               <option>Team D</option>
                             </select>
@@ -218,10 +239,7 @@ const PatientHealthInfo = () => {
                       </div>
                       <div className="form__Btn-Bg">
                         <div className="text-right">
-                          <button
-                            type="submit"
-                            className="form__Btn-Submit"
-                          >
+                          <button type="submit" className="form__Btn-Submit">
                             Next
                           </button>
                         </div>

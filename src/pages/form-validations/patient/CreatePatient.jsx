@@ -4,21 +4,22 @@ import { Stepper } from "react-form-stepper";
 import Navbar from "../../../user/shared/Navbar";
 
 const CreatePatient = () => {
-  const [number, setNumber] = useState('')
-  const [name, setName] = useState('')
-  const [email, setEmail] = useState('')
-  const [dob, setDob] = useState('')
-  const [gender, setGender] = useState('')
+  const [number, setNumber] = useState("");
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [dob, setDob] = useState("");
+  const [gender, setGender] = useState("");
   let navigate = useNavigate();
 
   const nextStep = () => {
-    navigate("/userrole/:roleid/dashboard/doctor/enrol/healthinfo/",{state:{number,name,email,dob,gender}});
+    navigate("/userrole/:roleid/dashboard/doctor/enrol/healthinfo/", {
+      state: { number, name, email, dob, gender },
+    });
   };
 
   return (
     <>
       <div className="dashboard__Container">
-        
         <Navbar />
         <main>
           <div className="dashboard__Main-Content">
@@ -71,7 +72,7 @@ const CreatePatient = () => {
                                 Patient Phone Number
                               </label>
                               <input
-                                onChange={(e)=>setNumber(e.target.value)}
+                                onChange={(e) => setNumber(e.target.value)}
                                 type="tel"
                                 name="phone"
                                 required
@@ -88,7 +89,7 @@ const CreatePatient = () => {
                                 Patient Full Name
                               </label>
                               <input
-                                onChange={(e)=>setName(e.target.value)}
+                                onChange={(e) => setName(e.target.value)}
                                 type="text"
                                 required
                                 name="full-name"
@@ -105,7 +106,7 @@ const CreatePatient = () => {
                                 Patient Email
                               </label>
                               <input
-                                onChange={(e)=>setEmail(e.target.value)}
+                                onChange={(e) => setEmail(e.target.value)}
                                 type="email"
                                 name="mail"
                                 required
@@ -122,7 +123,7 @@ const CreatePatient = () => {
                                 Patient D.O.B
                               </label>
                               <input
-                                onChange={(e)=>setDob(e.target.value)}
+                                onChange={(e) => setDob(e.target.value)}
                                 type="date"
                                 name="dob"
                                 required
@@ -139,7 +140,7 @@ const CreatePatient = () => {
                                 Patient Gender
                               </label>
                               <select
-                                onChange={(e)=>setGender(e.target.value)}
+                                onChange={(e) => setGender(e.target.value)}
                                 id="gender"
                                 name="gender"
                                 required
@@ -147,19 +148,15 @@ const CreatePatient = () => {
                                 className="form__Select"
                               >
                                 <option>Select Patient Gender</option>
-                                <option value='male'>Male</option>
-                                <option value='fe-male'>Fe-Male</option>
-                                <option value='other'>Other</option>
+                                <option value="male">Male</option>
+                                <option value="fe-male">Fe-Male</option>
+                                <option value="other">Other</option>
                               </select>
                             </div>
                           </div>
                         </div>
                         <div className="form__Btn-Bg">
-                          <button
-                          
-                            type="submit"
-                            className="form__Btn-Submit"
-                          >
+                          <button type="submit" className="form__Btn-Submit">
                             Save
                           </button>
                         </div>
