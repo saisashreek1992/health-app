@@ -8,6 +8,8 @@ const ChatUI = () => {
   const [messages, setMessages] = useState([]);
   const [user] = useAuthState(auth);
   const [image, setImage] = useState('')
+  const [sender, setSender] = useState([])
+  const [reciever, setReciever] = useState([])
  
 
   
@@ -34,15 +36,24 @@ const ChatUI = () => {
 
 
   useMemo(() =>{ 
+    // if(user){
+    //   const {photoURL} =auth.currentUser
+    //   console.log(photoURL)
+    //   setImage(photoURL)
+    // }                   
     if(user){
-      const {photoURL} =auth.currentUser
-      console.log(photoURL)
-      setImage(photoURL)
-    }
-    console.log(user)
+    const {uid} = auth.currentUser
 
-  
-   } , [user])
+    const filterMessages=messages.filter((e)=>e.uid === uid )
+    const filterMessage2s=messages.filter((e)=>e.uid != uid )
+
+    console.log(filterMessages,'flss')
+    setSender(filterMessages)
+    setReciever(filterMessage2s)
+    // console.log(user)
+
+  }
+   } , [user,messages])
 
   useEffect(() => {
     const q = query(collection(db, 'messages'), orderBy('timestamp'));
@@ -52,12 +63,13 @@ const ChatUI = () => {
         messages.push({ ...doc.data(), id: doc.id });
       });
       setMessages(messages);
+    
     });
     return () => unsubscribe();
   }, []);
-  if(messages.length>0 ){
-    // console.log(messages)
-  }
+  // if(messages.length>0 ){
+  //   console.log(messages,'mess')
+  // }
   return (
     <>
       {/* <h1 classNameName="text-lg font-medium font-Quicksand">Chat Box App</h1> */}
@@ -421,7 +433,7 @@ const ChatUI = () => {
 
 
                   <div className="messages flex-1 overflow-auto max-width">
-                    {messages && messages.map((msg)=>(
+                    {reciever.length>0 && reciever.map((msg)=>(
                         <div className="message mb-4 flex" key={msg.id}>
                         <div className="flex-2">
                           <div className="w-12 h-12 relative">
@@ -446,18 +458,21 @@ const ChatUI = () => {
                       </div>
                     ))}
                   
-                   
+                  {sender.length > 0 && sender.map((sen)=>(
+
                     <div className="message me mb-4 flex text-right">
-                      <div className="flex-1 px-2">
+                        <div className="flex-1 px-2">
                         <div className="inline-block bg-blue-600 rounded-full p-2 px-6 text-white">
-                          <span>It's like a dream come true</span>
+                          <span>{sen.text}</span>
                         </div>
                         <div className="pr-4">
                           <small className="text-gray-500">15 April</small>
                         </div>
                       </div>
+                      
                     </div>
-                   
+                 ))}
+
                   
                   </div>
 

@@ -1,14 +1,45 @@
-import React, { Fragment } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { Fragment, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import { Stepper } from 'react-form-stepper';
 import Navbar from "../../../user/shared/Navbar";
+import { useDispatch, useSelector } from "react-redux";
+import { patientEnrollment } from "../../../action/PatientAction";
+import LoadingBox from '../../../Components/LoadingBox'
+import MessageBox from '../../../Components/MessageBox'
+import { useEffect } from "react";
+import { ENROLMENT_PATIENT_RESET } from "../../../constant.js/PatientConstant";
+
 
 const PatientPersonalInfo = () => {
+    const location=useLocation()
+    const {number,name,email,dob,gender,height,weight,caretakerName,relation,caretakerNumber,caretakerTime,healthPlan,planDate,patientTeam}=location.state
     let navigate = useNavigate();
+    const [amount, setAmount] = useState('')
+    const [paymentMode, setPaymentMode] = useState('')
+    const [paymentDate, setPaymentDate] = useState('')
+    const [paymentNextDate, setPaymentNextDate] = useState('')
+    const [refId, setRefId] = useState('')
+    // console.log(location.state)
+    const dispatch =useDispatch()
+    const enrolmentpatient=useSelector(state=>state.enrollmentPatient)
+    const {loading,error,enrolment,success}= enrolmentpatient
 
-    const nextStep = () => {
-        navigate('/userrole/:roleid/dashboard/doctor/');
+    const submitHandler = (e) => {
+      e.preventDefault()
+      dispatch(patientEnrollment(number,name,email,dob,gender,height,weight,caretakerName,relation,caretakerNumber,caretakerTime,healthPlan,planDate,patientTeam,amount,paymentMode,paymentDate,refId,paymentNextDate))
+        // 
       };
+      useEffect(()=>{
+        if(success){
+          dispatch({type:ENROLMENT_PATIENT_RESET})
+          alert('Patent Enrolled Succesfully')
+          navigate('/userrole/:roleid/dashboard/doctor/');
+        }
+      },[success])
+     
+      // if(error){
+      //   console.log(error,'er')
+      // }
 
   return (
     <>
@@ -21,7 +52,7 @@ const PatientPersonalInfo = () => {
               <Stepper steps={[{ label: 'CreatePatient' }, { label: 'PatientHealthInfo' }, { label: 'PatientPersonalInfo' }]} activeStep={4} />
               <div className="dashboard__Grid-Box">
                 <div className="dashboard__Grid-Cols">
-                  <form action="#" method="POST">
+                  <form  onSubmit={submitHandler}>
                     <div className="form__Box-Shadow">
                       <div className="form__Box-Space">
                         <div className="form__Grid--Cols-6">
@@ -33,6 +64,7 @@ const PatientPersonalInfo = () => {
                               Amount To Be Paid
                             </label>
                             <input
+                              onChange={(e)=>setAmount(e.target.value)}
                               type="text"
                               name="amount"
                               id="amount"
@@ -48,13 +80,14 @@ const PatientPersonalInfo = () => {
                               Payment Mode
                             </label>
                             <select
+                              onChange={(e)=>setPaymentMode(e.target.value)}
                               id="payment-mode"
                               name="payment-mode"
                               autoComplete="payment-mode-name"
                               className="form__Select"
                             >
                               <option>Select Payment Mode</option>
-                              <option>Cash</option>
+                              <option va>Cash</option>
                               <option>Card</option>
                               <option>Online</option>
                             </select>
@@ -67,6 +100,7 @@ const PatientPersonalInfo = () => {
                               Payment Date
                             </label>
                             <input
+                              onChange={(e)=>setPaymentDate(e.target.value)}
                               type="date"
                               name="payment-date"
                               id="payment-date"
@@ -82,6 +116,7 @@ const PatientPersonalInfo = () => {
                               Ref. Id
                             </label>
                             <input
+                              onChange={(e)=>setRefId(e.target.value)}
                               type="text"
                               name="ref-id"
                               id="ref-id"
@@ -97,6 +132,7 @@ const PatientPersonalInfo = () => {
                               Next Payment Date
                             </label>
                             <input
+                              onChange={(e)=>setPaymentNextDate(e.target.value)}
                               type="date"
                               name="next-date"
                               id="next-date"
@@ -109,13 +145,15 @@ const PatientPersonalInfo = () => {
                       <div className="form__Btn-Bg">
                         <div className="text-right">
                           <button
-                            onClick={nextStep}
+                            
                             type="submit"
                             className="form__Btn-Submit"
                           >
                             Finish
                           </button>
                         </div>
+                        {loading && <LoadingBox></LoadingBox>}
+                        {error && <MessageBox>{error}</MessageBox>}
                       </div>
                     </div>
                   </form>

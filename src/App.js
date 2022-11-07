@@ -32,6 +32,7 @@ import UserChat from './user/shared/UserChat';
 import Admin from "./user/Dashboards/SuperAdmin";
 import EnrolmentsView from './pages/form-validations/admin/EnrolmentsView';
 import EmployeSummary from './pages/form-validations/admin/EmployeSummary';
+import '../src/App.css'
 
 const App = () => {
   return (

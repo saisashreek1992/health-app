@@ -1,13 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Stepper } from "react-form-stepper";
 import Navbar from "../../../user/shared/Navbar";
 
 const CreatePatient = () => {
+  const [number, setNumber] = useState('')
+  const [name, setName] = useState('')
+  const [email, setEmail] = useState('')
+  const [dob, setDob] = useState('')
+  const [gender, setGender] = useState('')
   let navigate = useNavigate();
 
   const nextStep = () => {
-    navigate("/userrole/:roleid/dashboard/doctor/enrol/healthinfo/");
+    navigate("/userrole/:roleid/dashboard/doctor/enrol/healthinfo/",{state:{number,name,email,dob,gender}});
   };
 
   return (
@@ -30,7 +35,7 @@ const CreatePatient = () => {
               <div>
                 <div className="dashboard__Grid-Box">
                   <div className="dashboard__Grid-Cols">
-                    <form action="#" method="POST">
+                    <form onSubmit={nextStep}>
                       <div className="form__Box-Shadow">
                         <div className="form__Box-Space">
                           <div className="form__Grid--Cols-2">
@@ -66,8 +71,10 @@ const CreatePatient = () => {
                                 Patient Phone Number
                               </label>
                               <input
+                                onChange={(e)=>setNumber(e.target.value)}
                                 type="tel"
                                 name="phone"
+                                required
                                 id="phone"
                                 autoComplete="given-name"
                                 className="form__Input"
@@ -81,7 +88,9 @@ const CreatePatient = () => {
                                 Patient Full Name
                               </label>
                               <input
+                                onChange={(e)=>setName(e.target.value)}
                                 type="text"
+                                required
                                 name="full-name"
                                 id="full-name"
                                 autoComplete="given-name"
@@ -96,8 +105,10 @@ const CreatePatient = () => {
                                 Patient Email
                               </label>
                               <input
+                                onChange={(e)=>setEmail(e.target.value)}
                                 type="email"
                                 name="mail"
+                                required
                                 id="mail"
                                 autoComplete="given-name"
                                 className="form__Input"
@@ -111,8 +122,10 @@ const CreatePatient = () => {
                                 Patient D.O.B
                               </label>
                               <input
+                                onChange={(e)=>setDob(e.target.value)}
                                 type="date"
                                 name="dob"
+                                required
                                 id="dob"
                                 autoComplete="given-name"
                                 className="form__Input"
@@ -126,22 +139,24 @@ const CreatePatient = () => {
                                 Patient Gender
                               </label>
                               <select
+                                onChange={(e)=>setGender(e.target.value)}
                                 id="gender"
                                 name="gender"
+                                required
                                 autoComplete="gender-name"
                                 className="form__Select"
                               >
                                 <option>Select Patient Gender</option>
-                                <option>Male</option>
-                                <option>Fe-Male</option>
-                                <option>Other</option>
+                                <option value='male'>Male</option>
+                                <option value='fe-male'>Fe-Male</option>
+                                <option value='other'>Other</option>
                               </select>
                             </div>
                           </div>
                         </div>
                         <div className="form__Btn-Bg">
                           <button
-                            onClick={nextStep}
+                          
                             type="submit"
                             className="form__Btn-Submit"
                           >
