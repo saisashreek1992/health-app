@@ -3,6 +3,14 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { Stepper } from "react-form-stepper";
 import Navbar from "../../../user/shared/Navbar";
 
+import Input from "../../../Components/Input";
+import Select from "../../../Components/Select";
+import { useForm } from "../../../hooks/form-hooks";
+import {
+  VALIDATOR_MINLENGTH,
+  VALIDATOR_REQUIRE,
+} from "../../../utils/validators";
+
 const PatientHealthInfo = () => {
   const [height, setHeight] = useState("");
   const [weight, setWeight] = useState("");
@@ -16,6 +24,77 @@ const PatientHealthInfo = () => {
   const location = useLocation();
   const { number, name, email, dob, gender } = location.state;
   console.log(number, name, email, dob, gender);
+
+  const [formState, inputHandler, setFormData] = useForm(
+    {
+      height: {
+        value: "",
+        isValid: false,
+      },
+      weight: {
+        value: "",
+        isValid: false,
+      },
+      caretakerName: {
+        value: "",
+        isValid: false,
+      },
+      relation: {
+        value: "",
+        isValid: false,
+      },
+      caretakerNumber: {
+        value: "",
+        isValid: false,
+      },
+      caretakerTime: {
+        value: "",
+        isValid: false,
+      },
+      healthPlan: {
+        value: "",
+        isValid: false,
+      },
+      planDate: {
+        value: "",
+        isValid: false,
+      },
+      patientTeam: {
+        value: "",
+        isValid: false,
+      },
+    },
+    false
+  );
+
+  const relationOptions = [
+    { value: "Please Select Caretaker Relation" },
+    { value: "Father" },
+    { value: "Mother" },
+    { value: "Brother" },
+    { value: "Sister" },
+    { value: "Son" },
+    { value: "Daughter" },
+    { value: "Son-In-Law" },
+    { value: "Daughter-In-Law" },
+  ];
+
+  const healthPlanOptions = [
+    { value: "Please Select Health Plan" },
+    { value: "Plan A" },
+    { value: "Plan B" },
+    { value: "Plan C" },
+    { value: "Plan D" }
+  ];
+
+  const healthTeamOptions = [
+    { value: "Please Select Health Team" },
+    { value: "Team A" },
+    { value: "Team B" },
+    { value: "Team C" },
+    { value: "Team D" }
+  ];
+
   let navigate = useNavigate();
 
   const nextStep = () => {
@@ -37,6 +116,48 @@ const PatientHealthInfo = () => {
         patientTeam,
       },
     });
+    setFormData(
+      {
+        ...formState.inputs,
+        height: {
+          value: "",
+          isValid: false,
+        },
+        weight: {
+          value: "",
+          isValid: false,
+        },
+        caretakerName: {
+          value: "",
+          isValid: false,
+        },
+        relation: {
+          value: "",
+          isValid: false,
+        },
+        caretakerNumber: {
+          value: "",
+          isValid: false,
+        },
+        caretakerTime: {
+          value: "",
+          isValid: false,
+        },
+        healthPlan: {
+          value: "",
+          isValid: false,
+        },
+        planDate: {
+          value: "",
+          isValid: false,
+        },
+        patientTeam: {
+          value: "",
+          isValid: false,
+        },
+      },
+      false
+    );
   };
 
   return (
@@ -53,7 +174,7 @@ const PatientHealthInfo = () => {
                   { label: "PatientHealthInfo" },
                   { label: "PatientPersonalInfo" },
                 ]}
-                activeStep={1}
+                activeStep={2}
               />
               <div className="dashboard__Grid-Box">
                 <div className="dashboard__Grid-Cols">
@@ -62,6 +183,7 @@ const PatientHealthInfo = () => {
                       <div className="form__Box-Space">
                         <div className="form__Grid--Cols-6">
                           <div className="form__Cols--Span-6">
+                            {/*
                             <label
                               htmlFor="height"
                               className="form__Label-Heading"
@@ -77,8 +199,21 @@ const PatientHealthInfo = () => {
                               autoComplete="given-name"
                               className="form__Input"
                             />
+                            */}
+                            <Input
+                              element="input"
+                              type="text"
+                              label="Patient Height"
+                              id="height"
+                              placeholder="Patient Height"
+                              validators={[VALIDATOR_MINLENGTH(1)]}
+                              required
+                              errorText="Please Enter Valid Number"
+                              onInput={inputHandler}
+                            />
                           </div>
                           <div className="form__Cols--Span-6">
+                            {/*
                             <label
                               htmlFor="weight"
                               className="form__Label-Heading"
@@ -94,8 +229,21 @@ const PatientHealthInfo = () => {
                               autoComplete="given-name"
                               className="form__Input"
                             />
+                            */}
+                            <Input
+                              element="input"
+                              type="text"
+                              label="Patient Weight"
+                              id="caretakerName"
+                              placeholder="Patient Weight"
+                              validators={[VALIDATOR_MINLENGTH(1)]}
+                              required
+                              errorText="Please Enter Name"
+                              onInput={inputHandler}
+                            />
                           </div>
                           <div className="form__Cols--Span-6">
+                            {/*
                             <label
                               htmlFor="caretaker-name"
                               className="form__Label-Heading"
@@ -111,8 +259,21 @@ const PatientHealthInfo = () => {
                               autoComplete="given-name"
                               className="form__Input"
                             />
+                            */}
+                            <Input
+                              element="input"
+                              type="text"
+                              label="Caretakers Full Name"
+                              id="weight"
+                              placeholder="Caretakers Full Name"
+                              validators={[VALIDATOR_MINLENGTH(1)]}
+                              required
+                              errorText="Please Enter Valid Number"
+                              onInput={inputHandler}
+                            />
                           </div>
                           <div className="form__Cols--Span-6">
+                            {/*
                             <label
                               htmlFor="relation"
                               className="form__Label-Heading"
@@ -137,8 +298,19 @@ const PatientHealthInfo = () => {
                                 Daughter-In-Law
                               </option>
                             </select>
+                            */}
+                            <Select
+                              element="select"
+                              id="gender"
+                              label="Select Gender"
+                              options={relationOptions}
+                              validators={[VALIDATOR_REQUIRE()]}
+                              errorText="Please Select Gender"
+                              onInput={inputHandler}
+                            />
                           </div>
                           <div className="form__Cols--Span-6">
+                            {/*
                             <label
                               htmlFor="caretaker-number"
                               className="form__Label-Heading"
@@ -156,8 +328,21 @@ const PatientHealthInfo = () => {
                               autoComplete="given-name"
                               className="form__Input"
                             />
+                            */}
+                            <Input
+                              element="input"
+                              type="text"
+                              label="Caretakers Number"
+                              id="caretakerNumber"
+                              placeholder="Caretakers Number"
+                              validators={[VALIDATOR_MINLENGTH(10)]}
+                              required
+                              errorText="Please Enter Valid Number"
+                              onInput={inputHandler}
+                            />
                           </div>
                           <div className="form__Cols--Span-6">
+                            {/*
                             <label
                               htmlFor="pref-time"
                               className="form__Label-Heading"
@@ -173,8 +358,21 @@ const PatientHealthInfo = () => {
                               autoComplete="given-name"
                               className="form__Input"
                             />
+                            */}
+                            <Input
+                              element="input"
+                              type="date"
+                              label="Caretakers Preferred Time"
+                              id="caretakerTime"
+                              placeholder="Caretakers Preferred Time"
+                              validators={[VALIDATOR_MINLENGTH(1)]}
+                              required
+                              errorText="Please Select Valid Date"
+                              onInput={inputHandler}
+                            />
                           </div>
                           <div className="form__Cols--Span-6">
+                            {/*
                             <label
                               htmlFor="health-plan"
                               className="form__Label-Heading"
@@ -192,11 +390,22 @@ const PatientHealthInfo = () => {
                               <option>Select Health Plan</option>
                               <option value="plan A">Plan A</option>
                               <option value="plan B">Plan B</option>
-                              {/* <option>Plan C</option>
-                              <option>Plan D</option> */}
+                              <option>Plan C</option>
+                              <option>Plan D</option> 
                             </select>
+                            */}
+                            <Select
+                              element="select"
+                              id="healthPlan"
+                              label="Select Health Plan"
+                              options={healthPlanOptions}
+                              validators={[VALIDATOR_REQUIRE()]}
+                              errorText="Please Select Health Plan"
+                              onInput={inputHandler}
+                            />
                           </div>
                           <div className="form__Cols--Span-6">
+                            {/*
                             <label
                               htmlFor="plan-date"
                               className="form__Label-Heading"
@@ -212,8 +421,21 @@ const PatientHealthInfo = () => {
                               autoComplete="given-name"
                               className="form__Input"
                             />
+                            */}
+                            <Input
+                              element="input"
+                              type="date"
+                              label="Health Plan Date (Start + End)"
+                              id="planDate"
+                              placeholder="Health Plan Date (Start + End)"
+                              validators={[VALIDATOR_MINLENGTH(1)]}
+                              required
+                              errorText="Please Select Valid Date"
+                              onInput={inputHandler}
+                            />
                           </div>
                           <div className="form__Cols--Span-6">
+                            {/*
                             <label
                               htmlFor="patient-team"
                               className="form__Label-Heading"
@@ -234,6 +456,16 @@ const PatientHealthInfo = () => {
                               <option>Team C</option>
                               <option>Team D</option>
                             </select>
+                            */}
+                            <Select
+                              element="select"
+                              id="patientTeam"
+                              label="Select Patient Team"
+                              options={healthTeamOptions}
+                              validators={[VALIDATOR_REQUIRE()]}
+                              errorText="Please Select Health Team"
+                              onInput={inputHandler}
+                            />
                           </div>
                         </div>
                       </div>

@@ -9,6 +9,14 @@ import MessageBox from "../../../Components/MessageBox";
 import { useEffect } from "react";
 import { ENROLMENT_PATIENT_RESET } from "../../../constant.js/PatientConstant";
 
+import Input from "../../../Components/Input";
+import Select from "../../../Components/Select";
+import { useForm } from "../../../hooks/form-hooks";
+import {
+  VALIDATOR_MINLENGTH,
+  VALIDATOR_REQUIRE,
+} from "../../../utils/validators";
+
 const PatientPersonalInfo = () => {
   const location = useLocation();
   const {
@@ -38,6 +46,40 @@ const PatientPersonalInfo = () => {
   const enrolmentpatient = useSelector((state) => state.enrollmentPatient);
   const { loading, error, enrolment, success } = enrolmentpatient;
 
+  const paymentModeOptions = [
+    { value: "Please Select Payment Mode" },
+    { value: "Cash" },
+    { value: "Card" },
+    { value: "Netbanking" },
+    { value: "Online (UPI)" }
+  ];
+
+  const [formState, inputHandler, setFormData] = useForm(
+    {
+      amount: {
+        value: "",
+        isValid: false,
+      },
+      paymentMode: {
+        value: "",
+        isValid: false,
+      },
+      paymentDate: {
+        value: "",
+        isValid: false,
+      },
+      paymentNextDate: {
+        value: "",
+        isValid: false,
+      },
+      refId: {
+        value: "",
+        isValid: false,
+      },
+    },
+    false
+  );
+
   const submitHandler = (e) => {
     e.preventDefault();
     dispatch(
@@ -63,6 +105,29 @@ const PatientPersonalInfo = () => {
         paymentNextDate
       )
     );
+    setFormData({
+      ...formState.inputs,
+      amount: {
+        value: "",
+        isValid: false,
+      },
+      paymentMode: {
+        value: "",
+        isValid: false,
+      },
+      paymentDate: {
+        value: "",
+        isValid: false,
+      },
+      paymentNextDate: {
+        value: "",
+        isValid: false,
+      },
+      refId: {
+        value: "",
+        isValid: false,
+      },
+    });
     //
   };
   useEffect(() => {
@@ -100,6 +165,7 @@ const PatientPersonalInfo = () => {
                       <div className="form__Box-Space">
                         <div className="form__Grid--Cols-6">
                           <div className="form__Cols--Span-6">
+                            {/*
                             <label
                               htmlFor="amount"
                               className="form__Label-Heading"
@@ -114,8 +180,21 @@ const PatientPersonalInfo = () => {
                               autoComplete="given-name"
                               className="form__Input"
                             />
+                            */}
+                            <Input
+                              element="input"
+                              type="text"
+                              label="Amount To Be Paid"
+                              id="amount"
+                              placeholder="Amount To Be Paid"
+                              validators={[VALIDATOR_MINLENGTH(1)]}
+                              required
+                              errorText="Please Enter Valid Number"
+                              onInput={inputHandler}
+                            />
                           </div>
                           <div className="form__Cols--Span-6">
+                            {/*
                             <label
                               htmlFor="payment-mode"
                               className="form__Label-Heading"
@@ -134,8 +213,19 @@ const PatientPersonalInfo = () => {
                               <option>Card</option>
                               <option>Online</option>
                             </select>
+                            */}
+                            <Select
+                              element="select"
+                              id="paymentMode"
+                              label="Select Payment Mode"
+                              options={paymentModeOptions}
+                              validators={[VALIDATOR_REQUIRE()]}
+                              errorText="Please Select Payment Mode"
+                              onInput={inputHandler}
+                            />
                           </div>
                           <div className="form__Cols--Span-6">
+                            {/*
                             <label
                               htmlFor="payment-date"
                               className="form__Label-Heading"
@@ -150,8 +240,21 @@ const PatientPersonalInfo = () => {
                               autoComplete="given-name"
                               className="form__Input"
                             />
+                            */}
+                            <Input
+                              element="input"
+                              type="date"
+                              label="Payment Date"
+                              id="paymentDate"
+                              placeholder="Payment Date"
+                              validators={[VALIDATOR_MINLENGTH(1)]}
+                              required
+                              errorText="Please Select Valid Date"
+                              onInput={inputHandler}
+                            />
                           </div>
                           <div className="form__Cols--Span-6">
+                            {/*
                             <label
                               htmlFor="ref-id"
                               className="form__Label-Heading"
@@ -166,8 +269,20 @@ const PatientPersonalInfo = () => {
                               autoComplete="given-name"
                               className="form__Input"
                             />
+                            */}
+                            <Input
+                              element="input"
+                              type="text"
+                              label="Ref. Id"
+                              id="refId"
+                              placeholder="Ref. Id"
+                              validators={[VALIDATOR_MINLENGTH(1)]}
+                              errorText="Please Enter Valid Ref.Id"
+                              onInput={inputHandler}
+                            />
                           </div>
                           <div className="form__Cols--Span-6">
+                            {/*
                             <label
                               htmlFor="next-date"
                               className="form__Label-Heading"
@@ -183,6 +298,17 @@ const PatientPersonalInfo = () => {
                               id="next-date"
                               autoComplete="given-name"
                               className="form__Input"
+                            />
+                            */}
+                            <Input
+                              element="input"
+                              type="date"
+                              label="Next Payment Date"
+                              id="paymentNextDate"
+                              placeholder="Next Payment Date"
+                              validators={[VALIDATOR_MINLENGTH(1)]}
+                              errorText="Please Select Valid Date"
+                              onInput={inputHandler}
                             />
                           </div>
                         </div>
