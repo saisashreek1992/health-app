@@ -12,18 +12,18 @@ import {
 } from "../../../utils/validators";
 
 const PatientHealthInfo = () => {
-  const [height, setHeight] = useState("");
-  const [weight, setWeight] = useState("");
-  const [caretakerName, setCaretakerName] = useState("");
-  const [relation, setRelation] = useState("");
-  const [caretakerNumber, setCaretakerNumber] = useState("");
-  const [caretakerTime, setCaretakerTime] = useState("");
-  const [healthPlan, setHealthPlan] = useState("");
-  const [planDate, setPlanDate] = useState("");
-  const [patientTeam, setPatientTeam] = useState("");
+  // const [height, setHeight] = useState("");
+  // const [weight, setWeight] = useState("");
+  // const [caretakerName, setCaretakerName] = useState("");
+  // const [relation, setRelation] = useState("");
+  // const [caretakerNumber, setCaretakerNumber] = useState("");
+  // const [caretakerTime, setCaretakerTime] = useState("");
+  // const [healthPlan, setHealthPlan] = useState("");
+  // const [planDate, setPlanDate] = useState("");
+  // const [patientTeam, setPatientTeam] = useState("");
   const location = useLocation();
-  const { number, name, email, dob, gender } = location.state;
-  console.log(number, name, email, dob, gender);
+  const { phone, name, email, dob, gender } = location.state;
+  // console.log(phone, name, email, dob, gender);
 
   const [formState, inputHandler, setFormData] = useForm(
     {
@@ -97,25 +97,9 @@ const PatientHealthInfo = () => {
 
   let navigate = useNavigate();
 
-  const nextStep = () => {
-    navigate("/userrole/:roleid/dashboard/doctor/enrol/personalinfo/", {
-      state: {
-        number,
-        name,
-        email,
-        dob,
-        gender,
-        height,
-        weight,
-        caretakerName,
-        relation,
-        caretakerNumber,
-        caretakerTime,
-        healthPlan,
-        planDate,
-        patientTeam,
-      },
-    });
+  const nextStep = (e) => {
+    e.preventDefault()
+  
     setFormData(
       {
         ...formState.inputs,
@@ -158,6 +142,39 @@ const PatientHealthInfo = () => {
       },
       false
     );
+
+    console.log(formState,'form')
+
+    
+    const height = formState.inputs.height.value
+    const weight = formState.inputs.weight.value
+    const caretakerName = formState.inputs.caretakerName.value
+    const relation = formState.inputs.relation.value
+    const caretakerNumber = formState.inputs.caretakerNumber.value
+    const caretakerTime = formState.inputs.caretakerTime.value
+    const healthPlan = formState.inputs.healthPlan.value
+    const planDate = formState.inputs.planDate.value
+    const patientTeam = formState.inputs.patientTeam.value
+    // console.log(height,weight,caretakerName,gender)
+
+    navigate("/userrole/:roleid/dashboard/doctor/enrol/personalinfo/", {
+      state: {
+        phone,
+        name,
+        email,
+        dob,
+        gender,
+        height,
+        weight,
+        caretakerName,
+        relation,
+        caretakerNumber,
+        caretakerTime,
+        healthPlan,
+        planDate,
+        patientTeam,
+      },
+    });
   };
 
   return (
@@ -234,7 +251,7 @@ const PatientHealthInfo = () => {
                               element="input"
                               type="text"
                               label="Patient Weight"
-                              id="caretakerName"
+                              id="weight"
                               placeholder="Patient Weight"
                               validators={[VALIDATOR_MINLENGTH(1)]}
                               required
@@ -264,7 +281,7 @@ const PatientHealthInfo = () => {
                               element="input"
                               type="text"
                               label="Caretakers Full Name"
-                              id="weight"
+                              id="caretakerName"
                               placeholder="Caretakers Full Name"
                               validators={[VALIDATOR_MINLENGTH(1)]}
                               required
@@ -301,8 +318,8 @@ const PatientHealthInfo = () => {
                             */}
                             <Select
                               element="select"
-                              id="gender"
-                              label="Select Gender"
+                              id="relation"
+                              label="Select Relation"
                               options={relationOptions}
                               validators={[VALIDATOR_REQUIRE()]}
                               errorText="Please Select Gender"
@@ -360,6 +377,7 @@ const PatientHealthInfo = () => {
                             />
                             */}
                             <Input
+                            
                               element="input"
                               type="date"
                               label="Caretakers Preferred Time"

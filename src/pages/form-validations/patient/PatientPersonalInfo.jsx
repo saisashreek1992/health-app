@@ -20,7 +20,7 @@ import {
 const PatientPersonalInfo = () => {
   const location = useLocation();
   const {
-    number,
+    phone,
     name,
     email,
     dob,
@@ -35,12 +35,13 @@ const PatientPersonalInfo = () => {
     planDate,
     patientTeam,
   } = location.state;
+  console.log(phone)
   let navigate = useNavigate();
-  const [amount, setAmount] = useState("");
-  const [paymentMode, setPaymentMode] = useState("");
-  const [paymentDate, setPaymentDate] = useState("");
-  const [paymentNextDate, setPaymentNextDate] = useState("");
-  const [refId, setRefId] = useState("");
+  // const [amount, setAmount] = useState("");
+  // const [paymentMode, setPaymentMode] = useState("");
+  // const [paymentDate, setPaymentDate] = useState("");
+  // const [paymentNextDate, setPaymentNextDate] = useState("");
+  // const [refId, setRefId] = useState("");
   // console.log(location.state)
   const dispatch = useDispatch();
   const enrolmentpatient = useSelector((state) => state.enrollmentPatient);
@@ -82,29 +83,6 @@ const PatientPersonalInfo = () => {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    dispatch(
-      patientEnrollment(
-        number,
-        name,
-        email,
-        dob,
-        gender,
-        height,
-        weight,
-        caretakerName,
-        relation,
-        caretakerNumber,
-        caretakerTime,
-        healthPlan,
-        planDate,
-        patientTeam,
-        amount,
-        paymentMode,
-        paymentDate,
-        refId,
-        paymentNextDate
-      )
-    );
     setFormData({
       ...formState.inputs,
       amount: {
@@ -128,6 +106,40 @@ const PatientPersonalInfo = () => {
         isValid: false,
       },
     });
+
+
+    const amount = formState.inputs.amount.value
+    const paymentMode = formState.inputs.paymentMode.value
+    const paymentDate = formState.inputs.paymentDate.value
+    const paymentNextDate = formState.inputs.paymentNextDate.value
+    const refId = formState.inputs.refId.value
+
+    console.log(formState,'form')
+
+    dispatch(
+      patientEnrollment(
+        phone,
+        name,
+        email,
+        dob,
+        gender,
+        height,
+        weight,
+        caretakerName,
+        relation,
+        caretakerNumber,
+        caretakerTime,
+        healthPlan,
+        planDate,
+        patientTeam,
+        amount,
+        paymentMode,
+        paymentDate,
+        refId,
+        paymentNextDate
+      )
+    );
+    
     //
   };
   useEffect(() => {

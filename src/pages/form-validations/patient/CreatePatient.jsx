@@ -9,11 +9,11 @@ import { useForm } from "../../../hooks/form-hooks";
 import { VALIDATOR_MINLENGTH, VALIDATOR_REQUIRE } from "../../../utils/validators"
 
 const CreatePatient = () => {
-  const [phone, setPhone] = useState("");
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [dob, setDob] = useState("");
-  const [gender, setGender] = useState("");
+  // const [phone, setPhone] = useState("");
+  // const [name, setName] = useState("");
+  // const [email, setEmail] = useState("");
+  // const [dob, setDob] = useState("");
+  // const [gender, setGender] = useState("");
 
   const genderOptions = [
     { value: "Please Select a Gender" },
@@ -37,6 +37,10 @@ const CreatePatient = () => {
         value: "",
         isValid: false,
       },
+      dob:{
+        value: "",
+        isValid: false,
+      },
       gender: {
         value: "",
         isValid: false,
@@ -45,7 +49,8 @@ const CreatePatient = () => {
     false
   );
 
-  const nextStep = () => {
+  const nextStep = (e) => {
+    e.preventDefault()
     setFormData(
       {
         ...formState.inputs,
@@ -61,6 +66,10 @@ const CreatePatient = () => {
           value: "",
           isValid: false
         },
+        dob:{
+          value: "",
+          isValid: false,
+        },
         gender: {
           value: "",
           isValid: false
@@ -68,8 +77,14 @@ const CreatePatient = () => {
       },
       false
     );
+    const name=formState.inputs.name.value
+    const phone=formState.inputs.phone.value
+    const email=formState.inputs.email.value
+    const dob=formState.inputs.dob.value
+    const gender=formState.inputs.gender.value
+    console.log(name,phone,email,dob,gender,'form')
     navigate("/userrole/:roleid/dashboard/doctor/enrol/healthinfo/", {
-      state: { phone, name, email, dob, gender },
+      state: {name,phone,email,dob,gender},
     });
   };
 
@@ -139,6 +154,7 @@ const CreatePatient = () => {
                               />
                               */}
                               <Input
+                               
                                 element="input"
                                 type="tel"
                                 label="Patient Phone Number"
@@ -173,7 +189,7 @@ const CreatePatient = () => {
                                 element="input"
                                 type="text"
                                 label="Patient Full Name"
-                                id="email"
+                                id="name"
                                 placeholder="Patient Full Name"
                                 validators={[VALIDATOR_MINLENGTH(1)]}
                                 required
@@ -203,7 +219,7 @@ const CreatePatient = () => {
                                 element="input"
                                 type="email"
                                 label="Patient Email"
-                                id="name"
+                                id="email"
                                 placeholder="Patient Email"
                                 validators={[VALIDATOR_MINLENGTH(1)]}
                                 required
@@ -233,7 +249,7 @@ const CreatePatient = () => {
                                 element="input"
                                 type="date"
                                 label="Patient D.O.B"
-                                id="name"
+                                id="dob"
                                 placeholder="Patient D.O.B"
                                 validators={[VALIDATOR_MINLENGTH(1)]}
                                 required
