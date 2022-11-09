@@ -379,13 +379,13 @@ const PatientHealthInfo = () => {
                             <Input
                             
                               element="input"
-                              type="date"
+                              type="time"
                               label="Caretakers Preferred Time"
                               id="caretakerTime"
                               placeholder="Caretakers Preferred Time"
                               validators={[VALIDATOR_MINLENGTH(1)]}
                               required
-                              errorText="Please Select Valid Date"
+                              errorText="Please Select Valid Time"
                               onInput={inputHandler}
                             />
                           </div>
