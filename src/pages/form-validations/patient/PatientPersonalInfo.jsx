@@ -200,7 +200,6 @@ const PatientPersonalInfo = () => {
                               id="amount"
                               placeholder="Amount To Be Paid"
                               validators={[VALIDATOR_MINLENGTH(1)]}
-                              required
                               errorText="Please Enter Valid Number"
                               onInput={inputHandler}
                             />
@@ -260,7 +259,6 @@ const PatientPersonalInfo = () => {
                               id="paymentDate"
                               placeholder="Payment Date"
                               validators={[VALIDATOR_MINLENGTH(1)]}
-                              required
                               errorText="Please Select Valid Date"
                               onInput={inputHandler}
                             />

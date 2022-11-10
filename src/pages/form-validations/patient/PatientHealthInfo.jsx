@@ -77,6 +77,7 @@ const PatientHealthInfo = () => {
     { value: "Daughter" },
     { value: "Son-In-Law" },
     { value: "Daughter-In-Law" },
+    { value: "Spouse" },
   ];
 
   const healthPlanOptions = [
@@ -224,7 +225,6 @@ const PatientHealthInfo = () => {
                               id="height"
                               placeholder="Patient Height"
                               validators={[VALIDATOR_MINLENGTH(1)]}
-                              required
                               errorText="Please Enter Valid Number"
                               onInput={inputHandler}
                             />
@@ -254,7 +254,6 @@ const PatientHealthInfo = () => {
                               id="weight"
                               placeholder="Patient Weight"
                               validators={[VALIDATOR_MINLENGTH(1)]}
-                              required
                               errorText="Please Enter Name"
                               onInput={inputHandler}
                             />
@@ -284,8 +283,7 @@ const PatientHealthInfo = () => {
                               id="caretakerName"
                               placeholder="Caretakers Full Name"
                               validators={[VALIDATOR_MINLENGTH(1)]}
-                              required
-                              errorText="Please Enter Valid Number"
+                              errorText="Please Enter Valid Name"
                               onInput={inputHandler}
                             />
                           </div>
@@ -322,7 +320,7 @@ const PatientHealthInfo = () => {
                               label="Select Relation"
                               options={relationOptions}
                               validators={[VALIDATOR_REQUIRE()]}
-                              errorText="Please Select Gender"
+                              errorText="Please Select Your Relationship"
                               onInput={inputHandler}
                             />
                           </div>
@@ -353,7 +351,6 @@ const PatientHealthInfo = () => {
                               id="caretakerNumber"
                               placeholder="Caretakers Number"
                               validators={[VALIDATOR_MINLENGTH(10)]}
-                              required
                               errorText="Please Enter Valid Number"
                               onInput={inputHandler}
                             />
@@ -384,7 +381,6 @@ const PatientHealthInfo = () => {
                               id="caretakerTime"
                               placeholder="Caretakers Preferred Time"
                               validators={[VALIDATOR_MINLENGTH(1)]}
-                              required
                               errorText="Please Select Valid Time"
                               onInput={inputHandler}
                             />
@@ -447,7 +443,6 @@ const PatientHealthInfo = () => {
                               id="planDate"
                               placeholder="Health Plan Date (Start + End)"
                               validators={[VALIDATOR_MINLENGTH(1)]}
-                              required
                               errorText="Please Select Valid Date"
                               onInput={inputHandler}
                             />
