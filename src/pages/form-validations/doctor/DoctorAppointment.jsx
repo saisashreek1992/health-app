@@ -66,10 +66,10 @@ const DoctorAppointment = () => {
             <tbody>
               {loading ? <LoadingBox></LoadingBox>:
                 error? <MessageBox>{error}</MessageBox>:
-                patients.data && patients.data.map((itm)=>(
+                patients.data && patients.data.map((itm,i)=>(
               <tr key={itm._id} className="bg-white border-b">
                 <td className="px-6 py-4 whitespace-nowrap text-base font-medium text-gray-900 text-center">
-                  {itm._id}
+                  {i+1}
                 </td>
                 <td className="px-6 py-4 whitespace-nowrap text-base font-medium text-gray-900 text-center">
                   {itm.team}
