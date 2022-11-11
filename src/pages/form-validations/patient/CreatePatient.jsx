@@ -82,10 +82,16 @@ const CreatePatient = () => {
     const email=formState.inputs.email.value
     const dob=formState.inputs.dob.value
     const gender=formState.inputs.gender.value
-    console.log(name,phone,email,dob,gender,'form')
-    navigate("/userrole/:roleid/dashboard/doctor/enrol/healthinfo/", {
-      state: {name,phone,email,dob,gender},
-    });
+
+    if(name ==='' ||phone ==='' || email ==='' || dob ==='' || gender ==='' ){
+      alert('please fill all the fields')
+    }else{
+      navigate("/userrole/:roleid/dashboard/doctor/enrol/healthinfo/", {
+        state: {name,phone,email,dob,gender},
+      });
+    }
+
+  
   };
 
   return (

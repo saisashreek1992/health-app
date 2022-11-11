@@ -37,11 +37,11 @@ const PatientPersonalInfo = () => {
   } = location.state;
   console.log(phone)
   let navigate = useNavigate();
-  // const [amount, setAmount] = useState("");
-  // const [paymentMode, setPaymentMode] = useState("");
-  // const [paymentDate, setPaymentDate] = useState("");
-  // const [paymentNextDate, setPaymentNextDate] = useState("");
-  // const [refId, setRefId] = useState("");
+  const [amount, setAmount] = useState("");
+  const [paymentMode, setPaymentMode] = useState("");
+  const [paymentDate, setPaymentDate] = useState("");
+  const [paymentNextDate, setPaymentNextDate] = useState("");
+  const [refId, setRefId] = useState("");
   // console.log(location.state)
   const dispatch = useDispatch();
   const enrolmentpatient = useSelector((state) => state.enrollmentPatient);
@@ -81,8 +81,7 @@ const PatientPersonalInfo = () => {
     false
   );
 
-  const submitHandler = (e) => {
-    e.preventDefault();
+  useEffect(()=>{
     setFormData({
       ...formState.inputs,
       amount: {
@@ -106,39 +105,50 @@ const PatientPersonalInfo = () => {
         isValid: false,
       },
     });
+  },[])
+
+  const submitHandler = (e) => {
+    e.preventDefault();
+       setAmount(formState.inputs.amount.value)
+       setPaymentMode(formState.inputs.paymentMode.value)
+       setPaymentDate(formState.inputs.paymentDate.value)  
+       setPaymentNextDate(formState.inputs.paymentNextDate.value)
+       setRefId(formState.inputs.refId.value)
+    
+    console.log(amount,paymentMode,paymentDate,refId,paymentNextDate,'iss')
+    if(amount === '' || paymentMode === '' || paymentDate === '' || paymentNextDate === '' || refId === ''){
+        alert('please enter full fields')
+    }else{
+      dispatch(
+        patientEnrollment(
+          phone,
+          name,
+          email,
+          dob,
+          gender,
+          height,
+          weight,
+          caretakerName,
+          relation,
+          caretakerNumber,
+          caretakerTime,
+          healthPlan,
+          planDate,
+          patientTeam,
+          amount,
+          paymentMode,
+          paymentDate,
+          refId,
+          paymentNextDate
+        )
+      );
+    }  
 
 
-    const amount = formState.inputs.amount.value
-    const paymentMode = formState.inputs.paymentMode.value
-    const paymentDate = formState.inputs.paymentDate.value
-    const paymentNextDate = formState.inputs.paymentNextDate.value
-    const refId = formState.inputs.refId.value
 
     console.log(formState,'form')
 
-    dispatch(
-      patientEnrollment(
-        phone,
-        name,
-        email,
-        dob,
-        gender,
-        height,
-        weight,
-        caretakerName,
-        relation,
-        caretakerNumber,
-        caretakerTime,
-        healthPlan,
-        planDate,
-        patientTeam,
-        amount,
-        paymentMode,
-        paymentDate,
-        refId,
-        paymentNextDate
-      )
-    );
+    
     
     //
   };
@@ -150,9 +160,7 @@ const PatientPersonalInfo = () => {
     }
   }, [success]);
 
-  // if(error){
-  //   console.log(error,'er')
-  // }
+  
 
   return (
     <>
@@ -200,7 +208,6 @@ const PatientPersonalInfo = () => {
                               id="amount"
                               placeholder="Amount To Be Paid"
                               validators={[VALIDATOR_MINLENGTH(1)]}
-                              required
                               errorText="Please Enter Valid Number"
                               onInput={inputHandler}
                             />
