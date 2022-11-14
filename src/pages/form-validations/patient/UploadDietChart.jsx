@@ -1,12 +1,37 @@
-import React from "react";
+import React, { useState } from "react";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { uploadDietCharts } from "../../../action/DoctorAction";
+import { UPLOAD_DIET_CHART_RESET } from "../../../constant.js/DoctorConstant";
 import Navbar from "../../../user/shared/Navbar";
 
 const UploadDietChart = () => {
+  const [calorieLow, setCalorieLow] = useState()
+  const [caloireHigh, setCaloireHigh] = useState()
+  const [chRangeL, setChRangeL] = useState()
+  const [chRangeU, setChRangeU] = useState()
+  const [protien, setProtien] = useState()
+  const [fat, setFat] = useState()
+  const [foodType, setFoodType] = useState('')
+  const [cusineType, setCusineType] = useState('')
   let navigate = useNavigate();
-  const nextStep = () => {
-    navigate("/userrole/:roleid/dashboard/doctor/");
+  const dispatch=useDispatch()
+  const dietChartUpload=useSelector(state=>state.dietChartUpload)
+  const {loading,error,success}=dietChartUpload
+  const submitHandler = (e) => {
+    e.preventDefault()
+    dispatch(uploadDietCharts(calorieLow,caloireHigh,chRangeL,chRangeU,protien,fat,foodType,cusineType))
+    // 
   };
+
+  useEffect(()=>{
+      if(success){
+        dispatch({type:UPLOAD_DIET_CHART_RESET})
+        alert('diet chart uploaded succesfully')
+        navigate("/userrole/:roleid/dashboard/doctor/");
+      }
+  },[success])
 
   return (
     <>
@@ -19,7 +44,7 @@ const UploadDietChart = () => {
               <div>
                 <div className="dashboard__Grid-Box">
                   <div className="dashboard__Grid-Cols">
-                    <form action="#" method="POST">
+                    <form onSubmit={submitHandler}>
                       <div className="form__Box-Shadow">
                         <div className="form__Box-Space">
                           <div className="form__Grid--Cols-6">
@@ -31,7 +56,10 @@ const UploadDietChart = () => {
                                 Calories Range (Lower Value)
                               </label>
                               <input
+                                onChange={(e)=>setCalorieLow(e.target.value)}
+                                required
                                 type="text"
+                               
                                 name="calories-low-value"
                                 id="calories-low-value"
                                 autoComplete="given-name"
@@ -46,6 +74,8 @@ const UploadDietChart = () => {
                                 Calories Range (Upper Value)
                               </label>
                               <input
+                              onChange={(e)=>setCaloireHigh(e.target.value)}
+                              required
                                 type="text"
                                 name="calories-high-value"
                                 id="calories-high-value"
@@ -61,6 +91,8 @@ const UploadDietChart = () => {
                                 Carbohydrates Range (Lower Value)
                               </label>
                               <input
+                              onChange={(e)=>setChRangeL(e.target.value)}
+                              required
                                 type="text"
                                 name="carbohydrates-low-value"
                                 id="carbohydrates-low-value"
@@ -76,6 +108,8 @@ const UploadDietChart = () => {
                                 Carbohydrates Range (Upper Value)
                               </label>
                               <input
+                              onChange={(e)=>setChRangeU(e.target.value)}
+                              required
                                 type="text"
                                 name="carbohydrates-high-value"
                                 id="carbohydrates-high-value"
@@ -91,6 +125,8 @@ const UploadDietChart = () => {
                                 Protiens
                               </label>
                               <input
+                              onChange={(e)=>setProtien(e.target.value)}
+                              required
                                 type="text"
                                 name="protiens"
                                 id="protiens"
@@ -106,6 +142,8 @@ const UploadDietChart = () => {
                                 Fats
                               </label>
                               <input
+                              onChange={(e)=>setFat(e.target.value)}
+                              required
                                 type="text"
                                 name="fats"
                                 id="protiens"
@@ -121,15 +159,17 @@ const UploadDietChart = () => {
                                 Select Food Type
                               </label>
                               <select
+                              onChange={(e)=>setFoodType(e.target.value)}
+                              required
                                 id="food-type"
                                 name="food-type"
                                 autoComplete="food-type-name"
                                 className="form__Select"
                               >
                                 <option>Select Food Type</option>
-                                <option>Vegetarian</option>
-                                <option>Non-Vegetarian</option>
-                                <option>Eggtarian</option>
+                                <option value='vegetarian'>Vegetarian</option>
+                                <option value='non-veg'>Non-Vegetarian</option>
+                                <option value='egtarian'>Eggtarian</option>
                               </select>
                             </div>
                             <div className="form__Cols--Span-6">
@@ -140,16 +180,18 @@ const UploadDietChart = () => {
                                 Select Cuisine Type
                               </label>
                               <select
+                              onChange={(e)=>setCusineType(e.target.value)}
+                              required
                                 id="cuisine-type"
                                 name="cuisine-type"
                                 autoComplete="cuisine-type-name"
                                 className="form__Select"
                               >
                                 <option>Select Cuisine Type</option>
-                                <option>Cuisine A</option>
-                                <option>Cuisine B</option>
-                                <option>Cuisine C</option>
-                                <option>Cuisine D</option>
+                                <option value='cusine A'>Cuisine A</option>
+                                <option value='cusine B'>Cuisine B</option>
+                                {/* <option>Cuisine C</option>
+                                <option>Cuisine D</option> */}
                               </select>
                             </div>
                             <div className="form__Cols--Span-6">
@@ -166,7 +208,7 @@ const UploadDietChart = () => {
                         </div>
                         <div className="form__Btn-Bg">
                           <button
-                            onClick={nextStep}
+                            // onClick={nextStep}
                             type="submit"
                             className="form__Btn-Submit"
                           >

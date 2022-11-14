@@ -20,3 +20,35 @@ export const patientEnrollment=(phone,name,email,dob,gender,height,weight,careta
 }
 
 
+
+export const listPatients = () => async (dispatch) => {
+  dispatch({ type: GET_ALL_PATIENT_REQUEST });
+  try {    
+    const { data } = await axios.get(`${Url}/doctors/get-all-patients`)      
+    dispatch({ type: GET_ALL_PATIENT_SUCCESS, payload: data }); 
+
+  } catch (error) {
+    const message =
+      error.response && error.response.data.message
+        ? error.response.data.message
+        : error.message;
+    dispatch({ type: GET_ALL_PATIENT_FAIL, payload: message });
+
+  }
+};
+
+export const DetailsPatients = (id) => async (dispatch) => {
+  dispatch({ type: GET_PATIENT_DETAILS_REQUEST });
+  try {    
+    const { data } = await axios.get(`${Url}/doctors/patient/${id}`)      
+    dispatch({ type: GET_PATIENT_DETAILS_SUCCESS, payload: data }); 
+
+  } catch (error) {
+    const message =
+      error.response && error.response.data.message
+        ? error.response.data.message
+        : error.message;
+    dispatch({ type: GET_PATIENT_DETAILS_FAIL, payload: message });
+
+  }
+};

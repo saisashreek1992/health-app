@@ -1,13 +1,16 @@
 import {applyMiddleware, combineReducers, compose, createStore} from 'redux'
 import thunk from 'redux-thunk';
-import { enrollmentPatientReducer } from './reducer/Patientreducer';
+import { dietChartUploadReducer } from './reducer/DoctoreReducer';
+import { enrollmentPatientReducer, patientDetailsReducer, patientListReducer } from './reducer/Patientreducer';
 
 
 const initialState={}
 
 const reducer =combineReducers({
     enrollmentPatient:enrollmentPatientReducer,
-    // patientList:patientListReducer,
+    patientList:patientListReducer,
+    patientDetails:patientDetailsReducer,
+    dietChartUpload:dietChartUploadReducer,
     // registerPatient:registerPatientreducer,
     // googleSignin:googleSigninReducer,
 })

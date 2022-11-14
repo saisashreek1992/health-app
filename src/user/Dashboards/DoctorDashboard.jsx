@@ -4,8 +4,13 @@ import FloatingButton from "../../pages/shared/Floating-Button";
 import DoctorAppointment from "../../pages/form-validations/doctor/DoctorAppointment";
 import DoctorVisitor from "../../pages/form-validations/doctor/DoctorVisitor";
 import ChatUI from "../../pages/shared/ChatUI";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { listPatients } from "../../action/PatientAction";
 
 const DoctorDashboard = () => {
+
+
   return (
     <>
       <div className="dashboard__Container">

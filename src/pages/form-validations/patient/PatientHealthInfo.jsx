@@ -156,26 +156,29 @@ const PatientHealthInfo = () => {
     const healthPlan = formState.inputs.healthPlan.value
     const planDate = formState.inputs.planDate.value
     const patientTeam = formState.inputs.patientTeam.value
-    // console.log(height,weight,caretakerName,gender)
-
-    navigate("/userrole/:roleid/dashboard/doctor/enrol/personalinfo/", {
-      state: {
-        phone,
-        name,
-        email,
-        dob,
-        gender,
-        height,
-        weight,
-        caretakerName,
-        relation,
-        caretakerNumber,
-        caretakerTime,
-        healthPlan,
-        planDate,
-        patientTeam,
-      },
-    });
+    console.log(formState)
+    if(height === '' || weight === '' || caretakerName === '' || relation === '' || caretakerNumber === '' || caretakerTime === '' || healthPlan === '' || planDate === '' || patientTeam === ''  ){
+      alert('please fill all the fields')
+    }else{
+      navigate("/userrole/:roleid/dashboard/doctor/enrol/personalinfo/", {
+        state: {
+          phone,
+          name,
+          email,
+          dob,
+          gender,
+          height,
+          weight,
+          caretakerName,
+          relation,
+          caretakerNumber,
+          caretakerTime,
+          healthPlan,
+          planDate,
+          patientTeam,
+        },
+      });
+    }  
   };
 
   return (

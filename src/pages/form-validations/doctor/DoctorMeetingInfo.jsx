@@ -1,13 +1,35 @@
 import React from 'react';
 import Navbar from '../../../user/shared/Navbar';
 import { FiPaperclip } from "react-icons/fi";
+import { useLocation } from 'react-router-dom';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { DetailsPatients } from '../../../action/PatientAction';
+import LoadingBox from '../../../Components/LoadingBox';
+import MessageBox from '../../../Components/MessageBox';
 
 const DoctorMeetingInfo = () => {
+  const location = useLocation()
+  const {id}=location.state
+  console.log(location.state)
+  const patientDetails = useSelector((state) => state.patientDetails);
+  const { loading, error, patient } = patientDetails;
+  const dispatch =useDispatch()
+
+  useEffect(()=>{
+    dispatch(DetailsPatients(id))
+  },[dispatch])
+  if(patient){
+    console.log(patient.data,'dt')
+  }
   return (
     <>
       <div className="min-h-full">
         <Navbar />
         <main>
+          {loading ?<LoadingBox></LoadingBox>:
+          error? <MessageBox>{error}</MessageBox>:(
+         
           <div className="mx-auto max-w-7xl py-6 sm:px-6 lg:px-8">
             {/* Replace with your content */}
             <div className="px-4 py-6 sm:px-0">
@@ -20,6 +42,12 @@ const DoctorMeetingInfo = () => {
                     Personal details and application.
                   </p>
                 </div>
+            
+                {/* {patient.data && patient.data.lentgh>0 && patient.data.map((itm)=>( */}
+                  {patient.data && (
+                    
+                  
+                
                 <div className="border-t border-gray-200">
                   <dl>
                     <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
@@ -51,7 +79,7 @@ const DoctorMeetingInfo = () => {
                         Patient Full Name
                       </dt>
                       <dd className="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
-                        Margot Foster
+                        {patient.data.name}
                       </dd>
                     </div>
                     <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
@@ -67,7 +95,7 @@ const DoctorMeetingInfo = () => {
                         Patient Phone Number
                       </dt>
                       <dd className="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
-                        (+91) 996 - 644 - 1948
+                        {patient.data.phone}
                       </dd>
                     </div>
                     <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
@@ -75,7 +103,7 @@ const DoctorMeetingInfo = () => {
                         Bill Amount
                       </dt>
                       <dd className="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
-                        950/-
+                       {patient.data.amount}
                       </dd>
                     </div>
                     <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
@@ -170,10 +198,14 @@ const DoctorMeetingInfo = () => {
                     </div>
                   </dl>
                 </div>
+                )}
+                {/* ))} */}
               </div>
             </div>
             {/* /End replace */}
           </div>
+             
+             )}
         </main>
       </div>
     </>

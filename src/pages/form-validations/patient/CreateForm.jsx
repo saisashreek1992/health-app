@@ -1,12 +1,49 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../../../user/shared/Navbar";
 
 const CreateForm = () => {
+
+  const [addMore, setAddMore] = useState([
+    {type:'',title:'',choice1:'',choice2:'',choice3:'',choice4:''},
+    
+    
+  ])
   let navigate = useNavigate();
   const nextStep = () => {
-    navigate("/userrole/:roleid/dashboard/doctor/");
+    // navigate("/userrole/:roleid/dashboard/doctor/");
+    console.log(addMore,'admmore')
   };
+
+  const handleFormChange=(event,index)=>{
+    let data = [...addMore]
+    data[index][event.target.name] = event.target.value;
+    setAddMore(data);
+    // console.log(addMore)
+
+  }
+
+  const addMoreFields=()=>{
+    let obj={type:'',
+            title:'',
+            choice1:'',
+            choice2:'',
+            choice3:'',
+            choice4:''
+          }
+          setAddMore([...addMore,obj])
+          // console.log(...addMore,obj);
+  }
+
+  const removeFields=(index)=>{
+    let data =[...addMore]   
+    data.splice(index, 1)
+    setAddMore(data)
+  }
+
+  const questionSubmit=()=>{
+    
+  }
 
   return (
     <>
@@ -19,10 +56,12 @@ const CreateForm = () => {
               <div>
                 <div className="dashboard__Grid-Box">
                   <div className="dashboard__Grid-Cols">
-                    <form action="#" method="POST">
+                   
                       <div className="form__Box-Shadow">
                         <div className="form__Box-Space">
+                        <form >
                           <div className="form__Grid--Cols-6">
+                         
                             <div className="form__Cols--Span-6">
                               <label
                                 htmlFor="patient-id"
@@ -63,96 +102,108 @@ const CreateForm = () => {
                               </button>
                             </div>
                           </div>
-                          <div className="form__Grid--Cols-6">
+                          </form>
+
+
+                          {addMore.map((form,index)=>(
+                            <>
+                            <form >
+                         <div className="form__Grid--Cols-6" key={index}>
                             <div className="form__Cols--Span-6">
                               <label
-                                htmlFor="question-type"
+                                htmlFor="type"
                                 className="form__Label-Heading"
                               >
                                 Question Type
                               </label>
+                   
                               <select
-                                id="question-type"
-                                name="question-type"
+                                id="type"
+                                name="type"
                                 autoComplete="question-type-name"
                                 className="form__Select"
+                                value={form.type}
+                                onChange={(event)=>handleFormChange(event,index)}
                               >
                                 <option>Select Question Type</option>
-                                <option>Radio Type</option>
-                                <option>Checkbox Type</option>
-                                <option>Text Area [Input will be text]</option>
+                                <option value='radio'>Radio Type</option>
+                                <option value='checkbox'>Checkbox Type</option>
+                                <option value='textArea'>Text Area [Input will be text]</option>
                               </select>
                             </div>
                             <div className="form__Cols--Span-6">
-                            <button
-                                type="submit"
-                                className="form__Btn-Green"
-                              >
-                                Add More Questions
-                              </button>
+                           
                             </div>
                           </div>
                           <div className="form__Grid--Rows-none">
                             <div className="form__Cols--Span-6">
                               <label
-                                htmlFor="question-title"
+                                htmlFor="title"
                                 className="form__Label-Heading"
                               >
                                 Question Title
                               </label>
                               <input
                                 type="text"
-                                name="question-title"
-                                id="question-title"
+                                name="title"
+                                id="title"
+                                value={form.title}
                                 autoComplete="given-name"
                                 className="form__Input"
+                                onChange={(event)=>handleFormChange(event,index)}
                               />
                             </div>
                           </div>
                           <div className="grid grid-cols-6 gap-6">
                             <div className="form__Cols--Span-3">
                               <label
-                                htmlFor="question-choice-1"
+                                htmlFor="choice1"
                                 className="form__Label-Heading"
                               >
                                 Question Choices
                               </label>
                               <input
                                 type="text"
-                                name="question-choice-1"
-                                id="question-choice-1"
+                                name="choice1"
+                                id="choice1"
+                                value={form.choice1}
                                 autoComplete="given-name"
                                 className="form__Input"
+                                onChange={(event)=>handleFormChange(event,index)}
                               />
                             </div>
                             <div className="form__Cols--Span-3">
                               <label
-                                htmlFor="question-choice-2"
+                                htmlFor="choice2"
                                 className="form__Label-Heading"
                               >
                                 Question Choices
                               </label>
                               <input
                                 type="text"
-                                name="question-choice-2"
-                                id="question-choice-2"
+                                name="choice2"
+                                value={form.choice2}
+                                id="choice2"
                                 autoComplete="given-name"
                                 className="form__Input"
+                                onChange={(event)=>handleFormChange(event,index)}
                               />
                             </div>
                             <div className="form__Cols--Span-3">
                               <label
-                                htmlFor="question-choice-3"
+                                htmlFor="choice3"
                                 className="form__Label-Heading"
                               >
                                 Question Choices
                               </label>
                               <input
                                 type="text"
-                                name="question-choice-3"
-                                id="question-choice-3"
+                                name="choice3"
+                                id="choice3"
+                                value={form.choice3}
                                 autoComplete="given-name"
                                 className="form__Input"
+                                onChange={(event)=>handleFormChange(event,index)}
                               />
                             </div>
                             <div className="form__Cols--Span-3">
@@ -164,13 +215,22 @@ const CreateForm = () => {
                               </label>
                               <input
                                 type="text"
-                                name="question-choice-4"
-                                id="question-choice-4"
+                                name="choice4"
+                                id="choice4"
+                                value={form.choice4}
                                 autoComplete="given-name"
                                 className="form__Input"
+                                onChange={(event)=>handleFormChange(event,index)}
                               />
                             </div>
                           </div>
+                         
+                          </form>
+                          {index!=0 && ( <button onClick={()=>removeFields(index)}>Remove fields</button>)}
+                         
+                          </>
+                          ))}
+
                         </div>
                         <div className="form__Btn-Bg">
                           <button
@@ -182,7 +242,10 @@ const CreateForm = () => {
                           </button>
                         </div>
                       </div>
-                    </form>
+                    {/* </form> */}
+                    
+                    <button onClick={addMoreFields} type="submit" className="form__Btn-Green">Add More Questions</button>
+                                                                                               
                   </div>
                 </div>
               </div>
