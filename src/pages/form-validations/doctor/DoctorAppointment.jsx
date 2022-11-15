@@ -10,27 +10,24 @@ const DoctorAppointment = () => {
   const patientList = useSelector((state) => state.patientList);
   const { loading, error, patients } = patientList;
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
-
-  useEffect(()=>{
-      dispatch(listPatients())
-  },[dispatch])
-  if(patients){
-    console.log(patients.data)
+  useEffect(() => {
+    dispatch(listPatients());
+  }, [dispatch]);
+  if (patients) {
+    console.log(patients.data);
   }
   let navigate = useNavigate();
   return (
     <>
       {/* Replace with your content */}
- 
 
-   
       <div className="dashboard__Main-Inner-Content">
         <div className="flex justify-start">
           <div className="block p-6 rounded-lg shadow-lg bg-white max-w-sm">
             <h5 className="text-gray-900 text-xl leading-tight font-medium mb-2">
-              Number of AppointmentsssS
+              Number of Appointment
             </h5>
             <h6 className="text-gray-700 text-base mb-4">12</h6>
             <input
@@ -64,48 +61,52 @@ const DoctorAppointment = () => {
               </tr>
             </thead>
             <tbody>
-              {loading ? <LoadingBox></LoadingBox>:
-                error? <MessageBox>{error}</MessageBox>:
-                patients.data && patients.data.map((itm,i)=>(
-              <tr key={itm._id} className="bg-white border-b">
-                <td className="px-6 py-4 whitespace-nowrap text-base font-medium text-gray-900 text-center">
-                  {i+1}
-                </td>
-                <td className="px-6 py-4 whitespace-nowrap text-base font-medium text-gray-900 text-center">
-                  {itm.team}
-                </td>
-                <td className="px-6 py-4 whitespace-nowrap text-base font-medium text-gray-900 text-center">
-                  {itm.name}
-                </td>
-                <td className="px-6 py-4 whitespace-nowrap text-base font-medium text-gray-900 text-center">
-                  11-10-2022
-                </td>
-                <td className="px-6 py-4 whitespace-nowrap text-base font-medium text-gray-900 text-center">
-                  <div className="flex flex-row justify-center">
-                    <div className="inline-block p-6">
-                      <FiEye
-                        className="h-6 w-6 hover:text-green-500"
-                        onClick={() =>
-                          navigate(
-                            "/userrole/:roleid/dashboard/doctor/meeting/info/",{state:{id:itm._id}}
-                          )
-                        }
-                      />
-                    </div>
-                    <div className="inline-block p-6">
-                      <FiEdit className="h-6 w-6 hover:text-blue-500" />
-                    </div>
-                  </div>
-                </td>
-              </tr>
-            ))}
-         
+              {loading ? (
+                <LoadingBox></LoadingBox>
+              ) : error ? (
+                <MessageBox>{error}</MessageBox>
+              ) : (
+                patients.data &&
+                patients.data.map((itm, i) => (
+                  <tr key={itm._id} className="bg-white border-b">
+                    <td className="px-6 py-4 whitespace-nowrap text-base font-medium text-gray-900 text-center">
+                      {i + 1}
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap text-base font-medium text-gray-900 text-center">
+                      {itm.team}
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap text-base font-medium text-gray-900 text-center">
+                      {itm.name}
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap text-base font-medium text-gray-900 text-center">
+                      11-10-2022
+                    </td>
+                    <td className="px-6 py-4 whitespace-nowrap text-base font-medium text-gray-900 text-center">
+                      <div className="flex flex-row justify-center">
+                        <div className="inline-block p-6">
+                          <FiEye
+                            className="h-6 w-6 hover:text-green-500"
+                            onClick={() =>
+                              navigate(
+                                "/userrole/:roleid/dashboard/doctor/meeting/info/",
+                                { state: { id: itm._id } }
+                              )
+                            }
+                          />
+                        </div>
+                        <div className="inline-block p-6">
+                          <FiEdit className="h-6 w-6 hover:text-blue-500" />
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                ))
+              )}
             </tbody>
           </table>
         </div>
       </div>
 
-     
       {/* /End replace */}
     </>
   );
