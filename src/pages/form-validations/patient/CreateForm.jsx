@@ -1,17 +1,27 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { createForm } from "../../../action/DoctorAction";
+import { CREATE_FORM_RESET } from "../../../constant.js/DoctorConstant";
 import Navbar from "../../../user/shared/Navbar";
 
 const CreateForm = () => {
+  const [id, setId] = useState('')
+  const [title, setTitle] = useState('')
+  const formCreate = useSelector((state) => state.formCreate);
+  const { loading, error, success } = formCreate;
+
 
   const [addMore, setAddMore] = useState([
     {type:'',title:'',choice1:'',choice2:'',choice3:'',choice4:''},
-    
-    
   ])
+
+  const [form, setFrom] = useState(false)
+
   let navigate = useNavigate();
+  const dispatch=useDispatch()
   const nextStep = () => {
-    // navigate("/userrole/:roleid/dashboard/doctor/");
+    dispatch(createForm(id,title,addMore))
     console.log(addMore,'admmore')
   };
 
@@ -19,8 +29,7 @@ const CreateForm = () => {
     let data = [...addMore]
     data[index][event.target.name] = event.target.value;
     setAddMore(data);
-    // console.log(addMore)
-
+    console.log(addMore,'vii')
   }
 
   const addMoreFields=()=>{
@@ -32,7 +41,6 @@ const CreateForm = () => {
             choice4:''
           }
           setAddMore([...addMore,obj])
-          // console.log(...addMore,obj);
   }
 
   const removeFields=(index)=>{
@@ -41,9 +49,13 @@ const CreateForm = () => {
     setAddMore(data)
   }
 
-  const questionSubmit=()=>{
-    
-  }
+  useEffect(()=>{
+     if(success){
+      dispatch({type:CREATE_FORM_RESET})
+       navigate("/userrole/:roleid/dashboard/doctor/");
+     }
+  },[success])
+ 
 
   return (
     <>
@@ -70,6 +82,7 @@ const CreateForm = () => {
                                 Select Patient
                               </label>
                               <input
+                              onChange={(e)=>setId(e.target.value)}
                                 type="text"
                                 name="patient-id"
                                 id="patient-id"
@@ -86,6 +99,8 @@ const CreateForm = () => {
                                 Form Title
                               </label>
                               <input
+                              onChange={(e)=>setTitle(e.target.value)}
+
                                 type="text"
                                 name="form-title"
                                 id="form-title"
@@ -135,6 +150,10 @@ const CreateForm = () => {
                            
                             </div>
                           </div>
+
+
+                          {addMore[index].type && addMore[index].type === 'radio' ? (
+                            <>
                           <div className="form__Grid--Rows-none">
                             <div className="form__Cols--Span-6">
                               <label
@@ -224,7 +243,121 @@ const CreateForm = () => {
                               />
                             </div>
                           </div>
-                         
+                          </>
+                         ):addMore[index].type && addMore[index].type === 'checkbox' ? (
+                          <>
+                          <div className="form__Grid--Rows-none">
+                          <div className="form__Cols--Span-6">
+                            <label
+                              htmlFor="title"
+                              className="form__Label-Heading"
+                            >
+                              Question Title
+                            </label>
+                            <input
+                              type="text"
+                              name="title"
+                              id="title"
+                              value={form.title}
+                              autoComplete="given-name"
+                              className="form__Input"
+                              onChange={(event)=>handleFormChange(event,index)}
+                            />
+                          </div>
+                        </div>
+                        <div className="grid grid-cols-6 gap-6">
+                          <div className="form__Cols--Span-3">
+                            <label
+                              htmlFor="choice1"
+                              className="form__Label-Heading"
+                            >
+                              Question Choices
+                            </label>
+                            <input
+                              type="text"
+                              name="choice1"
+                              id="choice1"
+                              value={form.choice1}
+                              autoComplete="given-name"
+                              className="form__Input"
+                              onChange={(event)=>handleFormChange(event,index)}
+                            />
+                          </div>
+                          <div className="form__Cols--Span-3">
+                            <label
+                              htmlFor="choice2"
+                              className="form__Label-Heading"
+                            >
+                              Question Choices
+                            </label>
+                            <input
+                              type="text"
+                              name="choice2"
+                              value={form.choice2}
+                              id="choice2"
+                              autoComplete="given-name"
+                              className="form__Input"
+                              onChange={(event)=>handleFormChange(event,index)}
+                            />
+                          </div>
+                          <div className="form__Cols--Span-3">
+                            <label
+                              htmlFor="choice3"
+                              className="form__Label-Heading"
+                            >
+                              Question Choices
+                            </label>
+                            <input
+                              type="text"
+                              name="choice3"
+                              id="choice3"
+                              value={form.choice3}
+                              autoComplete="given-name"
+                              className="form__Input"
+                              onChange={(event)=>handleFormChange(event,index)}
+                            />
+                          </div>
+                          <div className="form__Cols--Span-3">
+                            <label
+                              htmlFor="question-choice-4"
+                              className="form__Label-Heading"
+                            >
+                              Question Choices
+                            </label>
+                            <input
+                              type="text"
+                              name="choice4"
+                              id="choice4"
+                              value={form.choice4}
+                              autoComplete="given-name"
+                              className="form__Input"
+                              onChange={(event)=>handleFormChange(event,index)}
+                            />
+                          </div>
+                        </div>
+                        </>
+                         ):addMore[index].type && addMore[index].type === 'textArea' ? (
+                          <div className="form__Grid--Rows-none">
+                          <div className="form__Cols--Span-6">
+                            <label
+                              htmlFor="title"
+                              className="form__Label-Heading"
+                            >
+                              Text
+                            </label>
+                            <input
+                              type="text"
+                              name="title"
+                              id="title"
+                              value={form.title}
+                              autoComplete="given-name"
+                              className="form__Input"
+                              onChange={(event)=>handleFormChange(event,index)}
+                            />
+                          </div>
+                        </div>
+                         ):
+                         '' }
                           </form>
                           {index!=0 && ( <button onClick={()=>removeFields(index)}>Remove fields</button>)}
                          

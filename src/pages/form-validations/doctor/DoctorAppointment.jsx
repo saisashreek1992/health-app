@@ -7,26 +7,22 @@ import LoadingBox from "../../../Components/LoadingBox";
 import MessageBox from "../../../Components/MessageBox";
 
 const DoctorAppointment = () => {
-  const patientList = useSelector((state) => state.patientList);
-  const { loading, error, patients } = patientList;
+
 
   const dispatch = useDispatch()
 
 
-  useEffect(()=>{
-      dispatch(listPatients())
-  },[dispatch])
-  if(patients){
-    console.log(patients.data)
-  }
+ 
   let navigate = useNavigate();
   return (
     <>
+
+      <MessageBox>No Data</MessageBox>
       {/* Replace with your content */}
  
 
    
-      <div className="dashboard__Main-Inner-Content">
+      {/* <div className="dashboard__Main-Inner-Content">
         <div className="flex justify-start">
           <div className="block p-6 rounded-lg shadow-lg bg-white max-w-sm">
             <h5 className="text-gray-900 text-xl leading-tight font-medium mb-2">
@@ -103,7 +99,7 @@ const DoctorAppointment = () => {
             </tbody>
           </table>
         </div>
-      </div>
+      </div> */}
 
      
       {/* /End replace */}
