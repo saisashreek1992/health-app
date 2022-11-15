@@ -13,7 +13,7 @@ const CreateForm = () => {
 
 
   const [addMore, setAddMore] = useState([
-    {type:'',title:'',choice1:'',choice2:'',choice3:'',choice4:''},
+    {type:'',title:'',choise1:'',choise2:'',choise3:'',choise4:''},
   ])
 
   const [form, setFrom] = useState(false)
@@ -35,10 +35,10 @@ const CreateForm = () => {
   const addMoreFields=()=>{
     let obj={type:'',
             title:'',
-            choice1:'',
-            choice2:'',
-            choice3:'',
-            choice4:''
+            choise1:'',
+            choise2:'',
+            choise3:'',
+            choise4:''
           }
           setAddMore([...addMore,obj])
   }
@@ -176,16 +176,16 @@ const CreateForm = () => {
                           <div className="grid grid-cols-6 gap-6">
                             <div className="form__Cols--Span-3">
                               <label
-                                htmlFor="choice1"
+                                htmlFor="choise1"
                                 className="form__Label-Heading"
                               >
-                                Question Choices
+                                Question choices
                               </label>
                               <input
                                 type="text"
-                                name="choice1"
-                                id="choice1"
-                                value={form.choice1}
+                                name="choise1"
+                                id="choise1"
+                                value={form.choise1}
                                 autoComplete="given-name"
                                 className="form__Input"
                                 onChange={(event)=>handleFormChange(event,index)}
@@ -193,16 +193,16 @@ const CreateForm = () => {
                             </div>
                             <div className="form__Cols--Span-3">
                               <label
-                                htmlFor="choice2"
+                                htmlFor="choise2"
                                 className="form__Label-Heading"
                               >
-                                Question Choices
+                                Question choises
                               </label>
                               <input
                                 type="text"
-                                name="choice2"
-                                value={form.choice2}
-                                id="choice2"
+                                name="choise2"
+                                value={form.choise2}
+                                id="choise2"
                                 autoComplete="given-name"
                                 className="form__Input"
                                 onChange={(event)=>handleFormChange(event,index)}
@@ -210,16 +210,16 @@ const CreateForm = () => {
                             </div>
                             <div className="form__Cols--Span-3">
                               <label
-                                htmlFor="choice3"
+                                htmlFor="choise3"
                                 className="form__Label-Heading"
                               >
-                                Question Choices
+                                Question choises
                               </label>
                               <input
                                 type="text"
-                                name="choice3"
-                                id="choice3"
-                                value={form.choice3}
+                                name="choise3"
+                                id="choise3"
+                                value={form.choise3}
                                 autoComplete="given-name"
                                 className="form__Input"
                                 onChange={(event)=>handleFormChange(event,index)}
@@ -227,16 +227,16 @@ const CreateForm = () => {
                             </div>
                             <div className="form__Cols--Span-3">
                               <label
-                                htmlFor="question-choice-4"
+                                htmlFor="question-choise-4"
                                 className="form__Label-Heading"
                               >
-                                Question Choices
+                                Question choises
                               </label>
                               <input
                                 type="text"
-                                name="choice4"
-                                id="choice4"
-                                value={form.choice4}
+                                name="choise4"
+                                id="choise4"
+                                value={form.choise4}
                                 autoComplete="given-name"
                                 className="form__Input"
                                 onChange={(event)=>handleFormChange(event,index)}
@@ -268,16 +268,16 @@ const CreateForm = () => {
                         <div className="grid grid-cols-6 gap-6">
                           <div className="form__Cols--Span-3">
                             <label
-                              htmlFor="choice1"
+                              htmlFor="choise1"
                               className="form__Label-Heading"
                             >
-                              Question Choices
+                              Question choises
                             </label>
                             <input
                               type="text"
-                              name="choice1"
-                              id="choice1"
-                              value={form.choice1}
+                              name="choise1"
+                              id="choise1"
+                              value={form.choise1}
                               autoComplete="given-name"
                               className="form__Input"
                               onChange={(event)=>handleFormChange(event,index)}
@@ -285,16 +285,16 @@ const CreateForm = () => {
                           </div>
                           <div className="form__Cols--Span-3">
                             <label
-                              htmlFor="choice2"
+                              htmlFor="choise2"
                               className="form__Label-Heading"
                             >
-                              Question Choices
+                              Question choises
                             </label>
                             <input
                               type="text"
-                              name="choice2"
-                              value={form.choice2}
-                              id="choice2"
+                              name="choise2"
+                              value={form.choise2}
+                              id="choise2"
                               autoComplete="given-name"
                               className="form__Input"
                               onChange={(event)=>handleFormChange(event,index)}
@@ -302,16 +302,16 @@ const CreateForm = () => {
                           </div>
                           <div className="form__Cols--Span-3">
                             <label
-                              htmlFor="choice3"
+                              htmlFor="choise3"
                               className="form__Label-Heading"
                             >
-                              Question Choices
+                              Question choises
                             </label>
                             <input
                               type="text"
-                              name="choice3"
-                              id="choice3"
-                              value={form.choice3}
+                              name="choise3"
+                              id="choise3"
+                              value={form.choise3}
                               autoComplete="given-name"
                               className="form__Input"
                               onChange={(event)=>handleFormChange(event,index)}
@@ -319,16 +319,16 @@ const CreateForm = () => {
                           </div>
                           <div className="form__Cols--Span-3">
                             <label
-                              htmlFor="question-choice-4"
+                              htmlFor="question-choise-4"
                               className="form__Label-Heading"
                             >
-                              Question Choices
+                              Question choises
                             </label>
                             <input
                               type="text"
-                              name="choice4"
-                              id="choice4"
-                              value={form.choice4}
+                              name="choise4"
+                              id="choise4"
+                              value={form.choise4}
                               autoComplete="given-name"
                               className="form__Input"
                               onChange={(event)=>handleFormChange(event,index)}
