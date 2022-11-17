@@ -16,9 +16,7 @@ const DoctorVisitor = () => {
   useEffect(()=>{
       dispatch(listPatients())
   },[dispatch])
-  if(patients){
-    console.log(patients.data)
-  }
+
  
     let navigate = useNavigate();
   return (

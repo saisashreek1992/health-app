@@ -1,7 +1,11 @@
 import { addDoc, collection, onSnapshot, orderBy, query, serverTimestamp } from "firebase/firestore";
 import React, { useEffect, useMemo, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
+import { useDispatch, useSelector } from "react-redux";
+import { listPatients } from "../../action/PatientAction";
 import Profile from "../../Assets/user/profile-image.png";
+import LoadingBox from "../../Components/LoadingBox";
+import MessageBox from "../../Components/MessageBox";
 import { auth, db } from "../../firebase";
 
 const ChatUI = () => {
@@ -14,6 +18,16 @@ const ChatUI = () => {
 
   
   const [input, setInput] = useState('');
+
+  const patientList = useSelector((state) => state.patientList);
+  const { loading, error, patients } = patientList;
+
+  const dispatch = useDispatch()
+
+
+  useEffect(()=>{
+      dispatch(listPatients())
+  },[dispatch])
 
   const sendMessage = async (e) => {
     const {uid, displayName} = auth.currentUser
@@ -284,6 +298,9 @@ const ChatUI = () => {
                       placeholder="Search"
                     />
                   </div>
+                  {loading ? <LoadingBox></LoadingBox>:
+                   error? <MessageBox>{error}</MessageBox>:
+                    patients.data && patients.data.map((itm,i)=>(
                   <div className="flex-1 h-full overflow-auto px-2">
                     <div className="entry cursor-pointer transform hover:scale-105 duration-300 transition-transform bg-white mb-4 rounded p-4 flex shadow-md">
                       <div className="flex-2">
@@ -298,7 +315,7 @@ const ChatUI = () => {
                       </div>
                       <div className="flex-1 px-2">
                         <div className="truncate w-32">
-                          <span className="text-gray-800">Ryann Remo</span>
+                          <span className="text-gray-800">{itm.name}</span>
                         </div>
                         <div>
                           <small className="text-gray-600">Yea, Sure!</small>
@@ -315,7 +332,9 @@ const ChatUI = () => {
                         </div>
                       </div>
                     </div>
-                    <div className="entry cursor-pointer transform hover:scale-105 duration-300 transition-transform bg-white mb-4 rounded p-4 flex shadow-md">
+
+
+                    {/* <div className="entry cursor-pointer transform hover:scale-105 duration-300 transition-transform bg-white mb-4 rounded p-4 flex shadow-md">
                       <div className="flex-2">
                         <div className="w-12 h-12 relative">
                           <img
@@ -421,8 +440,9 @@ const ChatUI = () => {
                           <small className="text-gray-500">15 April</small>
                         </div>
                       </div>
-                    </div>
+                    </div> */}
                   </div>
+                   ))}
                 </div>
                 <div className="chat-area flex-1 flex flex-col">
                   <div className="flex-3">

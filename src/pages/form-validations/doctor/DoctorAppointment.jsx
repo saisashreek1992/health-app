@@ -17,12 +17,12 @@ const DoctorAppointment = () => {
   return (
     <>
 
-      <MessageBox>No Data</MessageBox>
+  
       {/* Replace with your content */}
  
 
    
-      {/* <div className="dashboard__Main-Inner-Content">
+      <div className="dashboard__Main-Inner-Content">
         <div className="flex justify-start">
           <div className="block p-6 rounded-lg shadow-lg bg-white max-w-sm">
             <h5 className="text-gray-900 text-xl leading-tight font-medium mb-2">
@@ -60,7 +60,7 @@ const DoctorAppointment = () => {
               </tr>
             </thead>
             <tbody>
-              {loading ? <LoadingBox></LoadingBox>:
+              {/* {loading ? <LoadingBox></LoadingBox>:
                 error? <MessageBox>{error}</MessageBox>:
                 patients.data && patients.data.map((itm,i)=>(
               <tr key={itm._id} className="bg-white border-b">
@@ -94,12 +94,19 @@ const DoctorAppointment = () => {
                   </div>
                 </td>
               </tr>
-            ))}
+            ))} */}
+            
+        
          
             </tbody>
+          
           </table>
         </div>
-      </div> */}
+  
+            <MessageBox>No Data</MessageBox>
+
+        
+      </div>
 
      
       {/* /End replace */}
