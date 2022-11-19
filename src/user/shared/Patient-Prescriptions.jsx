@@ -139,7 +139,7 @@ const PatientPrescriptions = () => {
           </div>
         </main>
       </div>
-      <footer className="relative text-center text-white">
+      {/* <footer className="relative text-center text-white">
         <div className="container pt-9 bg-gray-600 w-full fixed bottom-0 left-0">
           <div className="flex justify-center mb-9">
             <a
@@ -162,7 +162,7 @@ const PatientPrescriptions = () => {
             </a>
           </div>
         </div>
-      </footer>
+      </footer> */}
     </>
   );
 };

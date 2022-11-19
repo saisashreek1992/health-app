@@ -16,7 +16,7 @@ const PatientDashboard = () => {
           </div>
         </main>
       </div>
-      <footer className="relative text-center text-white">
+      {/* <footer className="relative text-center text-white">
         <div className="container w-full pt-9 bg-gray-600 fixed bottom-0 left-0 right-0">
           <div className="flex justify-center mb-9">
             <a
@@ -33,7 +33,7 @@ const PatientDashboard = () => {
             </a>
           </div>
         </div>
-      </footer>
+      </footer> */}
     </>
   );
 };
