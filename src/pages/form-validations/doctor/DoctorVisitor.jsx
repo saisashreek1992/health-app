@@ -94,7 +94,7 @@ const DoctorVisitor = () => {
                 Patient Name
               </th>
               <th className="text-lg font-bold text-gray-900 px-2 py-4">
-                Appointment Date
+                Visited Date
               </th>
               <th className="text-lg font-bold text-gray-900 px-2 py-4">
                 Actions
