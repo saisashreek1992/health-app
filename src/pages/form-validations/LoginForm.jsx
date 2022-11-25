@@ -1,4 +1,5 @@
 import React, { useState} from "react";
+import { useNavigate } from "react-router-dom";
 import { FaGoogle } from "react-icons/fa";
 
 import InputLog from "../../Components/InputLog";
@@ -10,6 +11,8 @@ import { auth } from "../../firebase";
 import { GoogleAuthProvider, signInWithRedirect } from "firebase/auth";
 
 const LoginForm = () => {
+
+  const navigate = useNavigate();
 
   const googleSignIn = () => {
     const provider = new GoogleAuthProvider()
@@ -43,6 +46,7 @@ const [user] = useAuthState(auth);
         },
         formState.inputs.emailAddress.isValid && formState.inputs.password.isValid
       );
+      navigate('/userrole/:roleid/dashboard/doctor/');
     }
     else {
       setFormData(
@@ -55,6 +59,7 @@ const [user] = useAuthState(auth);
         },
         false
       );
+      navigate('/userrole/:roleid/dashboard/doctor/');
     }
     setIsLogged((prevLogg) => (!prevLogg));
   };
@@ -179,7 +184,7 @@ const [user] = useAuthState(auth);
                 aria-hidden="true"
               />
             </span>
-            Sign in with Googless
+            Sign in with Googles
           </button>
         </div>
         )}
