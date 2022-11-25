@@ -1,13 +1,13 @@
 import React from "react";
 import { FiChevronDown } from "react-icons/fi";
 
-const PatienPrescriptionsInfo = () => {
+const PatientUploadDietChart = () => {
   return (
     <>
-      <div className="flex justify-evenly">
+      <div className="flex justify-evenly py-9">
         <div className="block p-6 rounded-lg shadow-lg bg-white max-w-sm">
           <h5 className="text-gray-900 text-xl leading-tight font-medium mb-2">
-            Prescribed Medicines
+            Prescribed Diet Chart
             <span className="text-xs inline-block mx-3 py-1 px-2.5 leading-none text-center whitespace-nowrap align-baseline font-bold bg-green-500 text-white rounded-full">
               Latest
             </span>
@@ -20,14 +20,14 @@ const PatienPrescriptionsInfo = () => {
             type="button"
             className="inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
             data-bs-toggle="modal"
-            data-bs-target="#modalPrescription"
+            data-bs-target="#modalDietChart"
           >
             View
           </button>
         </div>
         <div className="block p-6 rounded-lg shadow-lg bg-white max-w-sm">
           <h5 className="text-gray-900 text-xl leading-tight font-medium mb-2">
-            Prescribed Medicines
+            Prescribed Diet Chart
             <span className="text-xs inline-block mx-3 py-1 px-2.5 leading-none text-center whitespace-nowrap align-baseline font-bold bg-red-500 text-white rounded-full">
               Old
             </span>
@@ -40,7 +40,7 @@ const PatienPrescriptionsInfo = () => {
             type="button"
             className="inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
             data-bs-toggle="modal"
-            data-bs-target="#modalOldPrescription"
+            data-bs-target="#modalOldDietChart"
           >
             View
           </button>
@@ -48,9 +48,9 @@ const PatienPrescriptionsInfo = () => {
       </div>
       <div
         className="modal fade fixed top-0 left-0 hidden w-full h-full outline-none overflow-x-hidden overflow-y-auto"
-        id="modalPrescription"
+        id="modalDietChart"
         tabindex="-1"
-        aria-labelledby="modalPrescriptionLabel"
+        aria-labelledby="modalDietChartLabel"
         aria-hidden="true"
       >
         <div className="modal-dialog modal-dialog-centered relative w-auto pointer-events-none">
@@ -58,9 +58,9 @@ const PatienPrescriptionsInfo = () => {
             <div className="modal-header flex flex-shrink-0 items-center justify-between p-4 border-b border-gray-200 rounded-t-md">
               <h5
                 class="text-xl font-medium leading-normal text-gray-800"
-                id="modalPrescriptionLabel"
+                id="modalDietChartLabel"
               >
-                Prescription
+                DietChart
               </h5>
               <button
                 type="button"
@@ -87,73 +87,78 @@ const PatienPrescriptionsInfo = () => {
                   <p className="form__Heading">24-11-2022</p>
                 </div>
                 <div className="form__Cols--Span-6">
-                  <label htmlFor="medicineType" className="form__Label-Heading">
-                    Medicine Type
+                  <label
+                    htmlFor="lowerCalories"
+                    className="form__Label-Heading"
+                  >
+                    Low Calories Range
                   </label>
-                  <p className="form__Heading">Tablet</p>
+                  <p className="form__Heading">23</p>
                 </div>
                 <div className="form__Cols--Span-6">
-                  <label htmlFor="medicineName" className="form__Label-Heading">
-                    Medicine Name
+                  <label htmlFor="highCalories" className="form__Label-Heading">
+                    High Clories Range
                   </label>
-                  <p className="form__Heading">Coldact</p>
+                  <p className="form__Heading">55</p>
                 </div>
                 <div className="form__Cols--Span-6">
                   <label
-                    htmlFor="medicineMorningDose"
+                    htmlFor="lowerCarbohydrates"
                     className="form__Label-Heading"
                   >
-                    Medicine Morning Dose
+                    Low Carbohydrates Range
                   </label>
-                  <p className="form__Heading">2 Tabs</p>
+                  <p className="form__Heading">23</p>
                 </div>
                 <div className="form__Cols--Span-6">
                   <label
-                    htmlFor="medicineAfternoonDose"
+                    htmlFor="highCarbohydrates"
                     className="form__Label-Heading"
                   >
-                    Medicine Afternoon Dose
+                    High Carbohydrates Range
                   </label>
-                  <p className="form__Heading">1 Tab</p>
+                  <p className="form__Heading">55</p>
                 </div>
                 <div className="form__Cols--Span-6">
-                  <label
-                    htmlFor="medicineEveningDose"
-                    className="form__Label-Heading"
-                  >
-                    Medicine Evening Dose
+                  <label htmlFor="proties" className="form__Label-Heading">
+                    Protiens Range
                   </label>
-                  <p className="form__Heading">1/2 Tab</p>
+                  <p className="form__Heading">68</p>
                 </div>
                 <div className="form__Cols--Span-6">
-                  <label
-                    htmlFor="medicineFrequency"
-                    className="form__Label-Heading"
-                  >
-                    Medicine Frequency
+                  <label htmlFor="fats" className="form__Label-Heading">
+                    Fats Range
                   </label>
-                  <p className="form__Heading">Every two hours</p>
+                  <p className="form__Heading">35</p>
                 </div>
                 <div className="form__Cols--Span-6">
-                  <label
-                    htmlFor="medicineDuration"
-                    className="form__Label-Heading"
-                  >
-                    Medicine Duration (Number / Days / Weeks)
+                  <label htmlFor="foodType" className="form__Label-Heading">
+                    Food Type (Veg / Nonveg / Egg)
                   </label>
-                  <p className="form__Heading">3 / Weeks</p>
+                  <p className="form__Heading">Veg</p>
+                </div>
+                <div className="form__Cols--Span-6">
+                  <label htmlFor="foodCusine" className="form__Label-Heading">
+                    Food Cusine
+                  </label>
+                  <p className="form__Heading">Home Cooked Food</p>
                 </div>
               </div>
               <div className="form__Grid--Rows-none">
                 <div className="form__Cols--Span-6">
                   <label
-                    htmlFor="medicineSplInstructions"
+                    htmlFor="downloadDietChart"
                     className="form__Label-Heading"
                   >
-                    Medicine Special Instructions
+                    Download Diet Chart
                   </label>
                   <p className="form__Heading">
-                    Special Instructions for useage of Medicines
+                    <button
+                      type="button"
+                      className="px-6 py-2.5 bg-emerald-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-emerald-700 hover:shadow-lg focus:bg-emerald-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-emerald-800 active:shadow-lg transition duration-150 ease-in-out ml-1"
+                    >
+                      Download Diet Chart
+                    </button>
                   </p>
                 </div>
               </div>
@@ -172,9 +177,9 @@ const PatienPrescriptionsInfo = () => {
       </div>
       <div
         className="modal fade fixed top-0 left-0 hidden w-full h-full outline-none overflow-x-hidden overflow-y-auto"
-        id="modalOldPrescription"
+        id="modalOldDietChart"
         tabindex="-1"
-        aria-labelledby="modalOldPrescriptionLabel"
+        aria-labelledby="modalOldDietChartabel"
         aria-hidden="true"
       >
         <div className="modal-dialog modal-dialog-centered modal-dialog-scrollable relative w-auto pointer-events-none">
@@ -182,9 +187,9 @@ const PatienPrescriptionsInfo = () => {
             <div className="modal-header flex flex-shrink-0 items-center justify-between p-4 border-b border-gray-200 rounded-t-md">
               <h5
                 class="text-xl font-medium leading-normal text-gray-800"
-                id="modalOldPrescriptionLabel"
+                id="modalOldDietChartLabel"
               >
-                Prescription (Old Date Wise / Prescribed By)
+                DietChart (Old Date Wise / Prescribed By)
               </h5>
               <button
                 type="button"
@@ -233,78 +238,89 @@ const PatienPrescriptionsInfo = () => {
                         </div>
                         <div className="form__Cols--Span-6">
                           <label
-                            htmlFor="medicineType"
+                            htmlFor="lowerCalories"
                             className="form__Label-Heading"
                           >
-                            Medicine Type
+                            Low Calories Range
                           </label>
-                          <p className="form__Heading">Tablet</p>
+                          <p className="form__Heading">23</p>
                         </div>
                         <div className="form__Cols--Span-6">
                           <label
-                            htmlFor="medicineName"
+                            htmlFor="highCalories"
                             className="form__Label-Heading"
                           >
-                            Medicine Name
+                            High Clories Range
                           </label>
-                          <p className="form__Heading">Coldact</p>
+                          <p className="form__Heading">55</p>
                         </div>
                         <div className="form__Cols--Span-6">
                           <label
-                            htmlFor="medicineMorningDose"
+                            htmlFor="lowerCarbohydrates"
                             className="form__Label-Heading"
                           >
-                            Medicine Morning Dose
+                            Low Carbohydrates Range
                           </label>
-                          <p className="form__Heading">2 Tabs</p>
+                          <p className="form__Heading">23</p>
                         </div>
                         <div className="form__Cols--Span-6">
                           <label
-                            htmlFor="medicineAfternoonDose"
+                            htmlFor="highCarbohydrates"
                             className="form__Label-Heading"
                           >
-                            Medicine Afternoon Dose
+                            High Carbohydrates Range
                           </label>
-                          <p className="form__Heading">1 Tab</p>
+                          <p className="form__Heading">55</p>
                         </div>
                         <div className="form__Cols--Span-6">
                           <label
-                            htmlFor="medicineEveningDose"
+                            htmlFor="proties"
                             className="form__Label-Heading"
                           >
-                            Medicine Evening Dose
+                            Protiens Range
                           </label>
-                          <p className="form__Heading">1/2 Tab</p>
+                          <p className="form__Heading">68</p>
+                        </div>
+                        <div className="form__Cols--Span-6">
+                          <label htmlFor="fats" className="form__Label-Heading">
+                            Fats Range
+                          </label>
+                          <p className="form__Heading">35</p>
                         </div>
                         <div className="form__Cols--Span-6">
                           <label
-                            htmlFor="medicineFrequency"
+                            htmlFor="foodType"
                             className="form__Label-Heading"
                           >
-                            Medicine Frequency
+                            Food Type (Veg / Nonveg / Egg)
                           </label>
-                          <p className="form__Heading">Every two hours</p>
+                          <p className="form__Heading">Veg</p>
                         </div>
                         <div className="form__Cols--Span-6">
                           <label
-                            htmlFor="medicineDuration"
+                            htmlFor="foodCusine"
                             className="form__Label-Heading"
                           >
-                            Medicine Duration (Number / Days / Weeks)
+                            Food Cusine
                           </label>
-                          <p className="form__Heading">3 / Weeks</p>
+                          <p className="form__Heading">Home Cooked Food</p>
                         </div>
                       </div>
                       <div className="form__Grid--Rows-none">
                         <div className="form__Cols--Span-6">
                           <label
-                            htmlFor="medicineSplInstructions"
+                            htmlFor="downloadDietChart"
                             className="form__Label-Heading"
                           >
-                            Medicine Special Instructions
+                            Download Diet Chart
                           </label>
                           <p className="form__Heading">
-                            Special Instructions for useage of Medicines
+                            <button
+                              type="button"
+                              className="px-6 py-2.5 bg-emerald-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-emerald-700 hover:shadow-lg focus:bg-emerald-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-emerald-800 active:shadow-lg transition duration-150 ease-in-out ml-1"
+                            >
+                              Download Diet Chart
+                            </button>
                           </p>
                         </div>
                       </div>
@@ -351,78 +367,89 @@ const PatienPrescriptionsInfo = () => {
                         </div>
                         <div className="form__Cols--Span-6">
                           <label
-                            htmlFor="medicineType"
+                            htmlFor="lowerCalories"
                             className="form__Label-Heading"
                           >
-                            Medicine Type
+                            Low Calories Range
                           </label>
-                          <p className="form__Heading">Tablet</p>
+                          <p className="form__Heading">23</p>
                         </div>
                         <div className="form__Cols--Span-6">
                           <label
-                            htmlFor="medicineName"
+                            htmlFor="highCalories"
                             className="form__Label-Heading"
                           >
-                            Medicine Name
+                            High Clories Range
                           </label>
-                          <p className="form__Heading">Coldact</p>
+                          <p className="form__Heading">55</p>
                         </div>
                         <div className="form__Cols--Span-6">
                           <label
-                            htmlFor="medicineMorningDose"
+                            htmlFor="lowerCarbohydrates"
                             className="form__Label-Heading"
                           >
-                            Medicine Morning Dose
+                            Low Carbohydrates Range
                           </label>
-                          <p className="form__Heading">2 Tabs</p>
+                          <p className="form__Heading">23</p>
                         </div>
                         <div className="form__Cols--Span-6">
                           <label
-                            htmlFor="medicineAfternoonDose"
+                            htmlFor="highCarbohydrates"
                             className="form__Label-Heading"
                           >
-                            Medicine Afternoon Dose
+                            High Carbohydrates Range
                           </label>
-                          <p className="form__Heading">1 Tab</p>
+                          <p className="form__Heading">55</p>
                         </div>
                         <div className="form__Cols--Span-6">
                           <label
-                            htmlFor="medicineEveningDose"
+                            htmlFor="proties"
                             className="form__Label-Heading"
                           >
-                            Medicine Evening Dose
+                            Protiens Range
                           </label>
-                          <p className="form__Heading">1/2 Tab</p>
+                          <p className="form__Heading">68</p>
+                        </div>
+                        <div className="form__Cols--Span-6">
+                          <label htmlFor="fats" className="form__Label-Heading">
+                            Fats Range
+                          </label>
+                          <p className="form__Heading">35</p>
                         </div>
                         <div className="form__Cols--Span-6">
                           <label
-                            htmlFor="medicineFrequency"
+                            htmlFor="foodType"
                             className="form__Label-Heading"
                           >
-                            Medicine Frequency
+                            Food Type (Veg / Nonveg / Egg)
                           </label>
-                          <p className="form__Heading">Every two hours</p>
+                          <p className="form__Heading">Veg</p>
                         </div>
                         <div className="form__Cols--Span-6">
                           <label
-                            htmlFor="medicineDuration"
+                            htmlFor="foodCusine"
                             className="form__Label-Heading"
                           >
-                            Medicine Duration (Number / Days / Weeks)
+                            Food Cusine
                           </label>
-                          <p className="form__Heading">3 / Weeks</p>
+                          <p className="form__Heading">Home Cooked Food</p>
                         </div>
                       </div>
                       <div className="form__Grid--Rows-none">
                         <div className="form__Cols--Span-6">
                           <label
-                            htmlFor="medicineSplInstructions"
+                            htmlFor="downloadDietChart"
                             className="form__Label-Heading"
                           >
-                            Medicine Special Instructions
+                            Download Diet Chart
                           </label>
                           <p className="form__Heading">
-                            Special Instructions for useage of Medicines
+                            <button
+                              type="button"
+                              className="px-6 py-2.5 bg-emerald-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-emerald-700 hover:shadow-lg focus:bg-emerald-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-emerald-800 active:shadow-lg transition duration-150 ease-in-out ml-1"
+                            >
+                              Download Diet Chart
+                            </button>
                           </p>
                         </div>
                       </div>
@@ -447,4 +474,4 @@ const PatienPrescriptionsInfo = () => {
   );
 };
 
-export default PatienPrescriptionsInfo;
+export default PatientUploadDietChart;
