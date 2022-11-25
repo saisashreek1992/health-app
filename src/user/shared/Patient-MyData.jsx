@@ -79,9 +79,9 @@ const PatientMyData = () => {
                 >
                   {Form1()}
                   <br />
-                  {Form2()}
+                  {/* {Form2()} */}
                   <br />
-                  {Form3()}
+                  {/* {Form3()} */}
                 </div>
                 <div
                   className="tab-pane fade"
@@ -91,9 +91,9 @@ const PatientMyData = () => {
                 >
                   {Form1()}
                   <br />
-                  {Form2()}
+                  {/* {Form2()} */}
                   <br />
-                  {Form3()}
+                  {/* {Form3()} */}
                 </div>
                 <div
                   className="tab-pane fade"
@@ -103,9 +103,9 @@ const PatientMyData = () => {
                 >
                   {Form1()}
                   <br />
-                  {Form2()}
+                  {/* {Form2()} */}
                   <br />
-                  {Form3()}
+                  {/* {Form3()} */}
                 </div>
               </div>              
             </div>            
