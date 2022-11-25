@@ -18,7 +18,7 @@ const CreatePatient = () => {
   const genderOptions = [
     { value: "Please Select a Gender" },
     { value: "Male" },
-    { value: "Fe-Male" },
+    { value: "Female" },
   ];
 
   let navigate = useNavigate();
@@ -167,7 +167,6 @@ const CreatePatient = () => {
                                 id="phone"
                                 placeholder="Enter Phone Number"
                                 validators={[VALIDATOR_MINLENGTH(10)]}
-                                required
                                 errorText="Please Enter Valid Phone Number"
                                 onInput={inputHandler}
                                />
@@ -198,7 +197,6 @@ const CreatePatient = () => {
                                 id="name"
                                 placeholder="Patient Full Name"
                                 validators={[VALIDATOR_MINLENGTH(1)]}
-                                required
                                 errorText="Please Enter Your Name"
                                 onInput={inputHandler}
                                />
@@ -228,7 +226,6 @@ const CreatePatient = () => {
                                 id="email"
                                 placeholder="Patient Email"
                                 validators={[VALIDATOR_MINLENGTH(1)]}
-                                required
                                 errorText="Please Enter Valid Email Address"
                                 onInput={inputHandler}
                                />
@@ -258,7 +255,6 @@ const CreatePatient = () => {
                                 id="dob"
                                 placeholder="Patient D.O.B"
                                 validators={[VALIDATOR_MINLENGTH(1)]}
-                                required
                                 errorText="Please Select Valid D.O.B"
                                 onInput={inputHandler}
                                />

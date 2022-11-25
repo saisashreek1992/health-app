@@ -267,7 +267,6 @@ const PatientPersonalInfo = () => {
                               id="paymentDate"
                               placeholder="Payment Date"
                               validators={[VALIDATOR_MINLENGTH(1)]}
-                              required
                               errorText="Please Select Valid Date"
                               onInput={inputHandler}
                             />
