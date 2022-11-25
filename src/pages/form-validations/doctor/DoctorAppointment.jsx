@@ -7,26 +7,18 @@ import LoadingBox from "../../../Components/LoadingBox";
 import MessageBox from "../../../Components/MessageBox";
 
 const DoctorAppointment = () => {
+  const dispatch = useDispatch();
 
-
-  const dispatch = useDispatch()
-
-
- 
   let navigate = useNavigate();
   return (
     <>
-
-  
       {/* Replace with your content */}
- 
 
-   
       <div className="dashboard__Main-Inner-Content">
         <div className="flex justify-start">
           <div className="block p-6 rounded-lg shadow-lg bg-white max-w-sm">
             <h5 className="text-gray-900 text-xl leading-tight font-medium mb-2">
-              Number of AppointmentsssS
+              Number of Appointment
             </h5>
             <h6 className="text-gray-700 text-base mb-4">12</h6>
             <input
@@ -95,20 +87,13 @@ const DoctorAppointment = () => {
                 </td>
               </tr>
             ))} */}
-            
-        
-         
             </tbody>
-          
           </table>
         </div>
-  
-            <MessageBox>No Data</MessageBox>
 
-        
+        <MessageBox>No Data</MessageBox>
       </div>
 
-     
       {/* /End replace */}
     </>
   );
