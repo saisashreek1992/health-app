@@ -21,7 +21,7 @@ const UserChat = () => {
           </div>
         </main>
       </div>
-      <footer className="relative text-center text-white">
+      {/* <footer className="relative text-center text-white">
         <div className="container -my-5 pt-9 bg-gray-600 w-full h-auto fixed bottom-0 left-0">
           <div className="flex justify-center mb-9">
             <a
@@ -41,7 +41,7 @@ const UserChat = () => {
             </a>
           </div>
         </div>
-      </footer>
+      </footer> */}
     </>
   );
 };
