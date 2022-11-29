@@ -313,7 +313,7 @@ const DoctorMeetingInfo = () => {
       <div
         className="modal fade fixed top-0 left-0 hidden w-full h-full outline-none overflow-x-hidden overflow-y-auto"
         id="modalPrescription"
-        tabindex="-1"
+        tabIndex="-1"
         aria-labelledby="modalPrescriptionLabel"
         aria-hidden="true"
       >
@@ -321,7 +321,7 @@ const DoctorMeetingInfo = () => {
           <div className="modal-content border-none shadow-lg relative flex flex-col w-full pointer-events-auto bg-white bg-clip-padding rounded-md outline-none text-current">
             <div className="modal-header flex flex-shrink-0 items-center justify-between p-4 border-b border-gray-200 rounded-t-md">
               <h5
-                class="text-xl font-medium leading-normal text-gray-800"
+                className="text-xl font-medium leading-normal text-gray-800"
                 id="modalPrescriptionLabel"
               >
                 Prescription
@@ -355,14 +355,22 @@ const DoctorMeetingInfo = () => {
                     <p className="form__Heading">24-11-2022</p>
                   </div>
                   <div className="form__Cols--Span-6">
-                    {/* <label
+                    <label
                       htmlFor="medicineType"
                       className="form__Label-Heading"
                     >
                       Medicine Type
                     </label>
-                    <p className="form__Heading">Tablet</p> */}
-                    <Input
+                    <input
+                      id="medicineType"
+                      name="medicineType"
+                      type="text"
+                      autoComplete="medicineType"
+                      required
+                      className="form__Input"
+                      placeholder="Enter Medicine Type"
+                    />
+                    {/* <Input
                       element="input"
                       type="text"
                       id="medicineType"
@@ -371,17 +379,25 @@ const DoctorMeetingInfo = () => {
                       validators={VALIDATOR_MINLENGTH(1)}
                       errorText="Please Enter Valid Medicine Type"
                       onInput={inputHandler}
-                    />
+                    /> */}
                   </div>
                   <div className="form__Cols--Span-6">
-                    {/* <label
+                    <label
                       htmlFor="medicineName"
                       className="form__Label-Heading"
                     >
                       Medicine Name
                     </label>
-                    <p className="form__Heading">Coldact</p> */}
-                    <Input
+                    <input
+                      id="medicineName"
+                      name="medicineName"
+                      type="text"
+                      autoComplete="medicineName"
+                      required
+                      className="form__Input"
+                      placeholder="Enter Medicine Name"
+                    />
+                    {/* <Input
                       element="input"
                       type="text"
                       id="medicineName"
@@ -390,17 +406,25 @@ const DoctorMeetingInfo = () => {
                       validators={VALIDATOR_MINLENGTH(1)}
                       errorText="Please Enter Valid Medicine Name"
                       onInput={inputHandler}
-                    />
+                    /> */}
                   </div>
                   <div className="form__Cols--Span-6">
-                    {/* <label
+                    <label
                       htmlFor="medicineMorningDose"
                       className="form__Label-Heading"
                     >
                       Medicine Morning Dose
                     </label>
-                    <p className="form__Heading">2 Tabs</p> */}
-                    <Input
+                    <input
+                      id="medicineMorningDose"
+                      name="medicineMorningDose"
+                      type="text"
+                      autoComplete="medicineMorningDose"
+                      required
+                      className="form__Input"
+                      placeholder="Enter Medicine Morning Dose"
+                    />
+                    {/* <Input
                       element="input"
                       type="text"
                       id="medicineDoseMorning"
@@ -409,17 +433,25 @@ const DoctorMeetingInfo = () => {
                       validators={VALIDATOR_MINLENGTH(1)}
                       errorText="Please Enter Valid Medicine Morning Dose"
                       onInput={inputHandler}
-                    />
+                    /> */}
                   </div>
                   <div className="form__Cols--Span-6">
-                    {/* <label
+                    <label
                       htmlFor="medicineAfternoonDose"
                       className="form__Label-Heading"
                     >
                       Medicine Afternoon Dose
                     </label>
-                    <p className="form__Heading">1 Tab</p> */}
-                    <Input
+                    <input
+                      id="medicineAfternoonDose"
+                      name="medicineAfternoonDose"
+                      type="text"
+                      autoComplete="medicineAfternoonDose"
+                      required
+                      className="form__Input"
+                      placeholder="Enter Medicine Afternoon Dose"
+                    />
+                    {/* <Input
                       element="input"
                       type="text"
                       id="medicineDoseAfternoon"
@@ -428,17 +460,25 @@ const DoctorMeetingInfo = () => {
                       validators={VALIDATOR_MINLENGTH(1)}
                       errorText="Please Enter Valid Medicine Afternoon Dose"
                       onInput={inputHandler}
-                    />
+                    /> */}
                   </div>
                   <div className="form__Cols--Span-6">
-                    {/* <label
+                    <label
                       htmlFor="medicineEveningDose"
                       className="form__Label-Heading"
                     >
                       Medicine Evening Dose
                     </label>
-                    <p className="form__Heading">1/2 Tab</p> */}
-                    <Input
+                    <input
+                      id="medicineEveningDose"
+                      name="medicineEveningDose"
+                      type="text"
+                      autoComplete="medicineEveningDose"
+                      required
+                      className="form__Input"
+                      placeholder="Enter Medicine Evening Dose"
+                    />
+                    {/* <Input
                       element="input"
                       type="text"
                       id="medicineDoseEvening"
@@ -447,17 +487,25 @@ const DoctorMeetingInfo = () => {
                       validators={VALIDATOR_MINLENGTH(1)}
                       errorText="Please Enter Valid Medicine Evening Dose"
                       onInput={inputHandler}
-                    />
+                    /> */}
                   </div>
                   <div className="form__Cols--Span-6">
-                    {/* <label
+                    <label
                       htmlFor="medicineFrequency"
                       className="form__Label-Heading"
                     >
                       Medicine Frequency
                     </label>
-                    <p className="form__Heading">Every two hours</p> */}
-                    <Input
+                    <input
+                      id="medicineFrequency"
+                      name="medicineFrequency"
+                      type="text"
+                      autoComplete="medicineFrequency"
+                      required
+                      className="form__Input"
+                      placeholder="Enter Medicine Frequency"
+                    />
+                    {/* <Input
                       element="input"
                       type="text"
                       id="medicineFrequency"
@@ -466,17 +514,25 @@ const DoctorMeetingInfo = () => {
                       validators={VALIDATOR_MINLENGTH(1)}
                       errorText="Please Enter Valid Medicine Frequency"
                       onInput={inputHandler}
-                    />
+                    /> */}
                   </div>
                   <div className="form__Cols--Span-6">
-                    {/* <label
-                      htmlFor="medicineDuration"
+                    <label
+                      htmlFor="medicineDurationNumber"
                       className="form__Label-Heading"
                     >
                       Medicine Duration (Number)
                     </label>
-                    <p className="form__Heading">3</p> */}
-                    <Input
+                    <input
+                      id="medicineDurationNumber"
+                      name="medicineDurationNumber"
+                      type="text"
+                      autoComplete="medicineDurationNumber"
+                      required
+                      className="form__Input"
+                      placeholder="Enter Medicine Duration Number"
+                    />
+                    {/* <Input
                       element="input"
                       type="text"
                       id="medicineDurationNumber"
@@ -485,17 +541,25 @@ const DoctorMeetingInfo = () => {
                       validators={VALIDATOR_MINLENGTH(1)}
                       errorText="Please Enter Valid Medicine Duration Number"
                       onInput={inputHandler}
-                    />
+                    /> */}
                   </div>
                   <div className="form__Cols--Span-6">
-                    {/* <label
-                      htmlFor="medicineDuration"
+                    <label
+                      htmlFor="medicineDurationDays"
                       className="form__Label-Heading"
                     >
                       Medicine Duration (Days / Weeks)
                     </label>
-                    <p className="form__Heading"> Weeks</p> */}
-                    <Input
+                    <input
+                      id="medicineDurationDays"
+                      name="medicineDurationDays"
+                      type="text"
+                      autoComplete="medicineDurationDays"
+                      required
+                      className="form__Input"
+                      placeholder="Enter Medicine Duration Days"
+                    />
+                    {/* <Input
                       element="input"
                       type="text"
                       id="medicineDurationDays"
@@ -504,29 +568,35 @@ const DoctorMeetingInfo = () => {
                       validators={VALIDATOR_MINLENGTH(1)}
                       errorText="Please Enter Valid Medicine Duration Days"
                       onInput={inputHandler}
-                    />
+                    /> */}
                   </div>
                 </div>
               </form>
               <div className="form__Grid--Rows-none">
                 <div className="form__Cols--Span-6">
-                  {/* <label
+                  <label
                     htmlFor="medicineSplInstructions"
                     className="form__Label-Heading"
                   >
                     Medicine Special Instructions
                   </label>
-                  <p className="form__Heading">
-                    Special Instructions for useage of Medicines
-                  </p> */}
-                  <Input
+                  <textarea
+                      id="medicineSplInstructions"
+                      name="medicineSplInstructions"
+                      rows="3"
+                      autoComplete="medicineSplInstructions"
+                      required
+                      className="form__Textarea"
+                      placeholder="Enter Medicine Spl Instructions"
+                    ></textarea>
+                  {/* <Input
                     id="medicineSplInstructions"
                     label="Medicine Spl Instructions"
                     placeholder="Enter Medicine Spl Instructions"
                     validators={VALIDATOR_MINLENGTH(1)}
                     errorText="Please Enter Special Instructions for usage of Medicines"
                     onInput={inputHandler}
-                  />
+                  /> */}
                 </div>
               </div>
             </div>

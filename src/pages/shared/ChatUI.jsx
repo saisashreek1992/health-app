@@ -100,9 +100,9 @@ const ChatUI = () => {
                 <svg
                   fill="none"
                   stroke="currentColor"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
                   viewBox="0 0 24 24"
                   className="w-4 h-4"
                 >
@@ -121,9 +121,9 @@ const ChatUI = () => {
                 <svg
                   fill="none"
                   stroke="currentColor"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
                   viewBox="0 0 24 24"
                   className="w-4 h-4"
                 >
@@ -140,9 +140,9 @@ const ChatUI = () => {
                 <svg
                   fill="none"
                   stroke="currentColor"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
                   viewBox="0 0 24 24"
                   className="w-4 h-4"
                 >
@@ -159,9 +159,9 @@ const ChatUI = () => {
                 <svg
                   fill="none"
                   stroke="currentColor"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
                   viewBox="0 0 24 24"
                   className="w-4 h-4"
                 >
@@ -178,9 +178,9 @@ const ChatUI = () => {
                 <svg
                   fill="none"
                   stroke="currentColor"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
                   viewBox="0 0 24 24"
                   className="w-4 h-4"
                 >
@@ -197,9 +197,9 @@ const ChatUI = () => {
                 <svg
                   fill="none"
                   stroke="currentColor"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
                   viewBox="0 0 24 24"
                   className="w-4 h-4"
                 >
@@ -220,9 +220,9 @@ const ChatUI = () => {
                     <svg
                       className="w-4 h-4"
                       fill="none"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
                     >
@@ -235,9 +235,9 @@ const ChatUI = () => {
                     <svg
                       className="h-4 w-4"
                       fill="none"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
                     >
@@ -255,9 +255,9 @@ const ChatUI = () => {
                     <svg
                       fill="none"
                       stroke="currentColor"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
                       viewBox="0 0 24 24"
                       className="w-4 h-4"
                     >
@@ -271,9 +271,9 @@ const ChatUI = () => {
                     <svg
                       fill="none"
                       stroke="currentColor"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
                       viewBox="0 0 24 24"
                       className="w-4 h-4"
                     >
@@ -505,9 +505,9 @@ const ChatUI = () => {
                         <span className="block text-center text-gray-400 hover:text-gray-800">
                           <svg
                             fill="none"
-                            stroke-linecap="round"
-                            stroke-linejoin="round"
-                            stroke-width="2"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth="2"
                             stroke="currentColor"
                             viewBox="0 0 24 24"
                             className="h-6 w-6"
@@ -536,9 +536,9 @@ const ChatUI = () => {
                             <span className="inline-block align-text-bottom">
                               <svg
                                 fill="none"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                stroke-width="2"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth="2"
                                 stroke="currentColor"
                                 viewBox="0 0 24 24"
                                 className="w-6 h-6"
@@ -554,9 +554,9 @@ const ChatUI = () => {
                               <svg
                                 fill="none"
                                 stroke="currentColor"
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                stroke-width="2"
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth="2"
                                 viewBox="0 0 24 24"
                                 className="w-4 h-4 text-white"
                               >
