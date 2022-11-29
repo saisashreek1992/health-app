@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Navbar from "../../../user/shared/Navbar";
 import { FiPaperclip } from "react-icons/fi";
 import { useLocation, useNavigate } from "react-router-dom";
@@ -11,10 +11,22 @@ import MessageBox from "../../../Components/MessageBox";
 import Input from "../../../Components/Input";
 import { useForm } from "../../../hooks/form-hooks";
 import { VALIDATOR_MINLENGTH } from "../../../utils/validators";
+import { createPrescription } from "../../../action/DoctorAction";
 
 const DoctorMeetingInfo = () => {
   const location = useLocation();
   const navigate = useNavigate();
+  // patientId,medicine_type,medicine_name,morning_dose,afternoon_dose,evening_dose,frequency,duration,duration_days,special_inst
+  const [patientId, setPatientId] = useState('')
+  const [medType, setMedType] = useState('')
+  const [medName, setMedName] = useState('')
+  const [mornDose, setMornDose] = useState('')
+  const [aftDose, setAftDose] = useState('')
+  const [eveDose, setEveDose] = useState('')
+  const [frquency, setFrquency] = useState()
+  const [duration, setDuration] = useState()
+  const [durDays, setDurDays] = useState('')
+  const [specinst, setSpecinst] = useState('')
   const { id } = location.state;
   console.log(location.state);
   const patientDetails = useSelector((state) => state.patientDetails);
@@ -24,9 +36,9 @@ const DoctorMeetingInfo = () => {
   useEffect(() => {
     dispatch(DetailsPatients(id));
   }, [dispatch]);
-  if (patient) {
-    console.log(patient.data, "dt");
-  }
+  // if (patient) {
+  //   console.log(patient.data, "dt");
+  // }
 
   const backFunc = () => {
     navigate("/userrole/:roleid/dashboard/doctor/");
@@ -70,48 +82,51 @@ const DoctorMeetingInfo = () => {
       isValid: false,
     },
   });
+  
 
   const createPrescriptionHandler = (e) => {
     e.preventDefault();
-    setFormData({
-      ...formState.inputs,
-      medicineType: {
-        value: "",
-        isValid: false,
-      },
-      medicineName: {
-        value: "",
-        isValid: false,
-      },
-      medicineDoseMorning: {
-        value: "",
-        isValid: false,
-      },
-      medicineDoseAfternoon: {
-        value: "",
-        isValid: false,
-      },
-      medicineDoseEvening: {
-        value: "",
-        isValid: false,
-      },
-      medicineFrequency: {
-        value: "",
-        isValid: false,
-      },
-      medicineDurationNumber: {
-        value: "",
-        isValid: false,
-      },
-      medicineDurationDays: {
-        value: "",
-        isValid: false,
-      },
-      medicineSplInstructions: {
-        value: "",
-        isValid: false,
-      },
-    });
+    dispatch(createPrescription(id,medType,medName,mornDose,aftDose,eveDose,frquency,duration,durDays,specinst))
+    console.log(formState.inputs);
+    // setFormData({
+    //   ...formState.inputs,
+    //   medicineType: {
+    //     value: "",
+    //     isValid: false,
+    //   },
+    //   medicineName: {
+    //     value: "",
+    //     isValid: false,
+    //   },
+    //   medicineDoseMorning: {
+    //     value: "",
+    //     isValid: false,
+    //   },
+    //   medicineDoseAfternoon: {
+    //     value: "",
+    //     isValid: false,
+    //   },
+    //   medicineDoseEvening: {
+    //     value: "",
+    //     isValid: false,
+    //   },
+    //   medicineFrequency: {
+    //     value: "",
+    //     isValid: false,
+    //   },
+    //   medicineDurationNumber: {
+    //     value: "",
+    //     isValid: false,
+    //   },
+    //   medicineDurationDays: {
+    //     value: "",
+    //     isValid: false,
+    //   },
+    //   medicineSplInstructions: {
+    //     value: "",
+    //     isValid: false,
+    //   },
+    // });
   };
 
   return (
@@ -362,6 +377,7 @@ const DoctorMeetingInfo = () => {
                       Medicine Type
                     </label>
                     <input
+                      onChange={(e)=>setMedType(e.target.value)}
                       id="medicineType"
                       name="medicineType"
                       type="text"
@@ -389,6 +405,7 @@ const DoctorMeetingInfo = () => {
                       Medicine Name
                     </label>
                     <input
+                      onChange={(e)=>setMedName(e.target.value)}
                       id="medicineName"
                       name="medicineName"
                       type="text"
@@ -416,6 +433,7 @@ const DoctorMeetingInfo = () => {
                       Medicine Morning Dose
                     </label>
                     <input
+                      onChange={(e)=>setMornDose(e.target.value)}
                       id="medicineMorningDose"
                       name="medicineMorningDose"
                       type="text"
@@ -443,6 +461,7 @@ const DoctorMeetingInfo = () => {
                       Medicine Afternoon Dose
                     </label>
                     <input
+                    onChange={(e)=>setAftDose(e.target.value)}
                       id="medicineAfternoonDose"
                       name="medicineAfternoonDose"
                       type="text"
@@ -470,6 +489,7 @@ const DoctorMeetingInfo = () => {
                       Medicine Evening Dose
                     </label>
                     <input
+                    onChange={(e)=>setEveDose(e.target.value)}
                       id="medicineEveningDose"
                       name="medicineEveningDose"
                       type="text"
@@ -497,9 +517,10 @@ const DoctorMeetingInfo = () => {
                       Medicine Frequency
                     </label>
                     <input
+                    onChange={(e)=>setFrquency(e.target.value)}
                       id="medicineFrequency"
                       name="medicineFrequency"
-                      type="text"
+                      type="number"
                       autoComplete="medicineFrequency"
                       required
                       className="form__Input"
@@ -524,9 +545,10 @@ const DoctorMeetingInfo = () => {
                       Medicine Duration (Number)
                     </label>
                     <input
+                     onChange={(e)=>setDuration(e.target.value)}
                       id="medicineDurationNumber"
                       name="medicineDurationNumber"
-                      type="text"
+                      type="number"
                       autoComplete="medicineDurationNumber"
                       required
                       className="form__Input"
@@ -551,9 +573,10 @@ const DoctorMeetingInfo = () => {
                       Medicine Duration (Days / Weeks)
                     </label>
                     <input
+                    onChange={(e)=>setDurDays(e.target.value)}
                       id="medicineDurationDays"
                       name="medicineDurationDays"
-                      type="text"
+                      type="number"
                       autoComplete="medicineDurationDays"
                       required
                       className="form__Input"
@@ -571,7 +594,7 @@ const DoctorMeetingInfo = () => {
                     /> */}
                   </div>
                 </div>
-              </form>
+              
               <div className="form__Grid--Rows-none">
                 <div className="form__Cols--Span-6">
                   <label
@@ -581,6 +604,7 @@ const DoctorMeetingInfo = () => {
                     Medicine Special Instructions
                   </label>
                   <textarea
+                    onChange={(e)=>setSpecinst(e.target.value)}
                       id="medicineSplInstructions"
                       name="medicineSplInstructions"
                       rows="3"
@@ -599,8 +623,7 @@ const DoctorMeetingInfo = () => {
                   /> */}
                 </div>
               </div>
-            </div>
-            <div className="modal-footer flex flex-shrink-0 flex-wrap items-center justify-end p-4 border-t border-gray-200 rounded-b-md">
+              <div className="modal-footer flex flex-shrink-0 flex-wrap items-center justify-end p-4 border-t border-gray-200 rounded-b-md">
               <button
                 type="button"
                 className="px-6 py-2.5 bg-red-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-red-700 hover:shadow-lg focus:bg-red-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-800 active:shadow-lg transition duration-150 ease-in-out ml-1"
@@ -609,12 +632,15 @@ const DoctorMeetingInfo = () => {
                 Cancel
               </button>
               <button
-                type="button"
+                type="submit"
                 className="px-6 py-2.5 bg-teal-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-teal-700 hover:shadow-lg focus:bg-teal-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-teal-800 active:shadow-lg transition duration-150 ease-in-out ml-1"
               >
                 Create &amp; Save Prescription
               </button>
             </div>
+              </form>
+            </div>
+           
           </div>
         </div>
       </div>

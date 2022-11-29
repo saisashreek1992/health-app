@@ -1,6 +1,6 @@
 import {applyMiddleware, combineReducers, compose, createStore} from 'redux'
 import thunk from 'redux-thunk';
-import { dietChartUploadReducer, formCreateReducer } from './reducer/DoctoreReducer';
+import { dietChartUploadReducer, formCreateReducer, prescriptionCreateReducer } from './reducer/DoctoreReducer';
 import { appointmentCreateReducer, appointmentListReducer, enrollmentPatientReducer, patientDetailsReducer, patientFormListReducer, patientListReducer } from './reducer/Patientreducer';
 
 
@@ -14,7 +14,8 @@ const reducer =combineReducers({
     formCreate:formCreateReducer,
     patientFormList:patientFormListReducer,
     appointmentCreate:appointmentCreateReducer,
-    appointmentList:appointmentListReducer
+    appointmentList:appointmentListReducer,
+    prescriptionCreate:prescriptionCreateReducer,
     // registerPatient:registerPatientreducer,
     // googleSignin:googleSigninReducer,
 })
