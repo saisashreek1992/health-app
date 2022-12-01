@@ -61,7 +61,7 @@ const DoctorMeetingInfo = () => {
       // }); 
       Swal.fire({
         icon: 'success',
-        title: 'Priscription created succesfully',
+        title: 'Prescription created succesfully',
         // showDenyButton: true,
         // showCancelButton: true,
         confirmButtonText: 'Save',
