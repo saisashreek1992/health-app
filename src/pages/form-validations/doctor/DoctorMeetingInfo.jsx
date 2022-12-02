@@ -368,7 +368,7 @@ const DoctorMeetingInfo = () => {
  aria-labelledby="modalPrescriptionLabel"
  aria-hidden="true"
 >
- <div className="modal-dialog modal-dialog-centered relative w-auto pointer-events-none">
+ <div className="modal-dialog modal-dialog-centered relative w-auto pointer-events-none presc">
    <div className="modal-content border-none shadow-lg relative flex flex-col w-full pointer-events-auto bg-white bg-clip-padding rounded-md outline-none text-current">
      <div className="modal-header flex flex-shrink-0 items-center justify-between p-4 border-b border-gray-200 rounded-t-md">
        <h5
@@ -412,16 +412,21 @@ const DoctorMeetingInfo = () => {
              >
                Medicine Type
              </label>
-             <input
-               onChange={(e)=>setMedType(e.target.value)}
-               id="medicineType"
-               name="medicineType"
-               type="text"
-               autoComplete="medicineType"
-               required
-               className="form__Input"
-               placeholder="Enter Medicine Type"
-             />
+             <select name="" id=""  onChange={(e)=>setMedType(e.target.value)}>
+              <option value="none">Please select</option>
+              <option value="Tablet">Tablet</option>
+              <option value="Tab">Tab</option>
+              <option value="Injection">Injection</option>
+              <option value="Injection by pen">Injection by pen</option>
+              <option value="Sachet">Sachet</option>
+              <option value="Rotacap">Rotacap</option>
+              <option value="TAB">TAB</option>
+              <option value="Ointment">Ointment</option>
+              <option value="Ointment/Cream">Ointment/Cream</option>
+              <option value="Tablet/Sachet">Tablet/Sachet</option>
+              <option value="NEBULIZATION">NEBULIZATION</option>
+
+             </select>
              {/* <Input
                element="input"
                type="text"
@@ -552,16 +557,16 @@ const DoctorMeetingInfo = () => {
              >
                Medicine Frequency
              </label>
-             <input
-             onChange={(e)=>setFrquency(e.target.value)}
-               id="medicineFrequency"
-               name="medicineFrequency"
-               type="number"
-               autoComplete="medicineFrequency"
-               required
-               className="form__Input"
-               placeholder="Enter Medicine Frequency"
-             />
+             <select name="" id="" onChange={(e)=>setFrquency(e.target.value)}>
+             <option value="none">Please select</option>
+              <option value="Daily">Daily</option>
+              <option value="Alternative day">Alternative day</option>
+              <option value="Daily/SOS">Daily/SOS</option>
+              <option value="once every 15 day">once every 15 day</option>
+              <option value="Day 1-21 with a gap of 7 days">Day 1-21 with a gap of 7 days</option>
+              <option value="Dail">Dail</option>
+
+             </select>
              {/* <Input
                element="input"
                type="text"
@@ -580,16 +585,12 @@ const DoctorMeetingInfo = () => {
              >
                Medicine Duration (Number)
              </label>
-             <input
-              onChange={(e)=>setDuration(e.target.value)}
-               id="medicineDurationNumber"
-               name="medicineDurationNumber"
-               type="number"
-               autoComplete="medicineDurationNumber"
-               required
-               className="form__Input"
-               placeholder="Enter Medicine Duration Number"
-             />
+             <select name="" id=""  onChange={(e)=>setDurDays(e.target.value)}>
+             <option value="none">Please select</option>
+              <option value="Days">Days</option>
+              <option value="Weeks">Weeks</option>
+              <option value="Months">Months</option>
+             </select>
              {/* <Input
                element="input"
                type="text"
