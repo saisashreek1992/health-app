@@ -192,7 +192,7 @@ const LoginForm = () => {
                 aria-hidden="true"
               />
             </span>
-            Sign in with Googles
+            Sign in with Google
           </button>
         </div>
       )}
