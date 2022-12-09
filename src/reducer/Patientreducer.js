@@ -19,6 +19,9 @@ import {
   GET_PATIENT_DETAILS_FAIL,
   GET_PATIENT_DETAILS_REQUEST,
   GET_PATIENT_DETAILS_SUCCESS,
+  GET_PRESCRIPTIONT_FAIL,
+  GET_PRESCRIPTION_REQUEST,
+  GET_PRESCRIPTION_SUCCESS,
   REGISTER_USER_FAIL,
   REGISTER_USER_REQUEST,
   REGISTER_USER_SUCCESS,
@@ -105,6 +108,20 @@ export const appointmentListReducer = (state = { loading:true,appointment:[] }, 
     case GET_APPOINTMENT_SUCCESS:
       return { loading: false, appointment: action.payload.data };
     case GET_APPOINTMENT_FAIL:
+      return { loading: false, error: action.payload };
+    default:
+      return state;
+  }
+};
+
+
+export const presctListReducer = (state = { loading:true,presc:[] }, action) => {
+  switch (action.type) {
+    case GET_PRESCRIPTION_REQUEST:
+      return { loading: true };
+    case GET_PRESCRIPTION_SUCCESS:
+      return { loading: false, presc: action.payload.data };
+    case GET_PRESCRIPTIONT_FAIL:
       return { loading: false, error: action.payload };
     default:
       return state;

@@ -30,7 +30,7 @@ const LoginForm = () => {
     signInWithRedirect(auth, provider);
   };
   const [user] = useAuthState(auth);
-  console.log(user, "user");
+  // console.log(user, "user");
 
   const [isLogged, setIsLogged] = useState(false);
 
@@ -51,6 +51,8 @@ const LoginForm = () => {
     },
     false
   );
+
+  console.log(formState.inputs.role.value,'frm');
 
   const loggedHandler = () => {
     if (!isLogged) {
@@ -133,7 +135,18 @@ const LoginForm = () => {
             />
             */}
           </div>
-          <div>
+           {formState.inputs.role.value=== 'Doctor' ? (
+                <div>
+                <button
+                  type="submit"
+                  className="group login__Button--Container-Btn"
+                >
+                  <span className="login__Button--Container-BtnSpan"></span>
+                  Generate OTP
+                </button>
+                </div>
+           ):formState.inputs.role.value=== 'Patient' ? (
+            <div>
             <button
               type="submit"
               className="group login__Button--Container-Btn"
@@ -141,7 +154,11 @@ const LoginForm = () => {
               <span className="login__Button--Container-BtnSpan"></span>
               Generate OTP
             </button>
-          </div>
+            </div>
+          ):
+          ''
+          }
+         
           <div>
             <InputLog
               element="input"
@@ -198,7 +215,7 @@ const LoginForm = () => {
         </div>
       </form>
 
-      <div>
+      {/* <div>
         <button
           type="submit"
           className="group login__Button--Container-Btn"
@@ -207,7 +224,7 @@ const LoginForm = () => {
           <span className="login__Button--Container-BtnSpan"></span>
           Patient LogIn
         </button>
-      </div>
+      </div> */}
 
       {user ? (
         <div>
