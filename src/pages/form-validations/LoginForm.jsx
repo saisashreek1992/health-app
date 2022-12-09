@@ -3,7 +3,12 @@ import { useNavigate } from "react-router-dom";
 import { FaGoogle } from "react-icons/fa";
 
 import InputLog from "../../Components/InputLog";
-import { VALIDATOR_EMAIL, VALIDATOR_MINLENGTH } from "../../utils/validators";
+import Select from "../../Components/Select";
+import {
+  VALIDATOR_EMAIL,
+  VALIDATOR_MINLENGTH,
+  VALIDATOR_REQUIRE,
+} from "../../utils/validators";
 import { useForm } from "../../hooks/form-hooks";
 
 import { useAuthState } from "react-firebase-hooks/auth";
@@ -11,6 +16,13 @@ import { auth } from "../../firebase";
 import { GoogleAuthProvider, signInWithRedirect } from "firebase/auth";
 
 const LoginForm = () => {
+  const roleOptions = [
+    { value: "Please Select a Role" },
+    { value: "Admin" },
+    { value: "Doctor" },
+    { value: "Patient" },
+  ];
+
   const navigate = useNavigate();
 
   const googleSignIn = () => {
@@ -29,6 +41,10 @@ const LoginForm = () => {
         isValid: false,
       },
       password: {
+        value: "",
+        isValid: false,
+      },
+      role: {
         value: "",
         isValid: false,
       },
@@ -76,10 +92,21 @@ const LoginForm = () => {
       <form
         className="login__Form-Box"
         // method="POST"
-        onClick={loggedHandler}
+        // onClick={loggedHandler}
       >
         <input type="hidden" name="remember" defaultValue="true" />
         <div className="login__Form-Input">
+          <div>
+            <Select
+              element="select"
+              id="role"
+              label="Select Role"
+              options={roleOptions}
+              validators={[VALIDATOR_REQUIRE()]}
+              errorText="Please Select Role"
+              onInput={inputHandler}
+            />
+          </div>
           <div>
             <InputLog
               element="input"
@@ -105,6 +132,15 @@ const LoginForm = () => {
               placeholder="Email address"
             />
             */}
+          </div>
+          <div>
+            <button
+              type="submit"
+              className="group login__Button--Container-Btn"
+            >
+              <span className="login__Button--Container-BtnSpan"></span>
+              Generate OTP
+            </button>
           </div>
           <div>
             <InputLog
