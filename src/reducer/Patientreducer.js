@@ -25,6 +25,10 @@ import {
   REGISTER_USER_FAIL,
   REGISTER_USER_REQUEST,
   REGISTER_USER_SUCCESS,
+  SENDOTP_FAIL,
+  SENDOTP_REQUEST,
+  SENDOTP_RESET,
+  SENDOTP_SUCCESS,
 } from "../constant.js/PatientConstant";
 
 export const enrollmentPatientReducer = (state = {}, action) => {
@@ -123,6 +127,22 @@ export const presctListReducer = (state = { loading:true,presc:[] }, action) => 
       return { loading: false, presc: action.payload.data };
     case GET_PRESCRIPTIONT_FAIL:
       return { loading: false, error: action.payload };
+    default:
+      return state;
+  }
+};
+
+
+export const patientOtpReducer = (state = { loading:true,otp:[] }, action) => {
+  switch (action.type) {
+    case SENDOTP_REQUEST:
+      return { loading: true };
+    case SENDOTP_SUCCESS:
+      return { loading: false, presc: action.payload.data,success:true };
+    case SENDOTP_FAIL:
+      return { loading: false, error: action.payload };
+    case SENDOTP_RESET:
+      return {}  
     default:
       return state;
   }

@@ -14,13 +14,39 @@ import { useForm } from "../../hooks/form-hooks";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../../firebase";
 import { GoogleAuthProvider, signInWithRedirect } from "firebase/auth";
+import { useDispatch, useSelector } from "react-redux";
+import { patientLogin, patientOtp } from "../../action/PatientAction";
+import { useEffect } from "react";
+import { SENDOTP_RESET } from "../../constant.js/PatientConstant";
 
 const LoginForm = () => {
+  const patientOtps=useSelector((state=>state.patientOtp))
+  const {loading,error,success}=patientOtps
+
+  const dispatch=useDispatch()
+
+  const patientOtpHandler=(e)=>{
+    e.preventDefault()
+    console.log('hey');
+    dispatch(patientOtp(formState.inputs.emailAddress.value,formState.inputs.role.value))
+  }
+
+  useEffect(()=>{
+    document.getElementById("element").style.display = "none";
+    
+  },[])
+  useEffect(()=>{
+    if(success){
+    document.getElementById("element").style.display = "block";
+    dispatch({type:SENDOTP_RESET})
+
+    }
+  },[success])
   const roleOptions = [
     { value: "Please Select a Role" },
     { value: "Admin" },
-    { value: "Doctor" },
-    { value: "Patient" },
+    { value: "doctor" },
+    { value: "patient" },
   ];
 
   const navigate = useNavigate();
@@ -48,11 +74,15 @@ const LoginForm = () => {
         value: "",
         isValid: false,
       },
+      element:{
+        value:"",
+        isValid:false,
+      }
     },
     false
   );
 
-  console.log(formState.inputs.role.value,'frm');
+  console.log(formState.inputs.element.value,'frm');
 
   const loggedHandler = () => {
     if (!isLogged) {
@@ -84,6 +114,12 @@ const LoginForm = () => {
   const signOut = () => {
     signOut(auth);
   };
+
+  const submitOtp=(e)=>{
+    e.preventDefault()
+    dispatch(patientLogin(formState.inputs.emailAddress.value,formState.inputs.role.value,formState.inputs.element.value))
+
+  }
 
   const testPatientLoginHandler = () => {
     navigate("/userrole/:roleid/dashboard/patient/mydata/");
@@ -135,7 +171,7 @@ const LoginForm = () => {
             />
             */}
           </div>
-           {formState.inputs.role.value=== 'Doctor' ? (
+           {formState.inputs.role.value=== 'doctor' ? (
                 <div>
                 <button
                   type="submit"
@@ -145,10 +181,11 @@ const LoginForm = () => {
                   Generate OTP
                 </button>
                 </div>
-           ):formState.inputs.role.value=== 'Patient' ? (
+           ):formState.inputs.role.value=== 'patient' ? (
             <div>
             <button
-              type="submit"
+            onClick={patientOtpHandler}
+              // type="submit"
               className="group login__Button--Container-Btn"
             >
               <span className="login__Button--Container-BtnSpan"></span>
@@ -158,8 +195,31 @@ const LoginForm = () => {
           ):
           ''
           }
-         
-          <div>
+
+
+             <div>
+            <InputLog
+              element="input"
+              id="element"
+              type="password"
+              label="otp"
+              placeholder="Enter OTP"
+              validators={[VALIDATOR_MINLENGTH(8)]}
+              errorText="Please Enter Valid Password"
+              onInput={inputHandler}
+            />
+            </div>
+
+            <div id="element">
+             <button onClick={submitOtp} className="group login__Button--Container-Btn">
+            <span className="login__Button--Container-BtnSpan"></span>
+            Sign in
+          </button>
+        </div>
+
+
+         {/* {success ? ( */}
+            {/* <div>
             <InputLog
               element="input"
               id="pasword"
@@ -170,21 +230,9 @@ const LoginForm = () => {
               errorText="Please Enter Valid Password"
               onInput={inputHandler}
             />
-            {/*
-            <label htmlFor="password" className="login__Form-Input--Label">
-              Password
-            </label>
-            <input
-              id="password"
-              name="password"
-              type="password"
-              autoComplete="current-password"
-              required
-              className="login__Form-Input--Password"
-              placeholder="Password"
-            />
-            */}
-          </div>
+            </div> */}
+         {/* ):''} */}
+         
         </div>
 
         <div className="login__Checkbox-Container">
