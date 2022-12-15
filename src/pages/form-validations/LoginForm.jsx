@@ -125,6 +125,16 @@ const LoginForm = () => {
     navigate("/userrole/:roleid/dashboard/patient/mydata/");
   };
 
+  useEffect(()=>{
+      if(formState.inputs.role.value === 'patient'){
+        navigate('/userrole/:roleid/dashboard/patient/')
+      }else if(formState.inputs.role.value === 'doctor'){
+        navigate('/userrole/:roleid/dashboard/doctor/')
+      }else if(formState.inputs.role.value === 'Admin'){
+        navigate('/userrole/:roleid/dashboard/admin/')
+      }
+  },[formState])
+
   return (
     <>
       <form
