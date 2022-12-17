@@ -195,7 +195,7 @@ const PatientHealthInfo = () => {
                   { label: "PatientHealthInfo" },
                   { label: "PatientPersonalInfo" },
                 ]}
-                activeStep={2}
+                activeStep={3}
               />
               <div className="dashboard__Grid-Box">
                 <div className="dashboard__Grid-Cols">

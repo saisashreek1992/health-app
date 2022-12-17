@@ -135,7 +135,7 @@ const LoginForm = () => {
 
   useEffect(()=>{
       if(formState.inputs.role.value === 'patient'){
-        navigate('/userrole/:roleid/dashboard/patient/')
+        navigate('/userrole/:roleid/dashboard/patient/mydata/')
       }else if(formState.inputs.role.value === 'doctor'){
         navigate('/userrole/:roleid/dashboard/doctor/')
       }else if(formState.inputs.role.value === 'Admin'){
