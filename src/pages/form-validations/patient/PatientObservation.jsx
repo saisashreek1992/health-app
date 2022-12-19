@@ -1,6 +1,8 @@
 import React from "react";
 import { FiEye, FiEdit } from "react-icons/fi";
 
+import PatientObservedTable from "./PatientObservedTable";
+
 const PatientObservation = () => {
   return (
     <>
@@ -86,7 +88,7 @@ const PatientObservation = () => {
       </div>
 
       <div className="my-10">
-        <table className="min-w-full table-auto">
+        {/* <table className="min-w-full table-auto">
           <thead className="bg-gray-200">
             <tr>
               <th className="text-lg font-bold text-gray-900 px-2 py-4">
@@ -147,7 +149,8 @@ const PatientObservation = () => {
               </td>
             </tr>
           </tbody>
-        </table>
+        </table> */}
+        <PatientObservedTable />
       </div>
     </>
   );
