@@ -52,7 +52,7 @@ export const patientListReducer = (state = { loading:true,patients:[] }, action)
     case GET_ALL_PATIENT_REQUEST:
       return { loading: true };
     case GET_ALL_PATIENT_SUCCESS:
-      return { loading: false, patients: action.payload };
+      return { loading: false, patients: action.payload.data };
     case GET_ALL_PATIENT_FAIL:
       return { loading: false, error: action.payload };
     default:

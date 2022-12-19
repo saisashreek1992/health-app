@@ -5,6 +5,7 @@ import Navbar from "../../../user/shared/Navbar";
 
 import Input from "../../../Components/Input";
 import Select from "../../../Components/Select";
+import Selects from 'react-select'
 import { useForm } from "../../../hooks/form-hooks";
 import {
   VALIDATOR_MINLENGTH,
@@ -18,12 +19,15 @@ const PatientHealthInfo = () => {
   // const [relation, setRelation] = useState("");
   // const [caretakerNumber, setCaretakerNumber] = useState("");
   // const [caretakerTime, setCaretakerTime] = useState("");
-  // const [healthPlan, setHealthPlan] = useState("");
+  const [healthPlans, setHealthPlans] = useState([]);
   // const [planDate, setPlanDate] = useState("");
   // const [patientTeam, setPatientTeam] = useState("");
   const location = useLocation();
   const { phone, name, email, dob, gender } = location.state;
-  // console.log(phone, name, email, dob, gender);
+  console.log(healthPlans,'pl');
+ const  handleChange = (selectedOptions) => {
+    setHealthPlans({ selectedOptions });
+  }
 
   const [formState, inputHandler, setFormData] = useForm(
     {
@@ -82,21 +86,25 @@ const PatientHealthInfo = () => {
 
   const healthPlanOptions = [
     { value: "Please Select Health Plan" },
-    { value: "Plan A" },
-    { value: "Plan B" },
-    { value: "Plan C" },
-    { value: "Plan D" }
+    { value: "Plan A" ,label:'Plan A'},
+    { value: "TeaPlanm B" ,label:'Plan B'},
+    { value: "TeaPlanm C" ,label:'Plan C'},
+    { value: "Plan D" ,label:'Plan D'}
   ];
+
+
 
   const healthTeamOptions = [
     { value: "Please Select Health Team" },
-    { value: "Team A" },
-    { value: "Team B" },
-    { value: "Team C" },
-    { value: "Team D" }
+    { value: "Team A" ,label:'Team A'},
+    { value: "Team B" ,label:'Team B'},
+    { value: "Team C" ,label:'Team C'},
+    { value: "Team D" ,label:'Team D'}
   ];
 
   let navigate = useNavigate();
+
+
 
   const nextStep = (e) => {
     e.preventDefault()
@@ -157,9 +165,9 @@ const PatientHealthInfo = () => {
     const planDate = formState.inputs.planDate.value
     const patientTeam = formState.inputs.patientTeam.value
     console.log(formState)
-    if(height === '' || weight === '' || caretakerName === '' || relation === '' || caretakerNumber === '' || caretakerTime === '' || healthPlan === '' || planDate === '' || patientTeam === ''  ){
-      alert('please fill all the fields')
-    }else{
+    // if(height === '' || weight === '' || caretakerName === '' || relation === '' || caretakerNumber === '' || caretakerTime === '' || healthPlan === '' || planDate === '' || patientTeam === ''  ){
+    //   alert('please fill all the fields')
+    // }else{
       navigate("/userrole/:roleid/dashboard/doctor/enrol/personalinfo/", {
         state: {
           phone,
@@ -178,7 +186,7 @@ const PatientHealthInfo = () => {
           patientTeam,
         },
       });
-    }  
+    // }  
   };
 
   return (
@@ -411,7 +419,7 @@ const PatientHealthInfo = () => {
                               <option>Plan D</option> 
                             </select>
                             */}
-                            <Select
+                            {/* <Select
                               element="select"
                               id="healthPlan"
                               label="Select Health Plan"
@@ -419,7 +427,9 @@ const PatientHealthInfo = () => {
                               validators={[VALIDATOR_REQUIRE()]}
                               errorText="Please Select Health Plan"
                               onInput={inputHandler}
-                            />
+                            /> */}
+                            <label>Select Health Plan</label>
+                            <Selects onChange={handleChange} isMulti isClearable options={healthPlanOptions} />
                           </div>
                           <div className="form__Cols--Span-6">
                             {/*

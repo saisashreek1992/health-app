@@ -13,11 +13,20 @@ import {
 } from "@syncfusion/ej2-react-grids";
 import { PatientInfo, PatientGrid } from "../../../Data/Data_Info";
 import { updateSampleSection } from "../../shared/SampleBase";
+import { useDispatch, useSelector } from "react-redux";
+import { listPatients } from "../../../action/PatientAction";
+import LoadingBox from "../../../Components/LoadingBox";
+import MessageBox from "../../../Components/MessageBox";
 
 const DocPatientTable = () => {
+  const patientList = useSelector((state) => state.patientList);
+  const { loading, error, patients } = patientList;
+  const dispatch=useDispatch()
   useEffect(() => {
     updateSampleSection();
-  });
+    dispatch(listPatients())
+  },[]);
+  console.log(patients,'pt');
 
   const selectionsettings = { persistSelection: true };
   const toolbarOptions = ["Delete"];
@@ -27,8 +36,10 @@ const DocPatientTable = () => {
     <>
       <>
         <div className="py-16 bg-white rounded-3xl">
-          <GridComponent
-            dataSource={PatientInfo}
+          {loading ? <LoadingBox></LoadingBox>:
+          error ? <MessageBox>{error}</MessageBox>:(
+            <GridComponent
+            dataSource={patients}
             enableHover={false}
             allowPaging
             pageSettings={{ pageCount: 10 }}
@@ -44,6 +55,8 @@ const DocPatientTable = () => {
             </ColumnsDirective>
             <Inject services={[Page, Selection, Edit, Toolbar, Sort, Filter]} />
           </GridComponent>
+          )}
+          
         </div>
       </>
     </>
