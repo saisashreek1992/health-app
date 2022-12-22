@@ -27,8 +27,8 @@ const AccessControl = () => {
             </span>
           </h5>
           <p className="card__Info">
-            Some quick example text to build on the card title and make up the
-            bulk of the card's content.
+            {/* Some quick example text to build on the card title and make up the
+            bulk of the card's content. */}
           </p>
           <button
             type="button"

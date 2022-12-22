@@ -94,4 +94,26 @@ box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #
   .tab__Card--Block{
     margin-bottom: 20px;
   }
+  .card__Container--Evenly{
+    display: block !important;
+
+    /* margin-bottom: 30px; */
+  
+  }
+  .card__Block{
+    margin-bottom: 25px;
+    /* padding: 11px; */
+  }
+  .card__Container--Around{
+    display: block;
+    padding: 14px 25px 18px 25px;
+  }
+  .form__Select{
+    width: auto;
+    padding-right:auto !important;
+  }
+}
+.my-10{
+  width: 100%;
+  overflow-x: auto;
 }

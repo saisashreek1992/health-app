@@ -13,8 +13,14 @@ import {
 } from "@syncfusion/ej2-react-grids";
 import { PatientAppointmentInfo, PatientAppointmentGrid } from "../../../Data/Data_Info"
 import { updateSampleSection } from "../../shared/SampleBase";
+import { useDispatch, useSelector } from "react-redux";
 
 const PatientAppointmentTable = () => {
+  const dispatch = useDispatch()
+  const appointmentCreate=useSelector(state=>state.appointmentCreate)
+  const {success}=appointmentCreate
+  const appointmentList=useSelector(state=>state.appointmentList)
+  const {loading,error,appointment}=appointmentList
   useEffect(() => {
     updateSampleSection();
   });
@@ -27,7 +33,7 @@ const PatientAppointmentTable = () => {
     <>
       <div className="py-16 bg-white rounded-3xl">
         <GridComponent
-          dataSource={PatientAppointmentInfo}
+          dataSource={appointment}
           enableHover={false}
           allowPaging
           pageSettings={{ pageCount: 10 }}

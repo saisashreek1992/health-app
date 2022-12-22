@@ -17,10 +17,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { listPatients } from "../../../action/PatientAction";
 import LoadingBox from "../../../Components/LoadingBox";
 import MessageBox from "../../../Components/MessageBox";
+import { useNavigate } from "react-router-dom";
 
 const DocPatientTable = () => {
   const patientList = useSelector((state) => state.patientList);
   const { loading, error, patients } = patientList;
+  const navigate=useNavigate()
   const dispatch=useDispatch()
   useEffect(() => {
     updateSampleSection();
@@ -28,9 +30,13 @@ const DocPatientTable = () => {
   },[]);
   console.log(patients,'pt');
 
-  const selectionsettings = { persistSelection: true };
+  const selectionsettings = { persistSelection: false };
   const toolbarOptions = ["Delete"];
-  const editing = { allowDeleting: true, allowEditing: true };
+  const editing = { allowDeleting: false, allowEditing: false };
+  const rowSelected=(args)=>{
+    console.log(args.data._id,'arg');
+    navigate('/patient',{state:{id:args.data._id}})
+  }
 
   return (
     <>
@@ -47,6 +53,8 @@ const DocPatientTable = () => {
             toolbar={toolbarOptions}
             editSettings={editing}
             allowSorting
+            rowSelected={rowSelected}
+            // onClick={()=>navigate('/')}
           >
             <ColumnsDirective>
               {PatientGrid.map((item, index) => (

@@ -419,7 +419,7 @@ const PatientHealthInfo = () => {
                               <option>Plan D</option> 
                             </select>
                             */}
-                            {/* <Select
+                            <Select
                               element="select"
                               id="healthPlan"
                               label="Select Health Plan"
@@ -427,9 +427,9 @@ const PatientHealthInfo = () => {
                               validators={[VALIDATOR_REQUIRE()]}
                               errorText="Please Select Health Plan"
                               onInput={inputHandler}
-                            /> */}
-                            <label>Select Health Plan</label>
-                            <Selects onChange={handleChange} isMulti isClearable options={healthPlanOptions} />
+                            />
+                            {/* <label>Select Health Plan</label>
+                            <Selects onChange={handleChange} isMulti isClearable options={healthPlanOptions} /> */}
                           </div>
                           <div className="form__Cols--Span-6">
                             {/*
@@ -449,16 +449,9 @@ const PatientHealthInfo = () => {
                               className="form__Input"
                             />
                             */}
-                            <Input
-                              element="input"
-                              type="date"
-                              label="Health Plan Date (Start + End)"
-                              id="planDate"
-                              placeholder="Health Plan Date (Start + End)"
-                              validators={[VALIDATOR_MINLENGTH(1)]}
-                              errorText="Please Select Valid Date"
-                              onInput={inputHandler}
-                            />
+                       
+                               <label>Select Health Team</label>
+                            <Selects onChange={handleChange} isMulti isClearable options={healthTeamOptions} />
                           </div>
                           <div className="form__Cols--Span-6">
                             {/*
@@ -483,13 +476,23 @@ const PatientHealthInfo = () => {
                               <option>Team D</option>
                             </select>
                             */}
-                            <Select
+                            {/* <Select
                               element="select"
                               id="patientTeam"
                               label="Select Patient Team"
                               options={healthTeamOptions}
                               validators={[VALIDATOR_REQUIRE()]}
                               errorText="Please Select Health Team"
+                              onInput={inputHandler}
+                            /> */}
+                               <Input
+                              element="input"
+                              type="date"
+                              label="Health Plan Date (Start + End)"
+                              id="planDate"
+                              placeholder="Health Plan Date (Start + End)"
+                              validators={[VALIDATOR_MINLENGTH(1)]}
+                              errorText="Please Select Valid Date"
                               onInput={inputHandler}
                             />
                           </div>

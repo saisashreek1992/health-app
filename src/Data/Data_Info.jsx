@@ -1,4 +1,5 @@
 import { FiEye } from "react-icons/fi";
+import { useNavigate } from "react-router-dom";
 
 const doctorGridImage = (props) => (
   <div className="image flex gap-4">
@@ -132,6 +133,12 @@ export const AppointmentGrid = [
     textAlign: "Center",
   },
 ];
+// const navigates=()=>{
+// let navigate= useNavigate()
+
+
+//   navigate('/')
+// }
 
 export const PatientInfo = [
   {
@@ -167,7 +174,7 @@ export const PatientInfo = [
 export const PatientGrid = [
   { type: "Checkbox", width: "50" },
   {
-    field: "PatientID",
+    field: "patientId",
     headerText: "PatientID",
     width: "50",
     textAlign: "Center",
@@ -181,7 +188,7 @@ export const PatientGrid = [
     // template: doctorGridImage,
   },
   {
-    field: "patientId",
+    field: "name",
     headerText: "PatientName",
     width: "100",
     textAlign: "Center",
@@ -195,7 +202,7 @@ export const PatientGrid = [
   },
   {
     field: "Action",
-    headerText: "Action",
+    headerText: "Actions",
     width: "100",
     textAlign: "Center",
     template: actionGridImage,
@@ -236,34 +243,35 @@ export const PatientAppointmentInfo = [
 export const PatientAppointmentGrid = [
   { type: "Checkbox", width: "50" },
   {
-    field: "AppointmentID",
-    headerText: "AppointmentID",
+    field: "index",
+    headerText: "AppointmentIDS",
     width: "150",
     textAlign: "Center",
     isPrimaryKey: true,
-  },
-  {
-    field: "DoctorName",
-    headerText: "DoctorName",
-    width: "150",
-    textAlign: "Center",
     template: doctorGridImage,
   },
   {
-    field: "PatientName",
+    field: "doctorId",
+    headerText: "DoctorName",
+    width: "150",
+    textAlign: "Center",
+    // template: doctorGridImage,
+  },
+  {
+    field: "patientId",
     headerText: "PatientName",
     width: "150",
     textAlign: "Center",
-    template: patientGridImage,
+    // template: patientGridImage,
   },
   {
-    field: "AppointmentDate",
+    field: "date",
     headerText: "AppointmentDate",
     width: "150",
     textAlign: "Center",
   },
   {
-    field: "AppointmentTime",
+    field: "doctorId",
     headerText: "AppointmentTime",
     width: "150",
     textAlign: "Center",

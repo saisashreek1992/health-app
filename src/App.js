@@ -41,6 +41,8 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path='/userrole/:roleid/dashboard/doctor/' element={<DoctorDashboard />} />
+        <Route path='/patient' element={<DoctorMeetingInfo />} />
+
         <Route path='/userrole/:roleid/dashboard/doctor/multistep/' element={<MultistepForm />} />
         <Route path="/userrole/:roleid/dashboard/doctor/enrol/patient/" element={<CreatePatient />} />
         <Route path='/userrole/:roleid/dashboard/doctor/enrol/healthinfo/' element={<PatientHealthInfo />} />

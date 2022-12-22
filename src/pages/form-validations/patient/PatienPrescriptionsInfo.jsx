@@ -35,8 +35,8 @@ const PatienPrescriptionsInfo = () => {
             </span>
           </h5>
           <p className="tab__Card--Info">
-            Some quick example text to build on the card title and make up the
-            bulk of the card's content.
+            {/* Some quick example text to build on the card title and make up the
+            bulk of the card's content. */}
           </p>
           <button
             type="button"
@@ -55,8 +55,8 @@ const PatienPrescriptionsInfo = () => {
             </span>
           </h5>
           <p className="tab__Card--Info">
-            Some quick example text to build on the card title and make up the
-            bulk of the card's content.
+            {/* Some quick example text to build on the card title and make up the
+            bulk of the card's content. */}
           </p>
           <button
             type="button"
