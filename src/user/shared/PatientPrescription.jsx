@@ -10,6 +10,8 @@ import PatientAppointmentInfo from "../../pages/form-validations/patient/Patient
 import PatientObservation from "../../pages/form-validations/patient/PatientObservation";
 import PatientUploadDietChart from "../../pages/form-validations/patient/PatientUploadDietChart";
 
+import PatientFooter from "./PatientFooter";
+
 export default class PatientPrescription extends React.Component {
   constructor() {
     super(...arguments);
@@ -66,26 +68,9 @@ export default class PatientPrescription extends React.Component {
                 </TabItemsDirective>
               </TabComponent>
             </div>
-          </main>
-          <footer className="relative text-center text-white">
-        <div className="container w-full pt-9 bg-gray-600 fixed bottom-0 left-0 right-0">
-          <div className="flex justify-center mb-9">
-            <a
-              href="/userrole/:roleid/dashboard/patient/mydata/"
-              className="mr-9 text-white"
-            >
-              My Data
-            </a>
-            <a href="/userrole/:roleid/dashboard/patient/prescriptions/" className="mr-9 text-white">
-              Prescriptions
-            </a>
-            <a href="/userrole/:roleid/dashboard/common/chat/" className="mr-9 text-white">
-              Chat
-            </a>
-          </div>
+          </main>          
         </div>
-      </footer>
-        </div>
+        <PatientFooter />
       </>
     );
   }

@@ -4,7 +4,9 @@ import {
   TabItemDirective,
   TabItemsDirective,
 } from "@syncfusion/ej2-react-navigations";
+import FloatingForm from "../../pages/shared/Floating-Form";
 import PatientNav from "./PatientNav";
+import PatientFooter from "./PatientFooter";
 import { Form1 } from "../../pages/shared/MultiForms";
 
 export default class PatientDataTab extends React.Component {
@@ -64,6 +66,8 @@ export default class PatientDataTab extends React.Component {
             </div>
           </main>
         </div>
+        <FloatingForm />
+        <PatientFooter />
       </>
     );
   }
