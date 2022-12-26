@@ -35,8 +35,8 @@ const user = {
   ];
   
   const userNavigation = [
-    { name: "Your Profile", href: "#" },
-    { name: "Settings", href: "#" },
+    { name: "Your Profile", href: "/userrole/:roleid/dashboard/patient/profile/" },
+    // { name: "Settings", href: "#" },
     { name: "Sign out", href: "/" },
   ];
   

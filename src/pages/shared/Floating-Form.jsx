@@ -7,16 +7,7 @@ const FloatingForm = () => {
     <>
       <div className="fab__Fix-Container">
         <div className="">
-          <div className="">
-            <button
-              className="dropdown-toggle px-6 py-5 rounded-full bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded rounded-full shadow-md transition duration-150 ease-in-out flex items-center whitespace-nowrap focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 hover:bg-blue-700 hover:shadow-lg active:bg-blue-800 active:shadow-lg active:text-white"
-              type="button"
-              data-bs-toggle="modal"
-              data-bs-target="#AttachForms"
-            >
-              <FiPaperclip className="fab__Btn-Icon" />
-            </button>
-
+          <div className="relative">
             {/* <ul
             className="dropdown-menu min-w-max absolute hidden bg-white text-base z-50 float-left py-2 list-none text-left rounded-lg shadow-lg mt-1 hidden m-0 bg-clip-padding border-none"
             aria-labelledby="dropdownMenuButton1u"
@@ -72,6 +63,16 @@ const FloatingForm = () => {
           </ul> */}
           </div>
         </div>
+      </div>
+      <div className="fab__Fix-Container-1">
+        <button
+          className="dropdown-toggle px-6 py-5 rounded-full bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded rounded-full shadow-md transition duration-150 ease-in-out flex items-center whitespace-nowrap focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 hover:bg-blue-700 hover:shadow-lg active:bg-blue-800 active:shadow-lg active:text-white"
+          type="button"
+          data-bs-toggle="modal"
+          data-bs-target="#AttachForms"
+        >
+          <FiPaperclip className="fab__Btn-Icon" />
+        </button>
       </div>
       <div
         className="modal fade fixed top-0 left-0 hidden w-full h-full outline-none overflow-x-hidden overflow-y-auto"

@@ -17,6 +17,7 @@ import PatientPersonalInfo from './pages/form-validations/patient/PatientPersona
 import CreateForm from './pages/form-validations/patient/CreateForm';
 import UploadDietChart from './pages/form-validations/patient/UploadDietChart';
 import DoctorMeetingInfo from './pages/form-validations/doctor/DoctorMeetingInfo';
+import DocProfile from './pages/form-validations/Profiles/DocProfile';
 
 // Patient Dashboard Page Imports
 import PatientDashboard from './user/Dashboards/PatientDashboard';
@@ -24,6 +25,7 @@ import PatientDataTab from './user/shared/PatientDataTab';
 import PatientPrescription from './user/shared/PatientPrescription';
 import PatientForm from './pages/form-validations/patient/PatientForm';
 import PatientMeetingInfo from './pages/form-validations/patient/PatientMeetingInfo';
+import PatientProfile from './pages/form-validations/Profiles/PatientProfile';
 
 //Common Page Imports
 import UserChat from './user/shared/UserChat';
@@ -50,11 +52,13 @@ const App = () => {
         <Route path='/userrole/:roleid/dashboard/doctor/create/form/' element={<CreateForm />} />
         <Route path='/userrole/:roleid/dashboard/doctor/create/dietchart/' element={<UploadDietChart />} />
         <Route path='/userrole/:roleid/dashboard/doctor/meeting/info/' element={<DoctorMeetingInfo />} />
+        <Route path='/userrole/:roleid/dashboard/doctor/profile/' element={<DocProfile />} />
         <Route path='/userrole/:roleid/dashboard/patient/' element={<PatientDashboard />} />
         <Route path='/userrole/:roleid/dashboard/patient/mydata/' element={<PatientDataTab />} />
         <Route path='/userrole/:roleid/dashboard/patient/mydata/forms/' element={<PatientForm />} />
         <Route path='/userrole/:roleid/dashboard/patient/prescriptions/' element={<PatientPrescription />} />
         <Route path='/userrole/:roleid/dashboard/patient/meeting/info/' element={<PatientMeetingInfo />} />
+        <Route path='/userrole/:roleid/dashboard/patient/profile/' element={<PatientProfile />} />
         <Route path='/userrole/:roleid/dashboard/common/chat/' element={<UserChat />} />
         <Route path='/userrole/:roleid/dashboard/admin/' element={<Admin />} />
         <Route path='/userrole/:roleid/dashboard/admin/patient/enrolment/view/' element={<EnrolmentsView />} />
