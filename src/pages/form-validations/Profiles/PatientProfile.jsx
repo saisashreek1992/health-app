@@ -1,10 +1,23 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import PatientNav from "../../../user/shared/PatientNav";
 
 import { FaRupeeSign } from "react-icons/fa";
+import { useDispatch, useSelector } from "react-redux";
+import { getPatientProfile } from "../../../action/PatientAction";
+import LoadingBox from "../../../Components/LoadingBox";
+import MessageBox from "../../../Components/MessageBox";
 
 const PatientProfile = () => {
+  const patientProfileList=useSelector(state=>state.patientProfileList)
+  const {loading,error,profile}=patientProfileList
+  const dispatch=useDispatch()
+  useEffect(()=>{
+    dispatch(getPatientProfile())
+  },[])
+  if(profile){
+    console.log(profile.patient);
+  }
   const navigate = useNavigate();
   const backFunc = () => {
     navigate("/userrole/:roleid/dashboard/patient/");
@@ -32,7 +45,9 @@ const PatientProfile = () => {
                       Patient Personal Account Information
                     </h3>
                   </div>
-                  <div className="border-t border-gray-200">
+                  {loading ? <LoadingBox></LoadingBox>:
+                  error ? <MessageBox>{error}</MessageBox>:(
+                    <div className="border-t border-gray-200">
                     <dl>
                       <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                         <dt className="text-sm font-bold text-gray-500">
@@ -47,7 +62,7 @@ const PatientProfile = () => {
                           Patient Name
                         </dt>
                         <dd className="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
-                          Arun Pandya
+                          {profile.patient.name}
                         </dd>
                       </div>
                       <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
@@ -63,7 +78,7 @@ const PatientProfile = () => {
                           Patient Email
                         </dt>
                         <dd className="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
-                          arun.pandya@gmail.com
+                        {profile.patient.email}
                         </dd>
                       </div>
                       <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
@@ -71,7 +86,7 @@ const PatientProfile = () => {
                           Patient Phone Number
                         </dt>
                         <dd className="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
-                          (+91) 996 - 678 - 0269
+                        {profile.patient.phone}
                         </dd>
                       </div>
                       <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
@@ -87,7 +102,7 @@ const PatientProfile = () => {
                           Patient Height
                         </dt>
                         <dd className="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
-                          125
+                        {profile.patient.height}
                         </dd>
                       </div>
                       <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
@@ -95,7 +110,7 @@ const PatientProfile = () => {
                           Patient Weight
                         </dt>
                         <dd className="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
-                          64
+                        {profile.patient.weight}
                         </dd>
                       </div>
                       <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
@@ -244,6 +259,8 @@ const PatientProfile = () => {
                       </div>
                     </dl>
                   </div>
+                  )}
+              
                 </div>
               </div>
             </div>

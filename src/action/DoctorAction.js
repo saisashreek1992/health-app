@@ -1,5 +1,5 @@
 import axios from "axios";
-import { CREATE_FORM_FAIL, CREATE_FORM_REQUEST, CREATE_FORM_SUCCESS, CREATE_PRESC_FAIL, CREATE_PRESC_REQUEST, CREATE_PRESC_SUCCESS, UPLOAD_DIET_CHART_FAIL, UPLOAD_DIET_CHART_REQUEST, UPLOAD_DIET_CHART_SUCCESS } from "../constant.js/DoctorConstant";
+import { CREATE_FORM_FAIL, CREATE_FORM_REQUEST, CREATE_FORM_SUCCESS, CREATE_PRESC_FAIL, CREATE_PRESC_REQUEST, CREATE_PRESC_SUCCESS, GET_DOCTOR_PROFILE_FAIL, GET_DOCTOR_PROFILE_REQUEST, GET_DOCTOR_PROFILE_SUCCESS, UPDATE_PATIENT_FAIL, UPDATE_PATIENT_REQUEST, UPDATE_PATIENT_SUCCESS, UPLOAD_DIET_CHART_FAIL, UPLOAD_DIET_CHART_REQUEST, UPLOAD_DIET_CHART_SUCCESS } from "../constant.js/DoctorConstant";
 import { Url } from "../constant.js/PatientConstant";
 
 
@@ -52,3 +52,38 @@ export const uploadDietCharts=(calorie_lower,calorie_upper,ch_lower,ch_upper,pro
        dispatch({ type: CREATE_PRESC_FAIL, payload: message });
     }
   }
+
+
+  export const getDoctorProfile= () => async (dispatch,getState) => {
+    dispatch({ type: GET_DOCTOR_PROFILE_REQUEST });
+    const { doctorSignin: { doctorInfo }} = getState();
+    try {    
+      const { data } = await axios.get(`${Url}/profile/doctor`,{
+        headers: {Authorization: `Bearer ${doctorInfo}`}});      
+      dispatch({ type: GET_DOCTOR_PROFILE_SUCCESS, payload: data }); 
+    } catch (error) {
+      const message =
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message;
+      dispatch({ type: GET_DOCTOR_PROFILE_FAIL, payload: message });
+    }
+  };
+
+  export const updatePatient=(room,id)=>async(dispatch,getState)=>{
+    dispatch({type:UPDATE_PATIENT_REQUEST,room});
+    const { doctorSignin: { doctorInfo }} = getState();
+    try{
+      const {data} = await axios.put(`${Url}/doctors/edit-patient/${id}`,room,{
+        headers: {Authorization: `Bearer ${doctorInfo}`}});    
+      dispatch({type:UPDATE_PATIENT_SUCCESS,payload:data});  
+    }catch(error){
+      const message =
+      error.response && error.response.data.message
+        ? error.response.data.message
+        : error.message;
+       dispatch({ type:UPDATE_PATIENT_FAIL, payload: message });
+
+    }
+  }
+  

@@ -24,10 +24,15 @@ const DocPatientTable = () => {
   const { loading, error, patients } = patientList;
   const navigate=useNavigate()
   const dispatch=useDispatch()
+  const doctorSignin = useSelector((state) => state.doctorSignin);
+  const {  doctorInfo } = doctorSignin;
   useEffect(() => {
     updateSampleSection();
+    if(doctorInfo){
     dispatch(listPatients())
-  },[]);
+
+    }
+  },[dispatch,doctorInfo]);
   console.log(patients,'pt');
 
   const selectionsettings = { persistSelection: false };

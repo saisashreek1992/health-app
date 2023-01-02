@@ -18,14 +18,25 @@ import { useDispatch, useSelector } from "react-redux";
 import { patientLogin, patientOtp } from "../../action/PatientAction";
 import { useEffect } from "react";
 import { SENDOTP_RESET } from "../../constant.js/PatientConstant";
+import LoadingBox from "../../Components/LoadingBox";
+import MessageBox from "../../Components/MessageBox";
+import { adminLogin } from "../../action/AdminAction";
 
 const LoginForm = () => {
   const patientOtps = useSelector((state) => state.patientOtp);
   const { loading, error, success } = patientOtps;
+  const patientSignin = useSelector((state) => state.patientSignin);
+  const { loading:loadingPatient, error:errorPatient, patientInfo } = patientSignin;
+  const doctorSignin = useSelector((state) => state.doctorSignin);
+  const { loading:loadingDoctor , error:errorDoctor , doctorInfo } = doctorSignin;
+  const adminSignin = useSelector((state) => state.adminSignin);
+  const { loading:loadingAdmin, error:errorAdmin , adminInfo } = adminSignin;
 
   const dispatch = useDispatch();
 
-  const patientOtpHandler = (e) => {
+  console.log(adminInfo,'addd');
+
+  const otpHandler = (e) => {
     e.preventDefault();
     console.log("hey");
     dispatch(
@@ -38,10 +49,13 @@ const LoginForm = () => {
 
   useEffect(() => {
     document.getElementById("element").style.display = "none";
+    document.getElementById("elements").style.display = "none";
+
   }, []);
   useEffect(() => {
     if (success) {
       document.getElementById("element").style.display = "block";
+      document.getElementById("elements").style.display = "block";
       dispatch({ type: SENDOTP_RESET });
     }
   }, [success]);
@@ -85,7 +99,6 @@ const LoginForm = () => {
     false
   );
 
-  console.log(formState.inputs.element.value, "frm");
 
   const loggedHandler = () => {
     if (!isLogged) {
@@ -127,26 +140,51 @@ const LoginForm = () => {
         formState.inputs.element.value
       )
     );
+  
   };
+
+  useEffect(()=>{
+    console.log(formState.inputs.password,'heyy');
+
+    if(formState.inputs.role.value === 'doctor' && doctorInfo){
+      console.log(doctorInfo,'yess');
+      navigate('/userrole/:roleid/dashboard/doctor/')
+    }else if(formState.inputs.role.value === 'patient' && patientInfo){
+      navigate('/userrole/:roleid/dashboard/patient/mydata/')
+    }else if(formState.inputs.role.value === 'Admin' && adminInfo){
+      navigate('/userrole/:roleid/dashboard/admin/')
+    }
+  },[patientInfo,doctorInfo,formState])
+
+
 
   const testPatientLoginHandler = () => {
     navigate("/userrole/:roleid/dashboard/patient/mydata/");
   };
 
-  useEffect(()=>{
-      if(formState.inputs.role.value === 'patient'){
-        navigate('/userrole/:roleid/dashboard/patient/mydata/')
-      }else if(formState.inputs.role.value === 'doctor'){
-        navigate('/userrole/:roleid/dashboard/doctor/')
-      }else if(formState.inputs.role.value === 'Admin'){
-        navigate('/userrole/:roleid/dashboard/admin/')
-      }
-  },[formState])
+  // useEffect(()=>{
+  //     if(formState.inputs.role.value === 'patient'){
+  //       navigate('/userrole/:roleid/dashboard/patient/mydata/')
+  //     }else if(formState.inputs.role.value === 'doctor'){
+  //       navigate('/userrole/:roleid/dashboard/doctor/')
+  //     }else if(formState.inputs.role.value === 'Admin'){
+  //       navigate('/userrole/:roleid/dashboard/admin/')
+  //     }
+  // },[formState])
+
+  const loginAdmin=(e)=>{
+    e.preventDefault()
+    const user='admin'
+    dispatch(adminLogin(formState.inputs.emailAddress.value,formState.inputs.password.value,user))
+    console.log('heyyyy');
+
+  }
 
   return (
     <>
       <form
         className="login__Form-Box"
+        onSubmit={loginAdmin}
         // method="POST"
         // onClick={loggedHandler}
       >
@@ -192,7 +230,8 @@ const LoginForm = () => {
           {formState.inputs.role.value === "doctor" ? (
             <div>
               <button
-                type="submit"
+                // type="submit"
+                onClick={otpHandler}
                 className="group login__Button--Container-Btn"
               >
                 <span className="login__Button--Container-BtnSpan"></span>
@@ -202,7 +241,7 @@ const LoginForm = () => {
           ) : formState.inputs.role.value === "patient" ? (
             <div>
               <button
-                onClick={patientOtpHandler}
+                onClick={otpHandler}
                 // type="submit"
                 className="group login__Button--Container-Btn"
               >
@@ -214,11 +253,14 @@ const LoginForm = () => {
             ""
           )}
 
-          <div>
+          {loading && <LoadingBox></LoadingBox>}
+          {error && <MessageBox>{error}</MessageBox>}
+         <div className="patient-otp">
             <InputLog
+            
               element="input"
               id="element"
-              type="password"
+              // type="password"
               label="otp"
               placeholder="Enter OTP"
               validators={[VALIDATOR_MINLENGTH(8)]}
@@ -227,7 +269,7 @@ const LoginForm = () => {
             />
           </div>
 
-          <div id="element">
+          <div id="elements">
             <button
               onClick={submitOtp}
               className="group login__Button--Container-Btn"
@@ -238,18 +280,23 @@ const LoginForm = () => {
           </div>
 
           {/* {success ? ( */}
-          {/* <div>
-            <InputLog
-              element="input"
-              id="pasword"
-              type="password"
-              label="Password"
-              placeholder="Enter Password"
-              validators={[VALIDATOR_MINLENGTH(8)]}
-              errorText="Please Enter Valid Password"
-              onInput={inputHandler}
-            />
-            </div> */}
+          {formState.inputs.role.value === "Admin" ? (
+              <div>
+              <InputLog
+                element="input"
+                id="password"
+                type="password"
+                label="Password"
+                placeholder="Enter Password"
+                validators={[VALIDATOR_MINLENGTH(8)]}
+                errorText="Please Enter Valid Password"
+                onInput={inputHandler}
+              />
+              </div>
+          ):
+          
+          ''}
+     
           {/* ):''} */}
         </div>
 
@@ -273,7 +320,7 @@ const LoginForm = () => {
         <div>
           <button type="submit" className="group login__Button--Container-Btn">
             <span className="login__Button--Container-BtnSpan"></span>
-            Sign in
+            Sign ins
           </button>
         </div>
         <div className="login__Divider--Box">

@@ -35,6 +35,7 @@ import Admin from "./user/Dashboards/SuperAdmin";
 import EnrolmentsView from './pages/form-validations/admin/EnrolmentsView';
 import EmployeSummary from './pages/form-validations/admin/EmployeSummary';
 import '../src/App.css'
+import DoctorRoute from './Components/DoctorRoute';
 
 const App = () => {
   return (
@@ -42,7 +43,7 @@ const App = () => {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Login />} />
-        <Route path='/userrole/:roleid/dashboard/doctor/' element={<DoctorDashboard />} />
+        <Route path='/userrole/:roleid/dashboard/doctor/'  element={<DoctorRoute><DoctorDashboard /></DoctorRoute>} />
         <Route path='/patient' element={<DoctorMeetingInfo />} />
 
         <Route path='/userrole/:roleid/dashboard/doctor/multistep/' element={<MultistepForm />} />

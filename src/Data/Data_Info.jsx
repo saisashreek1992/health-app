@@ -244,7 +244,7 @@ export const PatientAppointmentGrid = [
   { type: "Checkbox", width: "50" },
   {
     field: "index",
-    headerText: "AppointmentIDS",
+    headerText: "AppointmentID",
     width: "150",
     textAlign: "Center",
     isPrimaryKey: true,
@@ -323,14 +323,14 @@ export const ObservationGrid = [
     template: observedGridImage,
   },
   {
-    field: "PatientName",
+    field: "name",
     headerText: "PatientName",
     width: "100",
     textAlign: "Left",
     template: patientGridImage,
   },
   {
-    field: "ObservedDate",
+    field: "desc",
     headerText: "ObservedDate",
     width: "100",
     textAlign: "Left",

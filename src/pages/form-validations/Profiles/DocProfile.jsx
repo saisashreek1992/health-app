@@ -1,12 +1,26 @@
 import React from "react";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { getDoctorProfile } from "../../../action/DoctorAction";
+import LoadingBox from "../../../Components/LoadingBox";
+import MessageBox from "../../../Components/MessageBox";
 import Navbar from "../../../user/shared/Navbar";
 
 const DocProfile = () => {
   const navigate = useNavigate();
+  const doctorProfileList=useSelector(state=>state.doctorProfileList)
+  const {loading,error,profile}=doctorProfileList
+  const dispatch=useDispatch()
+  useEffect(()=>{
+    dispatch(getDoctorProfile())
+  },[dispatch])
   const backFunc = () => {
     navigate("/userrole/:roleid/dashboard/doctor/");
   };
+  if(profile){
+    console.log(profile);
+  }
   return (
     <>
       <div className="dashboard__Container">
@@ -30,14 +44,16 @@ const DocProfile = () => {
                       Doctor Personal Account Information
                     </h3>
                   </div>
-                  <div className="border-t border-gray-200">
+                  {loading ? <LoadingBox></LoadingBox>:
+                  error ? <MessageBox>{error}</MessageBox>:(
+                    <div className="border-t border-gray-200">
                     <dl>
                       <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
                         <dt className="text-sm font-bold text-gray-500">
                           Doctor Accout Status
                         </dt>
                         <dd className="mt-1 text-sm text-green-900 font-semibold sm:col-span-2 sm:mt-0">
-                          Active
+                         {profile.doctor.status}
                         </dd>
                       </div>
                       <div className="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
@@ -45,7 +61,7 @@ const DocProfile = () => {
                           Doctor Name
                         </dt>
                         <dd className="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
-                          Dr. Rajiv Singhla
+                          {profile.doctor.name}
                         </dd>
                       </div>
                       <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
@@ -53,7 +69,7 @@ const DocProfile = () => {
                           Doctor Role
                         </dt>
                         <dd className="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
-                          Senior
+                        {profile.doctor.role}
                         </dd>
                       </div>
                       <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
@@ -69,7 +85,7 @@ const DocProfile = () => {
                           Doctor Email
                         </dt>
                         <dd className="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
-                          rajiv@kalpavriksh.com
+                          {profile.doctor.email}
                         </dd>
                       </div>
                       <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
@@ -77,7 +93,7 @@ const DocProfile = () => {
                           Doctor Phone Number
                         </dt>
                         <dd className="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
-                          (+91) 996 - 678 - 0269
+                          {profile.doctor.phone}
                         </dd>
                       </div>
                       <div className="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
@@ -152,6 +168,8 @@ const DocProfile = () => {
                       </div>
                     </dl>
                   </div>
+                  )}
+                
                 </div>
               </div>
             </div>
