@@ -1,6 +1,6 @@
 import {applyMiddleware, combineReducers, compose, createStore} from 'redux'
 import thunk from 'redux-thunk';
-import { activateDoctorReducer, adminSigninReducer, deactivateDoctorReducer, doctorCreateReducer, doctorListReducer } from './reducer/AdminReducer';
+import { activateDoctorReducer, adminSigninReducer, deactivateDoctorReducer, deitChartListReducer, doctorCreateReducer, doctorListReducer } from './reducer/AdminReducer';
 import { dietChartUploadReducer, doctorProfileListReducer, formCreateReducer, prescriptionCreateReducer } from './reducer/DoctoreReducer';
 import { appointmentCreateReducer, appointmentListReducer, doctorSigninReducer, enrollmentPatientReducer, formSubmitReducer, latestDietChartReducer, latestPrescriptionReducer, observationCreateReducer, observationListReducer, patientDetailsReducer, patientFormListReducer, patientListReducer, patientOtpReducer, patientProfileListReducer, patientSigninReducer, presctListReducer } from './reducer/Patientreducer';
 
@@ -49,6 +49,7 @@ const reducer =combineReducers({
     formSubmit:formSubmitReducer,
     latestPrescription:latestPrescriptionReducer,
     latestDietChart:latestDietChartReducer,
+    deitChartList:deitChartListReducer,
 })
 
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

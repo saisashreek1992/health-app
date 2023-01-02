@@ -1,7 +1,37 @@
 import React from 'react';
+import { useEffect } from 'react';
 import { FiEdit } from "react-icons/fi";
+import { useDispatch, useSelector } from 'react-redux';
+import { getAllDietChart } from '../../../action/AdminAction';
+import { getForms } from '../../../action/PatientAction';
+import  LoadingBox  from '../../../Components/LoadingBox';
+import  MessageBox  from '../../../Components/MessageBox';
+
+
+
 
 const Charts = () => {
+ 
+  const dispacth = useDispatch()
+  const getFomrsList=useSelector((state=>state.patientFormList))
+  const {loading,error,forms}=getFomrsList
+  const deitChartList=useSelector((state)=>state.deitChartList)
+  const {loading:loadingDiet,error:errorDiet,dietchart}=deitChartList
+
+
+  useEffect(()=>{
+    dispacth(getForms('admin'))
+    dispacth(getAllDietChart())
+  },[])
+
+  // if(forms){
+  //   console.log(forms);
+  // }
+  // if(dietchart){
+  //   console.log(dietchart);
+  // }
+ 
+
   return (
     <>
       <div className="my-10">
@@ -28,13 +58,17 @@ const Charts = () => {
               </th>
             </tr>
           </thead>
-          <tbody>
+          {loading ? <LoadingBox></LoadingBox>:
+          error ? <MessageBox>{error}</MessageBox>:
+          forms.map((frm,index)=>(
+            <tbody>
             <tr className="table__Body--Row">
               <td className="table__Body--Row_Data">
-                1
+              {index + 1}
+
               </td>
               <td className="table__Body--Row_Data">
-                Health Info
+               {frm.question_title}
               </td>
               <td className="table__Body--Row_Data">
                 Dr. D.S.N.Rao
@@ -49,9 +83,14 @@ const Charts = () => {
                   autoComplete="status-name"
                   className="form__Select"
                 >
-                  <option>Select Status</option>
+                 <option value={frm.active}>{frm.status}</option>  
+                 {frm.status === 'Active' ? (
+                   <option>De-Active</option>
+
+                 ):frm.status === 'De-Active' ? (
                   <option>Active</option>
-                  <option>De-Active</option>
+                 ):                
+                 ''}
                 </select>
               </td>
               <td className="table__Body--Row_Data">
@@ -59,6 +98,8 @@ const Charts = () => {
               </td>
             </tr>
           </tbody>
+          ))}
+        
         </table>
       </div>
       <div className="my-10">
@@ -85,10 +126,13 @@ const Charts = () => {
               </th>
             </tr>
           </thead>
+          {loadingDiet ? <LoadingBox></LoadingBox>:
+          errorDiet ? <MessageBox>{error}</MessageBox>:
+          dietchart.map((dt,index)=>(
           <tbody>
             <tr className="table__Body--Row">
               <td className="table__Body--Row_Data">
-                1
+                {index + 1}
               </td>
               <td className="table__Body--Row_Data">
                 Burn Calories
@@ -106,9 +150,14 @@ const Charts = () => {
                   autoComplete="status-name"
                   className="form__Select"
                 >
-                  <option>Select Status</option>
+                  <option>{dt.status}</option>
+                  {dt.status === 'Active' ? (
+                   <option>De-Active</option>
+
+                 ):dt.status === 'De-Active' ? (
                   <option>Active</option>
-                  <option>De-Active</option>
+                 ):                
+                 ''}
                 </select>
               </td>
               <td className="table__Body--Row_Data">
@@ -116,6 +165,7 @@ const Charts = () => {
               </td>
             </tr>
           </tbody>
+          ))}
         </table>
       </div>
     </>

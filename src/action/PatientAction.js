@@ -72,17 +72,29 @@ export const DetailsPatients = (id) => async (dispatch,getState) => {
 };
 
 
-export const getForms = () => async (dispatch,getState) => {
+export const getForms = (user) => async (dispatch,getState) => {
+  // console.log(user,'user');
   dispatch({ type: GET_ALL_PATIENT_FORMS_REQUEST });
   const { patientSignin: { patientInfo }} = getState();
+  const { adminSignin: { adminInfo }} = getState();
+
 
   try {    
-    const { data } = await axios.get(`${Url}/forms/get-all`,{
-      headers: {
-        Authorization: `Bearer ${patientInfo}`,
-      },
-    });      
-    dispatch({ type: GET_ALL_PATIENT_FORMS_SUCCESS, payload: data }); 
+    if(user=== 'admin'){
+      const { data } = await axios.get(`${Url}/forms/get-all`,{
+        headers: {
+          Authorization: `Bearer ${adminInfo}`,
+        },
+      });  
+       dispatch({ type: GET_ALL_PATIENT_FORMS_SUCCESS, payload: data }); 
+    }else{
+      const { data } = await axios.get(`${Url}/forms/get-all`,{
+        headers: {
+          Authorization: `Bearer ${patientInfo}`,
+        },
+      });  
+       dispatch({ type: GET_ALL_PATIENT_FORMS_SUCCESS, payload: data }); 
+    }
 
   } catch (error) {
     const message =
@@ -228,7 +240,7 @@ export const createObservations=(id,desc)=>async(dispatch,getState)=>{
   dispatch({type:CREATE_OBSERVATION_REQUEST});   
   const { patientSignin: { patientInfo }} = getState();
   try{
-    const {data} = await axios.post(`${Url}/observations/${id}`,{desc},{
+    const {data} = await axios.post(`${Url}/observations/`,{desc},{
       headers: {
         Authorization: `Bearer ${patientInfo}`,
       },
@@ -303,7 +315,7 @@ export const getLatesDietChart= () => async (dispatch,getState) => {
   dispatch({ type: GET_LATEST_DIET_CHART_REQUEST});
   const { patientSignin: { patientInfo }} = getState();
   try {    
-    const { data } = await axios.get(`${Url}/presc/latest-presc`,{
+    const { data } = await axios.get(`${Url}/diet-charts/latest-diets`,{
       headers: {Authorization: `Bearer ${patientInfo}`}});      
     dispatch({ type: GET_LATEST_DIET_CHART_SUCCESS, payload: data }); 
   } catch (error) {

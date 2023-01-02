@@ -1,7 +1,17 @@
 import React from "react";
+import { useEffect } from "react";
 import { FiChevronDown } from "react-icons/fi";
+import { useDispatch, useSelector } from "react-redux";
+import { getLatesDietChart, getLatesPrescription } from "../../../action/PatientAction";
 
 const PatientUploadDietChart = () => {
+  const latestPrescription=useSelector((state)=>state.latestPrescription)
+  const {loading,error,prescLatest}=latestPrescription
+  const dispatch=useDispatch()
+  useEffect(()=>{
+  dispatch(getLatesPrescription())
+  dispatch(getLatesDietChart())
+  },[dispatch])
   return (
     <>
       <div className="tab__Card--Container tab__Card--Gap-1">
@@ -60,7 +70,7 @@ const PatientUploadDietChart = () => {
                 className="text-xl font-medium leading-normal text-gray-800"
                 id="modalDietChartLabel"
               >
-                DietChart
+                DietCharts
               </h5>
               <button
                 type="button"

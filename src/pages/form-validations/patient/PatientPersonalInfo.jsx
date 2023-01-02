@@ -116,9 +116,7 @@ const PatientPersonalInfo = () => {
        setRefId(formState.inputs.refId.value)
     
     console.log(amount,paymentMode,paymentDate,refId,paymentNextDate,'iss')
-    // if(amount === '' || paymentMode === '' || paymentDate === '' || paymentNextDate === '' || refId === ''){
-    //     alert('please enter full fields')
-    // }else{
+ 
       dispatch(
         patientEnrollment(
           phone,
@@ -135,22 +133,17 @@ const PatientPersonalInfo = () => {
           healthPlan,
           planDate,
           patientTeam,
-          amount,
-          paymentMode,
-          paymentDate,
-          refId,
-          paymentNextDate
+          formState.inputs.amount.value,
+          formState.inputs.paymentMode.value,
+          formState.inputs.paymentDate.value,
+          formState.inputs.refId.value,
+          formState.inputs.paymentNextDate.value
         )
       );
-    // }  
 
 
 
-    console.log(formState,'form')
 
-    
-    
-    //
   };
   useEffect(() => {
     if (success) {

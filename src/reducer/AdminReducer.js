@@ -1,4 +1,4 @@
-import { ACTIVATE_DOCTOR_FAIL, ACTIVATE_DOCTOR_REQUEST, ACTIVATE_DOCTOR_RESET, ACTIVATE_DOCTOR_SUCCESS, ADMIN_LOGIN_FAIL, ADMIN_LOGIN_REQUEST, ADMIN_LOGIN_SUCCESS, ADMIN_SIGNOUT, CREATE_DOCTOR_FAIL, CREATE_DOCTOR_REQUEST, CREATE_DOCTOR_RESET, CREATE_DOCTOR_SUCCESS, DEACTIVATE_DOCTOR_FAIL, DEACTIVATE_DOCTOR_REQUEST, DEACTIVATE_DOCTOR_RESET, DEACTIVATE_DOCTOR_SUCCESS, GET_ALL_DOCTORS_REQUEST, GET_ALL_DOCTORS_SUCCESS } from "../constant.js/AdminConstant";
+import { ACTIVATE_DOCTOR_FAIL, ACTIVATE_DOCTOR_REQUEST, ACTIVATE_DOCTOR_RESET, ACTIVATE_DOCTOR_SUCCESS, ADMIN_LOGIN_FAIL, ADMIN_LOGIN_REQUEST, ADMIN_LOGIN_SUCCESS, ADMIN_SIGNOUT, CREATE_DOCTOR_FAIL, CREATE_DOCTOR_REQUEST, CREATE_DOCTOR_RESET, CREATE_DOCTOR_SUCCESS, DEACTIVATE_DOCTOR_FAIL, DEACTIVATE_DOCTOR_REQUEST, DEACTIVATE_DOCTOR_RESET, DEACTIVATE_DOCTOR_SUCCESS, GET_ALL_DIET_CHART_FAIL, GET_ALL_DIET_CHART_REQUEST, GET_ALL_DIET_CHART_SUCCESS, GET_ALL_DOCTORS_REQUEST, GET_ALL_DOCTORS_SUCCESS } from "../constant.js/AdminConstant";
 import { GET_DOCTOR_PROFILE_SUCCESS } from "../constant.js/DoctorConstant";
 
   export const doctorCreateReducer = (state = {}, action) => {
@@ -71,6 +71,20 @@ import { GET_DOCTOR_PROFILE_SUCCESS } from "../constant.js/DoctorConstant";
         return { loading: false, error: action.payload };
         case DEACTIVATE_DOCTOR_RESET:
           return {};
+      default:
+        return state;
+    }
+  };
+
+
+  export const deitChartListReducer = (state = { loading:true,dietchart:[] }, action) => {
+    switch (action.type) {
+      case GET_ALL_DIET_CHART_REQUEST:
+        return { loading: true };
+      case GET_ALL_DIET_CHART_SUCCESS:
+        return { loading: false, dietchart: action.payload.data };
+      case GET_ALL_DIET_CHART_FAIL:
+        return { loading: false, error: action.payload };
       default:
         return state;
     }
