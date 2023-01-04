@@ -3,10 +3,13 @@ import { CREATE_FORM_FAIL, CREATE_FORM_REQUEST, CREATE_FORM_SUCCESS, CREATE_PRES
 import { Url } from "../constant.js/PatientConstant";
 
 
-export const uploadDietCharts=(calorie_lower,calorie_upper,ch_lower,ch_upper,protiens,fats,food_type,cuisine_type)=>async(dispatch)=>{
-    dispatch({type:UPLOAD_DIET_CHART_REQUEST});   
+export const uploadDietCharts=(calorie_lower,calorie_upper,ch_lower,ch_upper,protiens,fats,food_type,cuisine_type)=>async(dispatch,getState)=>{
+    dispatch({type:UPLOAD_DIET_CHART_REQUEST});  
+    const { doctorSignin: { doctorInfo }} = getState();
+
     try{
-      const {data} = await axios.post(`${Url}/doctors/add-diet-chart`,{calorie_lower,calorie_upper,ch_lower,ch_upper,protiens,fats,food_type,cuisine_type})
+      const {data} = await axios.post(`${Url}/doctors/add-diet-chart`,{calorie_lower,calorie_upper,ch_lower,ch_upper,protiens,fats,food_type,cuisine_type},{
+        headers: {Authorization: `Bearer ${doctorInfo}`}});    
       dispatch({type:UPLOAD_DIET_CHART_SUCCESS,payload:data});
      
     }catch(error){
@@ -20,10 +23,12 @@ export const uploadDietCharts=(calorie_lower,calorie_upper,ch_lower,ch_upper,pro
   }
 
 
-  export const createForm=(patientId,question_title,questions)=>async(dispatch)=>{
+  export const createForm=(patientId,question_title,questions)=>async(dispatch,getState)=>{
     dispatch({type:CREATE_FORM_REQUEST});   
+    const { doctorSignin: { doctorInfo }} = getState();
     try{
-      const {data} = await axios.post(`${Url}/doctors/add-form`,{patientId,question_title,questions})
+      const {data} = await axios.post(`${Url}/doctors/add-form`,{patientId,question_title,questions},{
+        headers: {Authorization: `Bearer ${doctorInfo}`}});    
       dispatch({type:CREATE_FORM_SUCCESS,payload:data});
      
     }catch(error){
@@ -37,10 +42,13 @@ export const uploadDietCharts=(calorie_lower,calorie_upper,ch_lower,ch_upper,pro
   }
 
 
-  export const createPrescription=(patientId,medicine_type,medicine_name,morning_dose,afternoon_dose,evening_dose,frequency,duration,duration_days,special_inst)=>async(dispatch)=>{
+  export const createPrescription=(patientId,medicine_type,medicine_name,morning_dose,afternoon_dose,evening_dose,frequency,duration,duration_days,special_inst)=>async(dispatch,getState)=>{
     dispatch({type:CREATE_PRESC_REQUEST});   
+    const { doctorSignin: { doctorInfo }} = getState();
+
     try{
-      const {data} = await axios.post(`${Url}/presc/add`,{patientId,medicine_type,medicine_name,morning_dose,afternoon_dose,evening_dose,frequency,duration,duration_days,special_inst})
+      const {data} = await axios.post(`${Url}/presc/add`,{patientId,medicine_type,medicine_name,morning_dose,afternoon_dose,evening_dose,frequency,duration,duration_days,special_inst},{
+        headers: {Authorization: `Bearer ${doctorInfo}`}});    
       dispatch({type:CREATE_PRESC_SUCCESS,payload:data});
      
     }catch(error){
