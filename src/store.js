@@ -1,6 +1,6 @@
 import {applyMiddleware, combineReducers, compose, createStore} from 'redux'
 import thunk from 'redux-thunk';
-import { activateDoctorReducer, adminSigninReducer, deactivateDoctorReducer, deitChartListReducer, doctorCreateReducer, doctorListReducer } from './reducer/AdminReducer';
+import { activateDoctorReducer, activateDtChartReducer, activateformReducer, adminSigninReducer, deactivateDoctorReducer, deactivateDtChartReducer, deactivateformReducer, deitChartListReducer, doctorCreateReducer, doctorListReducer } from './reducer/AdminReducer';
 import { dietChartUploadReducer, doctorProfileListReducer, formCreateReducer, prescriptionCreateReducer } from './reducer/DoctoreReducer';
 import { appointmentCreateReducer, appointmentListReducer, doctorSigninReducer, enrollmentPatientReducer, formSubmitReducer, latestDietChartReducer, latestPrescriptionReducer, observationCreateReducer, observationListReducer, patientDetailsReducer, patientFormListReducer, patientListReducer, patientOtpReducer, patientProfileListReducer, patientSigninReducer, presctListReducer } from './reducer/Patientreducer';
 
@@ -17,7 +17,7 @@ const initialState = {
         : null,
     },
     adminSignin: {
-      adminInfo: localStorage.getItem('adminDocInfo')
+      adminDocInfo: localStorage.getItem('adminDocInfo')
         ? JSON.parse(localStorage.getItem('adminDocInfo'))
         : null,
     },
@@ -50,6 +50,10 @@ const reducer =combineReducers({
     latestPrescription:latestPrescriptionReducer,
     latestDietChart:latestDietChartReducer,
     deitChartList:deitChartListReducer,
+    activateform:activateformReducer,
+    deactivateform:deactivateformReducer,
+    activateDtChart:activateDtChartReducer,
+    deactivateDtChart:deactivateDtChartReducer,
 })
 
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

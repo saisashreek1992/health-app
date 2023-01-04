@@ -36,6 +36,8 @@ import EnrolmentsView from './pages/form-validations/admin/EnrolmentsView';
 import EmployeSummary from './pages/form-validations/admin/EmployeSummary';
 import '../src/App.css'
 import DoctorRoute from './Components/DoctorRoute';
+import AdminRoute from './Components/AdminRoute';
+import PatientRoute from './Components/PatientRoute';
 
 const App = () => {
   return (
@@ -55,13 +57,13 @@ const App = () => {
         <Route path='/userrole/:roleid/dashboard/doctor/meeting/info/' element={<DoctorMeetingInfo />} />
         <Route path='/userrole/:roleid/dashboard/doctor/profile/' element={<DocProfile />} />
         <Route path='/userrole/:roleid/dashboard/patient/' element={<PatientDashboard />} />
-        <Route path='/userrole/:roleid/dashboard/patient/mydata/' element={<PatientDataTab />} />
+        <Route path='/userrole/:roleid/dashboard/patient/mydata/' element={ <PatientRoute><PatientDataTab /></PatientRoute>} />
         <Route path='/userrole/:roleid/dashboard/patient/mydata/forms/' element={<PatientForm />} />
         <Route path='/userrole/:roleid/dashboard/patient/prescriptions/' element={<PatientPrescription />} />
         <Route path='/userrole/:roleid/dashboard/patient/meeting/info/' element={<PatientMeetingInfo />} />
         <Route path='/userrole/:roleid/dashboard/patient/profile/' element={<PatientProfile />} />
         <Route path='/userrole/:roleid/dashboard/common/chat/' element={<UserChat />} />
-        <Route path='/userrole/:roleid/dashboard/admin/' element={<Admin />} />
+        <Route path='/userrole/:roleid/dashboard/admin/' element={<AdminRoute><Admin /></AdminRoute>}/>
         <Route path='/userrole/:roleid/dashboard/admin/patient/enrolment/view/' element={<EnrolmentsView />} />
         <Route path='/userrole/:roleid/dashboard/admin/summary/employee/view/' element={<EmployeSummary />} />
       </Routes>

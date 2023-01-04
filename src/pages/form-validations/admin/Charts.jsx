@@ -2,34 +2,121 @@ import React from 'react';
 import { useEffect } from 'react';
 import { FiEdit } from "react-icons/fi";
 import { useDispatch, useSelector } from 'react-redux';
-import { getAllDietChart } from '../../../action/AdminAction';
+import Swal from 'sweetalert2';
+import { activateDtChart, activateForm, deactivateDtChart, deactivateForm, getAllDietChart } from '../../../action/AdminAction';
 import { getForms } from '../../../action/PatientAction';
 import  LoadingBox  from '../../../Components/LoadingBox';
 import  MessageBox  from '../../../Components/MessageBox';
+import { ACTIVATE_DTCHART_RESET, ACTIVATE_FORM_RESET, DEACTIVATE_DTCHART_RESET, DEACTIVATE_FORM_RESET } from '../../../constant.js/AdminConstant';
 
 
 
 
 const Charts = () => {
  
-  const dispacth = useDispatch()
+  const dispatch = useDispatch()
   const getFomrsList=useSelector((state=>state.patientFormList))
   const {loading,error,forms}=getFomrsList
   const deitChartList=useSelector((state)=>state.deitChartList)
   const {loading:loadingDiet,error:errorDiet,dietchart}=deitChartList
 
+  const activateFormVariables=useSelector((state)=>state.activateform)
+  const {loading:loadingFormAc,error:errorFormAc,success:successFormAc}=activateFormVariables
+  const deactivateFormVariables=useSelector((state)=>state.deactivateform)
+  const {loading:loadingFormDe,error:errorFormDe,success:successFormDe}=deactivateFormVariables
+
+
+  const activateDtChartVariables=useSelector((state)=>state.activateform)
+  const {loading:loadingChartAc,error:errorChartAc,success:successChartAc}=activateDtChartVariables
+  const deactivateDtChartVariables=useSelector((state)=>state.deactivateform)
+  const {loading:loadingChartDe,error:errorChartDe,success:successChartDe}=deactivateDtChartVariables
 
   useEffect(()=>{
-    dispacth(getForms('admin'))
-    dispacth(getAllDietChart())
-  },[])
+    dispatch(getForms('admin'))
+    dispatch(getAllDietChart())
+    if(successFormAc){
+      dispatch({type:ACTIVATE_FORM_RESET})
+    }
+    if(successFormDe){
+      dispatch({type:DEACTIVATE_FORM_RESET})
+    }
+    if(successChartAc){
+      dispatch({type:ACTIVATE_DTCHART_RESET})
+    }
+    if(successChartDe){
+      dispatch({type:DEACTIVATE_DTCHART_RESET})
+    }
+  },[successFormAc,successFormDe,successChartAc,successChartDe])
 
-  // if(forms){
-  //   console.log(forms);
-  // }
-  // if(dietchart){
-  //   console.log(dietchart);
-  // }
+  const deActivateForms=(id)=>{
+    Swal.fire({
+      title: 'Do you want to deactivet forms?',
+      showDenyButton: true,
+      showCancelButton: true,
+      confirmButtonText: 'Save',
+      denyButtonText: `Don't save`,
+    }).then((result) => {
+      /* Read more about isConfirmed, isDenied below */
+      if (result.isConfirmed) {
+          dispatch(deactivateForm(id))
+        // Swal.fire('Saved!', '', 'success')
+      } else if (result.isDenied) {
+        Swal.fire('Changes are not saved', '', 'info')
+      }
+    })
+  }
+  const activateForms=(id)=>{
+    Swal.fire({
+      title: 'Do you want to activate forms?',
+      showDenyButton: true,
+      showCancelButton: true,
+      confirmButtonText: 'Save',
+      denyButtonText: `Don't save`,
+    }).then((result) => {
+      /* Read more about isConfirmed, isDenied below */
+      if (result.isConfirmed) {
+          dispatch(activateForm(id))
+        // Swal.fire('Saved!', '', 'success')
+      } else if (result.isDenied) {
+        Swal.fire('Changes are not saved', '', 'info')
+      }
+    })
+  }
+
+  const deActivateDietCharts=(id)=>{
+    Swal.fire({
+      title: 'Do you want to deactivet diet Chart?',
+      showDenyButton: true,
+      showCancelButton: true,
+      confirmButtonText: 'Save',
+      denyButtonText: `Don't save`,
+    }).then((result) => {
+      /* Read more about isConfirmed, isDenied below */
+      if (result.isConfirmed) {
+          dispatch(deactivateDtChart(id))
+        // Swal.fire('Saved!', '', 'success')
+      } else if (result.isDenied) {
+        Swal.fire('Changes are not saved', '', 'info')
+      }
+    })
+  }
+  const acttivateDietCharts=(id)=>{
+    Swal.fire({
+      title: 'Do you want to activate diet chart?',
+      showDenyButton: true,
+      showCancelButton: true,
+      confirmButtonText: 'Save',
+      denyButtonText: `Don't save`,
+    }).then((result) => {
+      /* Read more about isConfirmed, isDenied below */
+      if (result.isConfirmed) {
+          dispatch(activateDtChart(id))
+        // Swal.fire('Saved!', '', 'success')
+      } else if (result.isDenied) {
+        Swal.fire('Changes are not saved', '', 'info')
+      }
+    })
+  }
  
 
   return (
@@ -85,10 +172,10 @@ const Charts = () => {
                 >
                  <option value={frm.active}>{frm.status}</option>  
                  {frm.status === 'Active' ? (
-                   <option>De-Active</option>
+                   <option onClick={()=>deActivateForms(frm._id)}>De-Active</option>
 
                  ):frm.status === 'De-Active' ? (
-                  <option>Active</option>
+                  <option onClick={()=>activateForms(frm._id)}>Active</option>
                  ):                
                  ''}
                 </select>
@@ -152,10 +239,10 @@ const Charts = () => {
                 >
                   <option>{dt.status}</option>
                   {dt.status === 'Active' ? (
-                   <option>De-Active</option>
+                   <option onClick={()=>deActivateDietCharts(dt._id)}>De-Active</option>
 
                  ):dt.status === 'De-Active' ? (
-                  <option>Active</option>
+                  <option onClick={()=>acttivateDietCharts(dt._id)}>Active</option>
                  ):                
                  ''}
                 </select>

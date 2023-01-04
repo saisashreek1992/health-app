@@ -30,11 +30,11 @@ const LoginForm = () => {
   const doctorSignin = useSelector((state) => state.doctorSignin);
   const { loading:loadingDoctor , error:errorDoctor , doctorInfo } = doctorSignin;
   const adminSignin = useSelector((state) => state.adminSignin);
-  const { loading:loadingAdmin, error:errorAdmin , adminInfo } = adminSignin;
+  const { loading:loadingAdmin, error:errorAdmin , adminDocInfo } = adminSignin;
 
   const dispatch = useDispatch();
 
-  console.log(adminInfo,'addd');
+  console.log(adminDocInfo,'addd');
 
   const otpHandler = (e) => {
     e.preventDefault();
@@ -61,7 +61,7 @@ const LoginForm = () => {
   }, [success]);
   const roleOptions = [
     { value: "Please Select a Role" },
-    { value: "Admin" },
+    { value: "admin" },
     { value: "doctor" },
     { value: "patient" },
   ];
@@ -144,15 +144,24 @@ const LoginForm = () => {
   };
 
   useEffect(()=>{
-    console.log(formState.inputs.password,'heyy');
+    // if(formState.inputs.role.value === 'admin' && adminDocInfo){
+    //   navigate('/userrole/:roleid/dashboard/admin/')
+    // }
+    if(formState.inputs.role.value === 'admin' && adminDocInfo){
+      navigate('/userrole/:roleid/dashboard/admin/')
+
+    }
+    // console.log(adminDocInfo,'inooo');
+  },[formState,adminDocInfo])
+
+  useEffect(()=>{
+    // console.log(formState.inputs.role,'patinetinfo');
 
     if(formState.inputs.role.value === 'doctor' && doctorInfo){
       console.log(doctorInfo,'yess');
       navigate('/userrole/:roleid/dashboard/doctor/')
     }else if(formState.inputs.role.value === 'patient' && patientInfo){
       navigate('/userrole/:roleid/dashboard/patient/mydata/')
-    }else if(formState.inputs.role.value === 'Admin' && adminInfo){
-      navigate('/userrole/:roleid/dashboard/admin/')
     }
   },[patientInfo,doctorInfo,formState])
 
@@ -280,7 +289,7 @@ const LoginForm = () => {
           </div>
 
           {/* {success ? ( */}
-          {formState.inputs.role.value === "Admin" ? (
+          {formState.inputs.role.value === "admin" ? (
               <div>
               <InputLog
                 element="input"
