@@ -74,7 +74,7 @@ const CreateForm = () => {
                         <form >
                           <div className="form__Grid--Cols-6">
                          
-                            <div className="form__Cols--Span-6">
+                            {/* <div className="form__Cols--Span-6">
                               <label
                                 htmlFor="patient-id"
                                 className="form__Label-Heading"
@@ -90,7 +90,7 @@ const CreateForm = () => {
                                 className="form__Input"
                                 placeholder="Please Add Patient ID"
                               />
-                            </div>
+                            </div> */}
                             <div className="form__Cols--Span-6">
                               <label
                                 htmlFor="form-title"
@@ -108,14 +108,14 @@ const CreateForm = () => {
                                 className="form__Input"
                               />
                             </div>
-                            <div className="form__Cols--Span-6 form__Gap-1">
+                            {/* <div className="form__Cols--Span-6 form__Gap-1">
                               <button
                                 type="submit"
                                 className="form__Btn-Green"
                               >
                                 Create Form
                               </button>
-                            </div>
+                            </div> */}
                           </div>
                           </form>
 
