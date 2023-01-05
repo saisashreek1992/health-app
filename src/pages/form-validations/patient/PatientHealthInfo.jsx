@@ -11,6 +11,9 @@ import {
   VALIDATOR_MINLENGTH,
   VALIDATOR_REQUIRE,
 } from "../../../utils/validators";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getAllDoctors } from "../../../action/AdminAction";
 
 const PatientHealthInfo = () => {
   // const [height, setHeight] = useState("");
@@ -24,9 +27,12 @@ const PatientHealthInfo = () => {
   // const [patientTeam, setPatientTeam] = useState("");
   const location = useLocation();
   const { phone, name, email, dob, gender } = location.state;
+  const doctorList = useSelector((state) => state.doctorList);
+  const { loading, error, doctors } = doctorList;
   console.log(healthPlans,'pl');
  const  handleChange = (selectedOptions) => {
     setHealthPlans({ selectedOptions });
+    console.log(healthPlans,'hea');
   }
 
   const [formState, inputHandler, setFormData] = useForm(
@@ -188,7 +194,16 @@ const PatientHealthInfo = () => {
       });
     // }  
   };
-
+ 
+  
+const dispatch=useDispatch()
+  useEffect(()=>{
+    const user='doctor'
+    dispatch(getAllDoctors(user))
+  },[])
+// if(doctors){
+//   console.log(doctors,'list');
+// }
   return (
     <>
       <div className="dashboard__Container">
@@ -299,32 +314,7 @@ const PatientHealthInfo = () => {
                             />
                           </div>
                           <div className="form__Cols--Span-6">
-                            {/*
-                            <label
-                              htmlFor="relation"
-                              className="form__Label-Heading"
-                            >
-                              Caretakers Relation
-                            </label>
-                            <select
-                              required
-                              onChange={(e) => setRelation(e.target.value)}
-                              id="relation"
-                              name="relation"
-                              autoComplete="relation-name"
-                              className="form__Select"
-                            >
-                              <option>Select Caretakers Relation</option>
-                              <option value="Father">Father</option>
-                              <option value="Mother">Mother</option>
-                              <option value="Son">Son</option>
-                              <option value="Daughter">Daughter</option>
-                              <option value="Son-In-Law">Son-In-Law</option>
-                              <option value="Daughter-In-Law">
-                                Daughter-In-Law
-                              </option>
-                            </select>
-                            */}
+                        
                             <Select
                               element="select"
                               id="relation"
@@ -336,25 +326,7 @@ const PatientHealthInfo = () => {
                             />
                           </div>
                           <div className="form__Cols--Span-6">
-                            {/*
-                            <label
-                              htmlFor="caretaker-number"
-                              className="form__Label-Heading"
-                            >
-                              Caretakers Phone Number
-                            </label>
-                            <input
-                              required
-                              onChange={(e) =>
-                                setCaretakerNumber(e.target.value)
-                              }
-                              type="tel"
-                              name="caretaker-number"
-                              id="caretaker-number"
-                              autoComplete="given-name"
-                              className="form__Input"
-                            />
-                            */}
+                          
                             <Input
                               element="input"
                               type="text"
@@ -367,23 +339,7 @@ const PatientHealthInfo = () => {
                             />
                           </div>
                           <div className="form__Cols--Span-6">
-                            {/*
-                            <label
-                              htmlFor="pref-time"
-                              className="form__Label-Heading"
-                            >
-                              Caretakers Preferred Time
-                            </label>
-                            <input
-                              required
-                              onChange={(e) => setCaretakerTime(e.target.value)}
-                              type="time"
-                              name="pref-time"
-                              id="pref-time"
-                              autoComplete="given-name"
-                              className="form__Input"
-                            />
-                            */}
+                     
                             <Input
                             
                               element="input"
@@ -449,9 +405,17 @@ const PatientHealthInfo = () => {
                               className="form__Input"
                             />
                             */}
-                       
-                               <label>Select Health Team</label>
-                            <Selects onChange={handleChange} isMulti isClearable options={healthTeamOptions} />
+                           {!loading && !error && doctors &&(
+                            <>
+                            <label>Select Health Team</label>
+                            <Selects onChange={handleChange} isMulti isClearable 
+                            getOptionLabel={e => e.name }
+                            getOptionValue={e => e.id}
+                            loadOptions={doctors}
+                            />
+                            </>
+                           )}
+                          
                           </div>
                           <div className="form__Cols--Span-6">
                             {/*

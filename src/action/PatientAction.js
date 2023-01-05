@@ -228,7 +228,7 @@ export const listObservation = (id) => async (dispatch,getState) => {
   dispatch({ type: GET_OBSERVATION_REQUEST });
   const { patientSignin: { patientInfo }} = getState();
   try {    
-    const { data } = await axios.get(`${Url}/observations/${id}`,{
+    const { data } = await axios.get(`${Url}/observations`,{
       headers: {Authorization: `Bearer ${patientInfo}`}});      
     dispatch({ type: GET_OBSERVATION_SUCCESS, payload: data }); 
   } catch (error) {
@@ -244,7 +244,7 @@ export const createObservations=(id,desc)=>async(dispatch,getState)=>{
   dispatch({type:CREATE_OBSERVATION_REQUEST});   
   const { patientSignin: { patientInfo }} = getState();
   try{
-    const {data} = await axios.post(`${Url}/observations/`,{desc},{
+    const {data} = await axios.post(`${Url}/observations`,{desc},{
       headers: {
         Authorization: `Bearer ${patientInfo}`,
       },

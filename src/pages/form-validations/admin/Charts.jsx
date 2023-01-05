@@ -215,7 +215,7 @@ const Charts = () => {
           </thead>
           {loadingDiet ? <LoadingBox></LoadingBox>:
           errorDiet ? <MessageBox>{error}</MessageBox>:
-          dietchart.map((dt,index)=>(
+          dietchart && dietchart.map((dt,index)=>(
           <tbody>
             <tr className="table__Body--Row">
               <td className="table__Body--Row_Data">

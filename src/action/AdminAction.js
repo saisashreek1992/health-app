@@ -51,16 +51,30 @@ export const adminSignout = () => (dispatch) => {
 };
 
 
-  export const getAllDoctors=()=>async(dispatch,getState)=>{
+  export const getAllDoctors=(user)=>async(dispatch,getState)=>{
     dispatch({type:GET_ALL_DOCTORS_REQUEST});   
     const { adminSignin: { adminDocInfo }} = getState();
+    const { doctorSignin: { doctorInfo }} = getState();
+
     try{
-      const {data} = await axios.get(`${Url}/doctors/get-all`,{
-        headers: {
-          Authorization: `Bearer ${adminDocInfo}`,
-        },
-      });      
-      dispatch({type:GET_ALL_DOCTORS_SUCCESS,payload:data});
+      if(user === 'doctor'){
+        const {data} = await axios.get(`${Url}/doctors/get-all`,{
+          headers: {
+            Authorization: `Bearer ${doctorInfo}`,
+          },
+        });    
+        dispatch({type:GET_ALL_DOCTORS_SUCCESS,payload:data});
+      }else{
+        const {data} = await axios.get(`${Url}/doctors/get-all`,{
+          headers: {
+            Authorization: `Bearer ${adminDocInfo}`,
+          },
+        });    
+        dispatch({type:GET_ALL_DOCTORS_SUCCESS,payload:data});
+      }
+       
+     
+      
     }catch(error){
       const message =
       error.response && error.response.data.message

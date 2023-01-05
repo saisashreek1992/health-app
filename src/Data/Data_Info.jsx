@@ -308,32 +308,32 @@ export const ObservedInfo = [
 export const ObservationGrid = [
   { type: "Checkbox", width: "50" },
   {
-    field: "ObservationID",
-    headerText: "ObservationID",
+    field: "desc",
+    headerText: "Description",
     width: "100",
     textAlign: "Left",
     isPrimaryKey: true,
-    template: observedGridID,
+    // template: observedGridID,
   },
+  // {
+  //   field: "ObservedName",
+  //   headerText: "ObservedName",
+  //   width: "100",
+  //   textAlign: "Left",
+  //   template: observedGridImage,
+  // },
+  // {
+  //   field: "name",
+  //   headerText: "PatientName",
+  //   width: "100",
+  //   textAlign: "Left",
+  //   template: patientGridImage,
+  // },
   {
-    field: "ObservedName",
-    headerText: "ObservedName",
-    width: "100",
-    textAlign: "Left",
-    template: observedGridImage,
-  },
-  {
-    field: "name",
-    headerText: "PatientName",
-    width: "100",
-    textAlign: "Left",
-    template: patientGridImage,
-  },
-  {
-    field: "desc",
+    field: "createdOn",
     headerText: "ObservedDate",
     width: "100",
     textAlign: "Left",
-    template: observedGridDate,
+    // template: observedGridDate,
   }
 ];
