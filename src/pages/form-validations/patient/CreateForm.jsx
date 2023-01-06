@@ -6,14 +6,14 @@ import { CREATE_FORM_RESET } from "../../../constant.js/DoctorConstant";
 import Navbar from "../../../user/shared/Navbar";
 
 const CreateForm = () => {
-  const [id, setId] = useState('')
+  // const [id, setId] = useState('')
   const [title, setTitle] = useState('')
   const formCreate = useSelector((state) => state.formCreate);
   const { loading, error, success } = formCreate;
 
 
   const [addMore, setAddMore] = useState([
-    {type:'',title:'',choise1:'',choise2:'',choise3:'',choise4:''},
+    {type:'',question_title:'',choise1:'',choise2:'',choise3:'',choise4:''},
   ])
 
   const [form, setFrom] = useState(false)
@@ -21,7 +21,7 @@ const CreateForm = () => {
   let navigate = useNavigate();
   const dispatch=useDispatch()
   const nextStep = () => {
-    dispatch(createForm(id,title,addMore))
+    dispatch(createForm(title,addMore))
     console.log(addMore,'admmore')
   };
 
@@ -34,7 +34,7 @@ const CreateForm = () => {
 
   const addMoreFields=()=>{
     let obj={type:'',
-            title:'',
+            question_title:'',
             choise1:'',
             choise2:'',
             choise3:'',
@@ -73,27 +73,9 @@ const CreateForm = () => {
                         <div className="form__Box-Space">
                         <form >
                           <div className="form__Grid--Cols-6">
-                         
-                            {/* <div className="form__Cols--Span-6">
-                              <label
-                                htmlFor="patient-id"
-                                className="form__Label-Heading"
-                              >
-                                Select Patient
-                              </label>
-                              <input
-                              onChange={(e)=>setId(e.target.value)}
-                                type="text"
-                                name="patient-id"
-                                id="patient-id"
-                                autoComplete="given-name"
-                                className="form__Input"
-                                placeholder="Please Add Patient ID"
-                              />
-                            </div> */}
                             <div className="form__Cols--Span-6">
                               <label
-                                htmlFor="form-title"
+                                htmlFor="form_title"
                                 className="form__Label-Heading"
                               >
                                 Form Title
@@ -102,8 +84,8 @@ const CreateForm = () => {
                               onChange={(e)=>setTitle(e.target.value)}
 
                                 type="text"
-                                name="form-title"
-                                id="form-title"
+                                name="form_title"
+                                id="form_title"
                                 autoComplete="given-name"
                                 className="form__Input"
                               />
@@ -157,16 +139,16 @@ const CreateForm = () => {
                           <div className="form__Grid--Rows-none">
                             <div className="form__Cols--Span-6">
                               <label
-                                htmlFor="title"
+                                htmlFor="question_title"
                                 className="form__Label-Heading"
                               >
                                 Question Title
                               </label>
                               <input
                                 type="text"
-                                name="title"
-                                id="title"
-                                value={form.title}
+                                name="question_title"
+                                id="question_title"
+                                value={form.question_title}
                                 autoComplete="given-name"
                                 className="form__Input"
                                 onChange={(event)=>handleFormChange(event,index)}
@@ -256,9 +238,9 @@ const CreateForm = () => {
                             </label>
                             <input
                               type="text"
-                              name="title"
-                              id="title"
-                              value={form.title}
+                              name="question_title"
+                              id="question_title"
+                              value={form.question_title}
                               autoComplete="given-name"
                               className="form__Input"
                               onChange={(event)=>handleFormChange(event,index)}
@@ -347,9 +329,9 @@ const CreateForm = () => {
                             </label>
                             <input
                               type="text"
-                              name="title"
-                              id="title"
-                              value={form.title}
+                              name="question_title"
+                              id="question_title"
+                              value={form.question_title}
                               autoComplete="given-name"
                               className="form__Input"
                               onChange={(event)=>handleFormChange(event,index)}

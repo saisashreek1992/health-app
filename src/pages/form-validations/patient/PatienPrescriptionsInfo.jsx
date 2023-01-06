@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useEffect } from "react";
 import { FiChevronDown } from "react-icons/fi";
 import { useDispatch, useSelector } from "react-redux";
-import { getPrescriptions } from "../../../action/PatientAction";
+import { getLatesPrescription, getPrescriptions } from "../../../action/PatientAction";
 
 const PatienPrescriptionsInfo = () => {
   const dispatch =useDispatch()
@@ -12,6 +12,7 @@ const PatienPrescriptionsInfo = () => {
 
   useEffect(()=>{
  dispatch(getPrescriptions())
+ dispatch(getLatesPrescription())
   },[])
  
 
@@ -29,7 +30,7 @@ const PatienPrescriptionsInfo = () => {
       <div className="tab__Card--Container">
         <div className="tab__Card--Block">
           <h5 className="tab__Card--Title">
-            Prescribed Medicines
+            Prescribed Mediciness
             <span className="tab__Tag--New">
               Latest
             </span>
@@ -49,7 +50,7 @@ const PatienPrescriptionsInfo = () => {
         </div>
         <div className="tab__Card--Block">
           <h5 className="tab__Card--Title">
-            Prescribed Medicines
+            Prescribed Medicinessss
             <span className="tab__Tag--Old">
               Old
             </span>

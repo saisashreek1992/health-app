@@ -9,8 +9,8 @@ const PatientObservation = () => {
   const [desc, setDesc] = useState('')
   const dispatch=useDispatch()
   const submitHandler=()=>{
-    const id='63a9ec8e77c2e617d2c547bd'
-    dispatch(createObservations(id,desc))
+    // const id='63a9ec8e77c2e617d2c547bd'
+    dispatch(createObservations(desc))
   }
 
 

@@ -25,41 +25,108 @@ const DocAppointmentTable = () => {
   const {loading,error,appointment}=appointmentList
   const dispatch=useDispatch()
   useEffect(() => {
-    updateSampleSection();
-    dispatch(getAppointments())
+    // updateSampleSection();
+    const user='doctor'
+    dispatch(getAppointments(user))
 
   },[]);
   if(appointment){
-    console.log(appointment);
+    console.log(appointment,'ts');
   }
 
   const selectionsettings = { persistSelection: true };
   const toolbarOptions = ["Delete"];
   const editing = { allowDeleting: true, allowEditing: true };
+  const truncate = (str, n) => {
+    return str.length > n ? str.substr(0, n - 1) : str;
+  };
 
   return (
     <>
       <div className="py-16 bg-white rounded-3xl">
         {loading ? <LoadingBox></LoadingBox>:
         error ? <MessageBox></MessageBox>:(
-          <GridComponent
-          // dataSource={AppointmentInfo}
-          dataSource={appointment}
-          enableHover={false}
-          allowPaging
-          pageSettings={{ pageCount: 10 }}
-          selectionSettings={selectionsettings}
-          toolbar={toolbarOptions}
-          editSettings={editing}
-          allowSorting
-        >
-          <ColumnsDirective>
-            {AppointmentGrid.map((item, index) => (
-              <ColumnDirective  key={index} {...item} />
-            ))}
-          </ColumnsDirective>
-          <Inject services={[Page, Selection, Edit, Toolbar, Sort, Filter]} />
-        </GridComponent>
+        //   <GridComponent
+        //   // dataSource={AppointmentInfo}
+        //   dataSource={appointment}
+        //   enableHover={false}
+        //   allowPaging
+        //   pageSettings={{ pageCount: 10 }}
+        //   selectionSettings={selectionsettings}
+        //   toolbar={toolbarOptions}
+        //   editSettings={editing}
+        //   allowSorting
+        // >
+        //   <ColumnsDirective>
+        //     {AppointmentGrid.map((item, index) => (
+        //       <ColumnDirective  key={index} {...item} />
+        //     ))}
+        //   </ColumnsDirective>
+        //   <Inject services={[Page, Selection, Edit, Toolbar, Sort, Filter]} />
+        // </GridComponent>
+        <div className="my-10">
+         <table className="min-w-full table-auto table-res">
+          <thead className="bg-gray-200">
+            <tr>
+              <th className="text-lg font-bold text-gray-900 px-2 py-4">
+                Sl No.
+              </th>
+              <th className="text-lg font-bold text-gray-900 px-2 py-4">
+                Doctor Name
+              </th>
+              <th className="text-lg font-bold text-gray-900 px-2 py-4">
+                Patient Name
+              </th>
+              <th className="text-lg font-bold text-gray-900 px-2 py-4">
+                Appointment Date
+              </th>
+              {/* <th className="text-lg font-bold text-gray-900 px-2 py-4">
+                Actions
+              </th> */}
+            </tr>
+          </thead>
+          <tbody>
+            {loading ? <LoadingBox></LoadingBox>:
+            error ? <MessageBox>{error}</MessageBox>:
+            appointment.length>0 ? appointment.map((ap,i)=>(
+
+            
+            <tr className="bg-white border-b">
+              <td className="px-6 py-4 whitespace-nowrap text-base font-medium text-gray-900 text-center">
+                {i+1}
+              </td>
+              <td className="px-6 py-4 whitespace-nowrap text-base font-medium text-gray-900 text-center">
+                {ap.doctorId}
+              </td>
+              <td className="px-6 py-4 whitespace-nowrap text-base font-medium text-gray-900 text-center">
+                {ap.patientId}
+              </td>
+              <td className="px-6 py-4 whitespace-nowrap text-base font-medium text-gray-900 text-center">
+                {truncate(ap.date,11)}
+              </td>
+              {/* <td className="px-6 py-4 whitespace-nowrap text-base font-medium text-gray-900 text-center">
+                <div className="flex flex-row justify-center">
+                  <div className="inline-block p-6">
+                    <FiEye
+                      className="h-6 w-6 hover:text-green-500"
+                      onClick={() => navigate('/userrole/:roleid/dashboard/patient/meeting/info/')}
+                    />
+                  </div>
+                  <div className="inline-block p-6">
+                    <FiEdit className="h-6 w-6 hover:text-blue-500" />
+                  </div>
+                </div>
+              </td> */}
+            </tr>
+           )):
+           
+           <MessageBox>No Appointments</MessageBox>
+           }
+           
+          </tbody>
+        </table> 
+        {/* <PatientAppointmentTable /> */}
+      </div>
         )}
       
       </div>

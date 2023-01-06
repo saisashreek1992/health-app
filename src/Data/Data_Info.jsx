@@ -95,12 +95,16 @@ export const AppointmentInfo = [
     AppointmentTime: "2:00 PM",
   },
 ];
+const truncate = (str, n) => {
+  return str.length > n ? str.substr(0, n - 1) + "...." : str;
+};
+
 
 export const AppointmentGrid = [
   { type: "Checkbox", width: "50" },
   {
-    field: "index",
-    headerText: "AppointmentIDS",
+    field: "RowCount",
+    headerText: "RowCountAI",
     width: "150",
     textAlign: "Center",
     isPrimaryKey: true,
@@ -121,10 +125,13 @@ export const AppointmentGrid = [
     // template: patientGridImage,
   },
   {
-    field: "date",
+    field: truncate('date',5),
     headerText: "AppointmentDate",
     width: "150",
     textAlign: "Center",
+    type: 'date',
+     skeleton:'short',
+     maxLength:'10',
   },
   {
     field: "doctorId",

@@ -3,12 +3,12 @@ import axios from 'axios'
 
 
 
-export const patientEnrollment=(phone,name,email,dob,gender,height,weight,caretakers_name,caretakers_relation,caretakers_phone,caretakers_time,health_plan,health_plan_date,team,amount,payment_mode,payment_date,ref_id,next_payment_date)=>async(dispatch,getState)=>{
+export const patientEnrollment=(phone,name,email,dob,gender,height,weight,caretakers_name,caretakers_relation,caretakers_phone,caretakers_time,doctors,health_plan_date,team,amount,payment_mode,payment_date,ref_id,next_payment_date)=>async(dispatch,getState)=>{
   dispatch({type:ENROLMENT_PATIENT_REQUEST});   
   const { doctorSignin: { doctorInfo }} = getState();
 
   try{
-    const {data} = await axios.post(`${Url}/doctors/add-patient`,{phone,name,email,dob,gender,height,weight,caretakers_name,caretakers_relation,caretakers_phone,caretakers_time,health_plan,health_plan_date,team,amount,payment_mode,payment_date,ref_id,next_payment_date},{
+    const {data} = await axios.post(`${Url}/doctors/add-patient`,{phone,name,email,dob,gender,height,weight,caretakers_name,caretakers_relation,caretakers_phone,caretakers_time,doctors,health_plan_date,team,amount,payment_mode,payment_date,ref_id,next_payment_date},{
       headers: {
         Authorization: `Bearer ${doctorInfo}`,
       },
@@ -73,7 +73,6 @@ export const DetailsPatients = (id) => async (dispatch,getState) => {
 
 
 export const getForms = (user) => async (dispatch,getState) => {
-  // console.log(user,'user');
   dispatch({ type: GET_ALL_PATIENT_FORMS_REQUEST });
   const { patientSignin: { patientInfo }} = getState();
   const { adminSignin: { adminDocInfo }} = getState();
@@ -128,18 +127,29 @@ export const createAppointment=(doctorId,date)=>async(dispatch,getState)=>{
 }
 
 
-export const getAppointments = () => async (dispatch,getState) => {
+export const getAppointments = (user) => async (dispatch,getState) => {
   dispatch({ type: GET_APPOINTMENT_REQUEST });
+  const { doctorSignin: { doctorInfo }} = getState();
   const { patientSignin: { patientInfo }} = getState();
 
 
   try {    
-    const { data } = await axios.get(`${Url}/appointments/get-all`,{
-      headers: {
-        Authorization: `Bearer ${patientInfo}`,
-      },
-    });      
-    dispatch({ type: GET_APPOINTMENT_SUCCESS, payload: data }); 
+    if(user ==='doctor'){
+      const { data } = await axios.get(`${Url}/appointments/get-all`,{
+        headers: {
+          Authorization: `Bearer ${doctorInfo}`,
+        },
+      });      
+      dispatch({ type: GET_APPOINTMENT_SUCCESS, payload: data }); 
+    }else{
+      const { data } = await axios.get(`${Url}/appointments/get-all`,{
+        headers: {
+          Authorization: `Bearer ${patientInfo}`,
+        },
+      });      
+      dispatch({ type: GET_APPOINTMENT_SUCCESS, payload: data }); 
+    }
+   
 
   } catch (error) {
     const message =
@@ -154,12 +164,12 @@ export const getAppointments = () => async (dispatch,getState) => {
 
 export const getPrescriptions = () => async (dispatch,getState) => {
   dispatch({ type: GET_PRESCRIPTION_REQUEST });
-  const { doctorSignin: { doctorInfo }} = getState();
+  const { patientSignin: { patientInfo }} = getState();
 
   try {    
     const { data } = await axios.get(`${Url}/presc/get-all`,{
       headers: {
-        Authorization: `Bearer ${doctorInfo}`,
+        Authorization: `Bearer ${patientInfo}`,
       },
     });      
     dispatch({ type: GET_PRESCRIPTION_SUCCESS, payload: data }); 
@@ -240,7 +250,7 @@ export const listObservation = (id) => async (dispatch,getState) => {
   }
 };
 
-export const createObservations=(id,desc)=>async(dispatch,getState)=>{
+export const createObservations=(desc)=>async(dispatch,getState)=>{
   dispatch({type:CREATE_OBSERVATION_REQUEST});   
   const { patientSignin: { patientInfo }} = getState();
   try{

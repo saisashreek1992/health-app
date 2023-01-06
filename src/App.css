@@ -124,3 +124,6 @@ width: 100%;
 padding: 11px;
 border-radius: 11px;
 }
+.table-res{
+  overflow-x: auto;
+}

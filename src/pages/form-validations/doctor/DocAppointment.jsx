@@ -1,7 +1,17 @@
 import React from "react";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { getAppointmentOnDate } from "../../../action/DoctorAction";
 import DocAppointmentTable from "./DocAppointmentTable";
 
 const DocAppointment = () => {
+
+  const dispatch= useDispatch()
+
+  useEffect(()=>{
+    const date='2020-12-30'
+      dispatch(getAppointmentOnDate(date))
+  },[])
   return (
     <>
       <div className="max-w-sm w-full lg:max-w-full lg:flex">

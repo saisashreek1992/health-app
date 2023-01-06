@@ -34,7 +34,7 @@ const LoginForm = () => {
 
   const dispatch = useDispatch();
 
-  console.log(adminDocInfo,'addd');
+  console.log(doctorInfo,'addd');
 
   const otpHandler = (e) => {
     e.preventDefault();

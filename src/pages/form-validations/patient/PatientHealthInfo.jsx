@@ -6,6 +6,7 @@ import Navbar from "../../../user/shared/Navbar";
 import Input from "../../../Components/Input";
 import Select from "../../../Components/Select";
 import Selects from 'react-select'
+import AsyncSelect from 'react-select/async';
 import { useForm } from "../../../hooks/form-hooks";
 import {
   VALIDATOR_MINLENGTH,
@@ -14,7 +15,9 @@ import {
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllDoctors } from "../../../action/AdminAction";
-
+import { Url } from "../../../constant.js/PatientConstant";
+import axios from "axios";
+import Creatable from 'react-select/creatable';
 const PatientHealthInfo = () => {
   // const [height, setHeight] = useState("");
   // const [weight, setWeight] = useState("");
@@ -24,15 +27,19 @@ const PatientHealthInfo = () => {
   // const [caretakerTime, setCaretakerTime] = useState("");
   const [healthPlans, setHealthPlans] = useState([]);
   // const [planDate, setPlanDate] = useState("");
-  // const [patientTeam, setPatientTeam] = useState("");
+  const [options, setOptions] = useState([""]);
   const location = useLocation();
   const { phone, name, email, dob, gender } = location.state;
   const doctorList = useSelector((state) => state.doctorList);
   const { loading, error, doctors } = doctorList;
-  console.log(healthPlans,'pl');
+  const doctorSignin = useSelector((state) => state.doctorSignin);
+  const {doctorInfo } = doctorSignin;
+  // console.log(doctorInfo,'info');
+  // console.log(healthPlans,'pl');
  const  handleChange = (selectedOptions) => {
+  const value=  selectedOptions.filter((e)=>e.id)
     setHealthPlans({ selectedOptions });
-    console.log(healthPlans,'hea');
+    console.log(selectedOptions,'hea');
   }
 
   const [formState, inputHandler, setFormData] = useForm(
@@ -158,7 +165,7 @@ const PatientHealthInfo = () => {
       false
     );
 
-    console.log(formState,'form')
+
 
     
     const height = formState.inputs.height.value
@@ -167,7 +174,7 @@ const PatientHealthInfo = () => {
     const relation = formState.inputs.relation.value
     const caretakerNumber = formState.inputs.caretakerNumber.value
     const caretakerTime = formState.inputs.caretakerTime.value
-    const healthPlan = formState.inputs.healthPlan.value
+    const healthPlan = healthPlans
     const planDate = formState.inputs.planDate.value
     const patientTeam = formState.inputs.patientTeam.value
     console.log(formState)
@@ -201,9 +208,44 @@ const dispatch=useDispatch()
     const user='doctor'
     dispatch(getAllDoctors(user))
   },[])
-// if(doctors){
-//   console.log(doctors,'list');
-// }
+  // const handleInputChange = value => {
+  //   console.log(value,'vl');
+  // };
+ 
+
+  const fetchUsers = () => {
+    return  axios.get(`${Url}/doctors/get-all`, {
+     headers: {
+       Authorization: `Bearer ${doctorInfo}`,
+     },
+   }).then(function (response) {
+     const res =  response.data.data;
+     return res;
+   
+   })    
+       
+   }
+
+  //  useEffect(() => {
+  //   const getData = async () => {
+  //     const arr = [];
+  //     await axios.get(`${Url}/doctors/get-all`,{
+  //       headers: {
+  //         Authorization: `Bearer ${doctorInfo}`,
+  //       }
+  //     }).then((res) => {
+  //       let result = res.data.data;
+  //       result.map((user) => {
+  //         return arr.push({value: user._id, label: user.name});
+  //       });
+  //       setOptions(arr)
+  //       console.log(arr,'arr');
+  //     });
+  //   };
+  //   getData();
+
+  // }, []);
+
   return (
     <>
       <div className="dashboard__Container">
@@ -405,16 +447,35 @@ const dispatch=useDispatch()
                               className="form__Input"
                             />
                             */}
-                           {!loading && !error && doctors &&(
+                           {/* {!loading && !error && doctors &&( */}
                             <>
                             <label>Select Health Team</label>
-                            <Selects onChange={handleChange} isMulti isClearable 
-                            getOptionLabel={e => e.name }
-                            getOptionValue={e => e.id}
-                            loadOptions={doctors}
+                            {/* <Creatable
+                              placeholder= "Select an individual"
+                              options={options}
+                              isMulti
+                              handleChange={handleChange}
+                              onInputChange={handleInputChange}
+                              noOptionsMessage={() => "name not found"}
+                            ></Creatable> */}
+                            {/* <Select onChange={handleChange} isMulti isClearable 
+                     
+                            options={options}
+                          
+                            /> */}
+                               <AsyncSelect
+                                cacheOptions
+                                defaultOptions
+                              // value={selectedValue}
+                              getOptionLabel={e => e.name}
+                              getOptionValue={e => e._id}
+                              loadOptions={fetchUsers}
+                              // onInputChange={handleInputChange}
+                              onChange={handleChange}
+                              isMulti
                             />
                             </>
-                           )}
+                           {/* )} */}
                           
                           </div>
                           <div className="form__Cols--Span-6">

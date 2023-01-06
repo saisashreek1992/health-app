@@ -1,6 +1,6 @@
 import axios from "axios";
-import { CREATE_FORM_FAIL, CREATE_FORM_REQUEST, CREATE_FORM_SUCCESS, CREATE_PRESC_FAIL, CREATE_PRESC_REQUEST, CREATE_PRESC_SUCCESS, GET_DOCTOR_PROFILE_FAIL, GET_DOCTOR_PROFILE_REQUEST, GET_DOCTOR_PROFILE_SUCCESS, UPDATE_PATIENT_FAIL, UPDATE_PATIENT_REQUEST, UPDATE_PATIENT_SUCCESS, UPLOAD_DIET_CHART_FAIL, UPLOAD_DIET_CHART_REQUEST, UPLOAD_DIET_CHART_SUCCESS } from "../constant.js/DoctorConstant";
-import { Url } from "../constant.js/PatientConstant";
+import { CREATE_FORM_FAIL, CREATE_FORM_REQUEST, CREATE_FORM_SUCCESS, CREATE_PRESC_FAIL, CREATE_PRESC_REQUEST, CREATE_PRESC_SUCCESS, GET_APPOINTMENT_WITH_DATE_REQUEST, GET_APPOINTMENT_WITH_DATE_SUCCESS, GET_DOCTOR_PROFILE_FAIL, GET_DOCTOR_PROFILE_REQUEST, GET_DOCTOR_PROFILE_SUCCESS, UPDATE_PATIENT_FAIL, UPDATE_PATIENT_REQUEST, UPDATE_PATIENT_SUCCESS, UPLOAD_DIET_CHART_FAIL, UPLOAD_DIET_CHART_REQUEST, UPLOAD_DIET_CHART_SUCCESS } from "../constant.js/DoctorConstant";
+import { GET_APPOINTMENT_FAIL, Url } from "../constant.js/PatientConstant";
 
 
 export const uploadDietCharts=(calorie_lower,calorie_upper,ch_lower,ch_upper,protiens,fats,food_type,cuisine_type)=>async(dispatch,getState)=>{
@@ -23,11 +23,11 @@ export const uploadDietCharts=(calorie_lower,calorie_upper,ch_lower,ch_upper,pro
   }
 
 
-  export const createForm=(patientId,question_title,questions)=>async(dispatch,getState)=>{
+  export const createForm=(form_title,questions)=>async(dispatch,getState)=>{
     dispatch({type:CREATE_FORM_REQUEST});   
     const { doctorSignin: { doctorInfo }} = getState();
     try{
-      const {data} = await axios.post(`${Url}/doctors/add-form`,{patientId,question_title,questions},{
+      const {data} = await axios.post(`${Url}/doctors/add-form`,{form_title,questions},{
         headers: {Authorization: `Bearer ${doctorInfo}`}});    
       dispatch({type:CREATE_FORM_SUCCESS,payload:data});
      
@@ -94,4 +94,20 @@ export const uploadDietCharts=(calorie_lower,calorie_upper,ch_lower,ch_upper,pro
 
     }
   }
+
+  export const getAppointmentOnDate= (date) => async (dispatch,getState) => {
+    dispatch({ type: GET_APPOINTMENT_WITH_DATE_REQUEST });
+    const { doctorSignin: { doctorInfo }} = getState();
+    try {    
+      const { data } = await axios.get(`${Url}/appointments/get-all/${date}`,{
+        headers: {Authorization: `Bearer ${doctorInfo}`}});      
+      dispatch({ type: GET_APPOINTMENT_WITH_DATE_SUCCESS, payload: data }); 
+    } catch (error) {
+      const message =
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message;
+      dispatch({ type: GET_APPOINTMENT_FAIL, payload: message });
+    }
+  };
   
