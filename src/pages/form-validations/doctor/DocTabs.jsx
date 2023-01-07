@@ -15,7 +15,7 @@ export default class DoctorTabs extends React.Component {
     this.headerText = [
       { text: "Appointments" },
       { text: "My Patients" },
-      { text: "Chat" },
+      // { text: "Chat" },
     ];
   }
 
@@ -25,9 +25,9 @@ export default class DoctorTabs extends React.Component {
   content1() {
     return <div className="py-3"><DocPatients /></div>;
   }
-  content2() {
-    return <div className="py-3"><ChatBox /></div>;
-  }
+  // content2() {
+  //   return <div className="py-3"><ChatBox /></div>;
+  // }
 
   render() {
     return (
@@ -42,10 +42,10 @@ export default class DoctorTabs extends React.Component {
               header={this.headerText[1]}
               content={this.content1}
             />
-            <TabItemDirective
+            {/* <TabItemDirective
               header={this.headerText[2]}
               content={this.content2}
-            />
+            /> */}
           </TabItemsDirective>
         </TabComponent>
       </>
