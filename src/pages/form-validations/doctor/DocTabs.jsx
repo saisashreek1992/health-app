@@ -8,6 +8,7 @@ import {
 import DocAppointment from "./DocAppointment";
 import DocPatients from "./DocPatients";
 import ChatBox from "../../shared/ChatBox";
+import DoctorVisitor from "./DoctorVisitor";
 
 export default class DoctorTabs extends React.Component {
   constructor() {
@@ -23,7 +24,7 @@ export default class DoctorTabs extends React.Component {
     return <div className="py-5"><DocAppointment /></div>;
   }
   content1() {
-    return <div className="py-3"><DocPatients /></div>;
+    return <div className="py-3"><DoctorVisitor /></div>;
   }
   // content2() {
   //   return <div className="py-3"><ChatBox /></div>;

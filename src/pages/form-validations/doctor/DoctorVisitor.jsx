@@ -15,12 +15,15 @@ const DoctorVisitor = () => {
   useEffect(() => {
     dispatch(listPatients());
   }, [dispatch]);
+  if(patients){
+    console.log(patients);
+  }
 
   let navigate = useNavigate();
   return (
     <>
       <div className="flex justify-evenly">
-        <div className="block p-6 rounded-lg shadow-lg bg-white max-w-sm">
+        {/* <div className="block p-6 rounded-lg shadow-lg bg-white max-w-sm">
           <h5 className="text-gray-900 text-xl leading-tight font-medium mb-2">
             Patient Count
             <span className="text-xs inline-block mx-3 py-1 px-2.5 leading-none text-center whitespace-nowrap align-baseline font-bold bg-green-500 text-white rounded-full">
@@ -33,8 +36,8 @@ const DoctorVisitor = () => {
           >
             45
           </button>
-        </div>
-        <div className="block p-6 rounded-lg shadow-lg bg-white max-w-sm">
+        </div> */}
+        {/* <div className="block p-6 rounded-lg shadow-lg bg-white max-w-sm">
           <h5 className="text-gray-900 text-xl leading-tight font-medium mb-2">
             Patient Count
             <span className="text-xs inline-block mx-3 py-1 px-2.5 leading-none text-center whitespace-nowrap align-baseline font-bold bg-red-500 text-white rounded-full">
@@ -47,8 +50,8 @@ const DoctorVisitor = () => {
           >
             34
           </button>
-        </div>
-        <div className="block p-6 rounded-lg shadow-lg bg-white max-w-sm">
+        </div> */}
+        {/* <div className="block p-6 rounded-lg shadow-lg bg-white max-w-sm">
           <h5 className="text-gray-900 text-xl leading-tight font-medium mb-2">
             Patient Count
             <span className="text-xs inline-block mx-3 py-1 px-2.5 leading-none text-center whitespace-nowrap align-baseline font-bold bg-blue-500 text-white rounded-full">
@@ -61,7 +64,7 @@ const DoctorVisitor = () => {
           >
             78
           </button>
-        </div>
+        </div> */}
       </div>
 
       <div className="my-10">
@@ -71,9 +74,9 @@ const DoctorVisitor = () => {
               <th className="text-lg font-bold text-gray-900 px-2 py-4">
                 Sl No.
               </th>
-              <th className="text-lg font-bold text-gray-900 px-2 py-4">
+              {/* <th className="text-lg font-bold text-gray-900 px-2 py-4">
                 Doctor Name
-              </th>
+              </th> */}
               <th className="text-lg font-bold text-gray-900 px-2 py-4">
                 Patient Name
               </th>
@@ -91,15 +94,15 @@ const DoctorVisitor = () => {
             ) : error ? (
               <MessageBox>{error}</MessageBox>
             ) : (
-              patients.data &&
-              patients.data.map((itm, i) => (
+              patients &&
+              patients.map((itm, i) => (
                 <tr key={itm._id} className="bg-white border-b">
                   <td className="px-6 py-4 whitespace-nowrap text-base font-medium text-gray-900 text-center">
                     {i + 1}
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-base font-medium text-gray-900 text-center">
+                  {/* <td className="px-6 py-4 whitespace-nowrap text-base font-medium text-gray-900 text-center">
                     {itm.team}
-                  </td>
+                  </td> */}
                   <td className="px-6 py-4 whitespace-nowrap text-base font-medium text-gray-900 text-center">
                     {itm.name}
                   </td>

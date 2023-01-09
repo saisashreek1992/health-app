@@ -276,12 +276,12 @@ export const latestPrescriptionReducer = (state = { loading:true,prescLatest:[] 
   }
 };
 
-export const latestDietChartReducer = (state = { loading:true,deitChart:[] }, action) => {
+export const latestDietChartReducer = (state = { loading:true,deitChartLatest:[] }, action) => {
   switch (action.type) {
     case GET_LATEST_DIET_CHART_REQUEST:
       return { loading: true };
     case GET_LATEST_DIET_CHART_SUCCESS:
-      return { loading: false, deitChart: action.payload.data };
+      return { loading: false, deitChartLatest: action.payload.data };
     case GET_LATEST_DIET_CHART_FAIL:
       return { loading: false, error: action.payload };
     default:

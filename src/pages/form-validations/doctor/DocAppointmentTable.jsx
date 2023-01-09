@@ -30,9 +30,7 @@ const DocAppointmentTable = () => {
     dispatch(getAppointments(user))
 
   },[]);
-  if(appointment){
-    console.log(appointment,'ts');
-  }
+ 
 
   const selectionsettings = { persistSelection: true };
   const toolbarOptions = ["Delete"];
@@ -47,7 +45,6 @@ const DocAppointmentTable = () => {
         {loading ? <LoadingBox></LoadingBox>:
         error ? <MessageBox></MessageBox>:(
         //   <GridComponent
-        //   // dataSource={AppointmentInfo}
         //   dataSource={appointment}
         //   enableHover={false}
         //   allowPaging
@@ -96,27 +93,15 @@ const DocAppointmentTable = () => {
                 {i+1}
               </td>
               <td className="px-6 py-4 whitespace-nowrap text-base font-medium text-gray-900 text-center">
-                {ap.doctorId}
+                {ap.doctorId.name}
               </td>
               <td className="px-6 py-4 whitespace-nowrap text-base font-medium text-gray-900 text-center">
-                {ap.patientId}
+                {ap.patientId.name}
               </td>
               <td className="px-6 py-4 whitespace-nowrap text-base font-medium text-gray-900 text-center">
                 {truncate(ap.date,11)}
               </td>
-              {/* <td className="px-6 py-4 whitespace-nowrap text-base font-medium text-gray-900 text-center">
-                <div className="flex flex-row justify-center">
-                  <div className="inline-block p-6">
-                    <FiEye
-                      className="h-6 w-6 hover:text-green-500"
-                      onClick={() => navigate('/userrole/:roleid/dashboard/patient/meeting/info/')}
-                    />
-                  </div>
-                  <div className="inline-block p-6">
-                    <FiEdit className="h-6 w-6 hover:text-blue-500" />
-                  </div>
-                </div>
-              </td> */}
+            
             </tr>
            )):
            
