@@ -39,7 +39,7 @@ const PatientHealthInfo = () => {
  const  handleChange = (selectedOptions) => {
   const value=  selectedOptions.filter((e)=>e.id)
     setHealthPlans({ selectedOptions });
-    console.log(selectedOptions,'hea');
+    // console.log(selectedOptions,'hea');
   }
 
   const [formState, inputHandler, setFormData] = useForm(
@@ -177,7 +177,7 @@ const PatientHealthInfo = () => {
     const healthPlan = healthPlans
     const planDate = formState.inputs.planDate.value
     const patientTeam = formState.inputs.patientTeam.value
-    console.log(formState)
+    // console.log(formState)
     // if(height === '' || weight === '' || caretakerName === '' || relation === '' || caretakerNumber === '' || caretakerTime === '' || healthPlan === '' || planDate === '' || patientTeam === ''  ){
     //   alert('please fill all the fields')
     // }else{

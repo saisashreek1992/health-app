@@ -11,13 +11,13 @@ import { Url } from "../constant.js/PatientConstant";
     try{
       const {data} = await axios.post(`${Url}/doctors/add-doctor`,{name,role,email,phone,registration_no},{
         headers: {
-          Authorization: `Bearer ${adminDocInfo}`,
+          Authorization: `Bearer ${adminDocInfo.token}`,
         },
       });      
       dispatch({type:CREATE_DOCTOR_SUCCESS,payload:data});
      
     }catch(error){
-        console.log(error.response.data.message,'error')
+        // console.log(error.response.data.message,'error')
       const message =
       error.response && error.response.data.message
         ? error.response.data.message
@@ -32,8 +32,8 @@ import { Url } from "../constant.js/PatientConstant";
     try{
       const {data}= await axios.post(`${Url}/auth/login`,{email,password,user})
         dispatch({type:ADMIN_LOGIN_SUCCESS,payload:data});
-        console.log(data.token,'dctrt');
-        localStorage.setItem('adminDocInfo', JSON.stringify(data.token));
+        // console.log(data.token,'dctrt');
+        localStorage.setItem('adminDocInfo', JSON.stringify(data));
     }catch(error){
       const message =
       error.response && error.response.data.message
@@ -61,21 +61,21 @@ export const adminSignout = () => (dispatch) => {
       if(user === 'doctor'){
         const {data} = await axios.get(`${Url}/doctors/get-all`,{
           headers: {
-            Authorization: `Bearer ${doctorInfo}`,
+            Authorization: `Bearer ${doctorInfo.token}`,
           },
         });    
         dispatch({type:GET_ALL_DOCTORS_SUCCESS,payload:data});
       }else if(user === 'patient'){
         const {data} = await axios.get(`${Url}/doctors/get-all`,{
           headers: {
-            Authorization: `Bearer ${patientInfo}`,
+            Authorization: `Bearer ${patientInfo.token}`,
           },
         });    
         dispatch({type:GET_ALL_DOCTORS_SUCCESS,payload:data});
       }else{
         const {data} = await axios.get(`${Url}/doctors/get-all`,{
           headers: {
-            Authorization: `Bearer ${adminDocInfo}`,
+            Authorization: `Bearer ${adminDocInfo.token}`,
           },
         });    
         dispatch({type:GET_ALL_DOCTORS_SUCCESS,payload:data});
@@ -101,7 +101,7 @@ export const adminSignout = () => (dispatch) => {
     try{
       const {data} = await axios.put(`${Url}/doctors/activate/${id}`,{},{
         headers: {
-          Authorization: `Bearer ${adminDocInfo}`,
+          Authorization: `Bearer ${adminDocInfo.token}`,
         },
       });      
       dispatch({type:ACTIVATE_DOCTOR_SUCCESS,payload:data});
@@ -121,11 +121,11 @@ export const adminSignout = () => (dispatch) => {
     const {
       adminSignin: { adminDocInfo },
     } = getState();  
-    console.log(adminDocInfo,'ad');
+    // console.log(adminDocInfo,'ad');
     try{
       const {data} = await axios.put(`${Url}/doctors/deactivate/${id}`,{},{
         headers: {
-          Authorization: `Bearer ${adminDocInfo}`,
+          Authorization: `Bearer ${adminDocInfo.token}`,
         },
       });      
       dispatch({type:DEACTIVATE_DOCTOR_SUCCESS,payload:data});
@@ -149,7 +149,7 @@ export const adminSignout = () => (dispatch) => {
       if(user === 'patient'){
         const {data} = await axios.get(`${Url}/diet-charts/get-all`,{
           headers: {
-            Authorization: `Bearer ${patientInfo}`,
+            Authorization: `Bearer ${patientInfo.token}`,
           },
         }); 
         dispatch({type:GET_ALL_DIET_CHART_SUCCESS,payload:data});
@@ -180,7 +180,7 @@ export const adminSignout = () => (dispatch) => {
     try{
       const {data} = await axios.put(`${Url}/forms/activate/${id}`,{},{
         headers: {
-          Authorization: `Bearer ${adminDocInfo}`,
+          Authorization: `Bearer ${adminDocInfo.token}`,
         },
       });      
       dispatch({type:ACTIVATE_FORM_SUCCESS,payload:data});
@@ -200,11 +200,11 @@ export const adminSignout = () => (dispatch) => {
     const {
       adminSignin: { adminDocInfo },
     } = getState();  
-    console.log(adminDocInfo,'ad');
+    // console.log(adminDocInfo,'ad');
     try{
       const {data} = await axios.put(`${Url}/forms/deactivate/${id}`,{},{
         headers: {
-          Authorization: `Bearer ${adminDocInfo}`,
+          Authorization: `Bearer ${adminDocInfo.token}`,
         },
       });      
       dispatch({type:DEACTIVATE_FORM_SUCCESS,payload:data});
@@ -227,7 +227,7 @@ export const adminSignout = () => (dispatch) => {
     try{
       const {data} = await axios.put(`${Url}/diet-charts/activate/${id}`,{},{
         headers: {
-          Authorization: `Bearer ${adminDocInfo}`,
+          Authorization: `Bearer ${adminDocInfo.token}`,
         },
       });      
       dispatch({type:ACTIVATE_DTCHART_SUCCESS,payload:data});
@@ -251,7 +251,7 @@ export const adminSignout = () => (dispatch) => {
     try{
       const {data} = await axios.put(`${Url}/diet-charts/deactivate/${id}`,{},{
         headers: {
-          Authorization: `Bearer ${adminDocInfo}`,
+          Authorization: `Bearer ${adminDocInfo.token}`,
         },
       });      
       dispatch({type:DEACTIVATE_DTCHART_SUCCESS,payload:data});

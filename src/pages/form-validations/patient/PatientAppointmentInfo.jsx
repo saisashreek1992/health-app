@@ -25,7 +25,7 @@ const PatientAppointmentInfo = () => {
   const { loading:loadingDoctor, error:errorDoctors, doctors } = doctorList;
 
   const save=()=>{
-    console.log('heyy');
+    // console.log('heyy');
     dispatch(createAppointment(staff,date))
   }
 
@@ -37,7 +37,7 @@ const PatientAppointmentInfo = () => {
       const user='patient'
       dispatch(getAllDoctors(user))
   },[success])
-  console.log(staff);
+  // console.log(staff);
   return (
     <>
       <div className="flex justify-start my-5">

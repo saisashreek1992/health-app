@@ -9,11 +9,11 @@ export const uploadDietCharts=(calorie_lower,calorie_upper,ch_lower,ch_upper,pro
 
     try{
       const {data} = await axios.post(`${Url}/doctors/add-diet-chart`,{calorie_lower,calorie_upper,ch_lower,ch_upper,protiens,fats,food_type,cuisine_type},{
-        headers: {Authorization: `Bearer ${doctorInfo}`}});    
+        headers: {Authorization: `Bearer ${doctorInfo.token}`}});    
       dispatch({type:UPLOAD_DIET_CHART_SUCCESS,payload:data});
      
     }catch(error){
-        console.log(error.response.data.message,'error')
+        // console.log(error.response.data.message,'error')
       const message =
       error.response && error.response.data.message
         ? error.response.data.message
@@ -28,11 +28,11 @@ export const uploadDietCharts=(calorie_lower,calorie_upper,ch_lower,ch_upper,pro
     const { doctorSignin: { doctorInfo }} = getState();
     try{
       const {data} = await axios.post(`${Url}/doctors/add-form`,{form_title,questions},{
-        headers: {Authorization: `Bearer ${doctorInfo}`}});    
+        headers: {Authorization: `Bearer ${doctorInfo.token}`}});    
       dispatch({type:CREATE_FORM_SUCCESS,payload:data});
      
     }catch(error){
-        console.log(error.response.data.message,'error')
+        // console.log(error.response.data.message,'error')
       const message =
       error.response && error.response.data.message
         ? error.response.data.message
@@ -48,11 +48,11 @@ export const uploadDietCharts=(calorie_lower,calorie_upper,ch_lower,ch_upper,pro
 
     try{
       const {data} = await axios.post(`${Url}/presc/add`,{patientId,medicine_type,medicine_name,morning_dose,afternoon_dose,evening_dose,frequency,duration,duration_days,special_inst},{
-        headers: {Authorization: `Bearer ${doctorInfo}`}});    
+        headers: {Authorization: `Bearer ${doctorInfo.token}`}});    
       dispatch({type:CREATE_PRESC_SUCCESS,payload:data});
      
     }catch(error){
-        console.log(error.response.data.message,'error')
+        // console.log(error.response.data.message,'error')
       const message =
       error.response && error.response.data.message
         ? error.response.data.message
@@ -67,7 +67,7 @@ export const uploadDietCharts=(calorie_lower,calorie_upper,ch_lower,ch_upper,pro
     const { doctorSignin: { doctorInfo }} = getState();
     try {    
       const { data } = await axios.get(`${Url}/profile/doctor`,{
-        headers: {Authorization: `Bearer ${doctorInfo}`}});      
+        headers: {Authorization: `Bearer ${doctorInfo.token}`}});      
       dispatch({ type: GET_DOCTOR_PROFILE_SUCCESS, payload: data }); 
     } catch (error) {
       const message =
@@ -83,7 +83,7 @@ export const uploadDietCharts=(calorie_lower,calorie_upper,ch_lower,ch_upper,pro
     const { doctorSignin: { doctorInfo }} = getState();
     try{
       const {data} = await axios.put(`${Url}/doctors/edit-patient/${id}`,room,{
-        headers: {Authorization: `Bearer ${doctorInfo}`}});    
+        headers: {Authorization: `Bearer ${doctorInfo.token}`}});    
       dispatch({type:UPDATE_PATIENT_SUCCESS,payload:data});  
     }catch(error){
       const message =
@@ -100,7 +100,7 @@ export const uploadDietCharts=(calorie_lower,calorie_upper,ch_lower,ch_upper,pro
     const { doctorSignin: { doctorInfo }} = getState();
     try {    
       const { data } = await axios.get(`${Url}/appointments/get-all/${date}`,{
-        headers: {Authorization: `Bearer ${doctorInfo}`}});      
+        headers: {Authorization: `Bearer ${doctorInfo.token}`}});      
       dispatch({ type: GET_APPOINTMENT_WITH_DATE_SUCCESS, payload: data }); 
     } catch (error) {
       const message =

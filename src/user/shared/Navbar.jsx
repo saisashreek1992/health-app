@@ -30,7 +30,7 @@ const user = {
 const Navbar = () => {
   const dispatch=useDispatch()
   const hello=()=>{
-    console.log('helloo');
+    // console.log('helloo');
     dispatch(doctorSignout())
   }
 

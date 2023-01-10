@@ -18,9 +18,9 @@ const PatientUploadDietChart = () => {
   dispatch(getLatesDietChart())
   dispatch(getAllDietChart(user))
   },[dispatch])
-  if(dietchart){
-    console.log(dietchart,'dttt');
-  }
+  // if(dietchart){
+  //   console.log(dietchart,'dttt');
+  // }
   return (
     <>
       <div className="tab__Card--Container tab__Card--Gap-1">

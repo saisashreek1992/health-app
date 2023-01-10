@@ -15,9 +15,9 @@ const PatientProfile = () => {
   useEffect(()=>{
     dispatch(getPatientProfile())
   },[])
-  if(profile){
-    console.log(profile.patient);
-  }
+  // if(profile){
+  //   console.log(profile.patient);
+  // }
   const navigate = useNavigate();
   const backFunc = () => {
     navigate("/userrole/:roleid/dashboard/patient/");

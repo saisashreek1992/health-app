@@ -18,9 +18,9 @@ const DocProfile = () => {
   const backFunc = () => {
     navigate("/userrole/:roleid/dashboard/doctor/");
   };
-  if(profile){
-    console.log(profile);
-  }
+  // if(profile){
+  //   console.log(profile);
+  // }
   return (
     <>
       <div className="dashboard__Container">

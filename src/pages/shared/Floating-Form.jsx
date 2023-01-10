@@ -8,59 +8,6 @@ const FloatingForm = () => {
       <div className="fab__Fix-Container">
         <div className="">
           <div className="relative">
-            {/* <ul
-            className="dropdown-menu min-w-max absolute hidden bg-white text-base z-50 float-left py-2 list-none text-left rounded-lg shadow-lg mt-1 hidden m-0 bg-clip-padding border-none"
-            aria-labelledby="dropdownMenuButton1u"
-          >
-            <li>
-              <Link
-                className="dropdown-item text-sm py-2 px-4 font-medium block w-full whitespace-nowrap bg-transparent text-gray-700 hover:bg-gray-100"
-                to="/userrole/:roleid/dashboard/patient/mydata/"
-              >
-                Daily
-              </Link>
-            </li>
-            <li>
-              <Link
-                className="dropdown-item text-sm py-2 px-4 font-medium block w-full whitespace-nowrap bg-transparent text-gray-700 hover:bg-gray-100"
-                to="/userrole/:roleid/dashboard/patient/mydata/"
-              >
-                Weekly
-              </Link>
-            </li>
-            <li>
-              <Link
-                className="dropdown-item text-sm py-2 px-4 font-medium block w-full whitespace-nowrap bg-transparent text-gray-700 hover:bg-gray-100"
-                to="/userrole/:roleid/dashboard/patient/mydata/"
-              >
-                Bi Weekly
-              </Link>
-            </li>
-            <li>
-              <Link
-                className="dropdown-item text-sm py-2 px-4 font-medium block w-full whitespace-nowrap bg-transparent text-gray-700 hover:bg-gray-100"
-                to="/userrole/:roleid/dashboard/patient/mydata/"
-              >
-                Monthly
-              </Link>
-            </li>
-            <li>
-              <Link
-                className="dropdown-item text-sm py-2 px-4 font-medium block w-full whitespace-nowrap bg-transparent text-gray-700 hover:bg-gray-100"
-                to="/userrole/:roleid/dashboard/patient/mydata/"
-              >
-                Quarterly
-              </Link>
-            </li>
-            <li>
-              <Link
-                className="dropdown-item text-sm py-2 px-4 font-medium block w-full whitespace-nowrap bg-transparent text-gray-700 hover:bg-gray-100"
-                to="/userrole/:roleid/dashboard/patient/mydata/"
-              >
-                One Time
-              </Link>
-            </li>
-          </ul> */}
           </div>
         </div>
       </div>

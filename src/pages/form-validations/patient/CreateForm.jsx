@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 import { createForm } from "../../../action/DoctorAction";
+import LoadingBox from "../../../Components/LoadingBox";
+import MessageBox from "../../../Components/MessageBox";
 import { CREATE_FORM_RESET } from "../../../constant.js/DoctorConstant";
 import Navbar from "../../../user/shared/Navbar";
 
@@ -22,14 +25,14 @@ const CreateForm = () => {
   const dispatch=useDispatch()
   const nextStep = () => {
     dispatch(createForm(title,addMore))
-    console.log(addMore,'admmore')
+    // console.log(addMore,'admmore')
   };
 
   const handleFormChange=(event,index)=>{
     let data = [...addMore]
     data[index][event.target.name] = event.target.value;
     setAddMore(data);
-    console.log(addMore,'vii')
+    // console.log(addMore,'vii')
   }
 
   const addMoreFields=()=>{
@@ -51,7 +54,14 @@ const CreateForm = () => {
 
   useEffect(()=>{
      if(success){
+      Swal.fire({
+        title: 'Form created Succesfully.',
+        text: "Thanks",
+        type: 'success',    
+        icon: 'success',        
+      }); 
       dispatch({type:CREATE_FORM_RESET})
+
        navigate("/userrole/:roleid/dashboard/doctor/");
      }
   },[success])
@@ -348,6 +358,8 @@ const CreateForm = () => {
 
                         </div>
                         <div className="form__Btn-Bg">
+                          {loading && <LoadingBox></LoadingBox>}
+                          {error && <MessageBox>{error}</MessageBox>}
                           <button
                             onClick={nextStep}
                             type="submit"

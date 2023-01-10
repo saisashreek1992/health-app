@@ -49,23 +49,23 @@ const App = () => {
         <Route path='/patient' element={<DoctorMeetingInfo />} />
 
         <Route path='/userrole/:roleid/dashboard/doctor/multistep/' element={<MultistepForm />} />
-        <Route path="/userrole/:roleid/dashboard/doctor/enrol/patient/" element={<CreatePatient />} />
-        <Route path='/userrole/:roleid/dashboard/doctor/enrol/healthinfo/' element={<PatientHealthInfo />} />
-        <Route path='/userrole/:roleid/dashboard/doctor/enrol/personalinfo/' element={<PatientPersonalInfo />} />
-        <Route path='/userrole/:roleid/dashboard/doctor/create/form/' element={<CreateForm />} />
-        <Route path='/userrole/:roleid/dashboard/doctor/create/dietchart/' element={<UploadDietChart />} />
-        <Route path='/userrole/:roleid/dashboard/doctor/meeting/info/' element={<DoctorMeetingInfo />} />
-        <Route path='/userrole/:roleid/dashboard/doctor/profile/' element={<DocProfile />} />
-        <Route path='/userrole/:roleid/dashboard/patient/' element={<PatientDashboard />} />
+        <Route path="/userrole/:roleid/dashboard/doctor/enrol/patient/" element={<DoctorRoute><CreatePatient /></DoctorRoute>} />
+        <Route path='/userrole/:roleid/dashboard/doctor/enrol/healthinfo/' element={ <DoctorRoute><PatientHealthInfo /></DoctorRoute>} />
+        <Route path='/userrole/:roleid/dashboard/doctor/enrol/personalinfo/' element={<DoctorRoute><PatientPersonalInfo /></DoctorRoute>} />
+        <Route path='/userrole/:roleid/dashboard/doctor/create/form/' element={<DoctorRoute><CreateForm /></DoctorRoute>} />
+        <Route path='/userrole/:roleid/dashboard/doctor/create/dietchart/' element={<DoctorRoute><UploadDietChart /></DoctorRoute>} />
+        <Route path='/userrole/:roleid/dashboard/doctor/meeting/info/' element={<DoctorRoute><DoctorMeetingInfo /></DoctorRoute>} />
+        <Route path='/userrole/:roleid/dashboard/doctor/profile/' element={ <DoctorRoute><DocProfile /></DoctorRoute>} />
+        <Route path='/userrole/:roleid/dashboard/patient/' element={ <PatientRoute><PatientDashboard /></PatientRoute>} />
         <Route path='/userrole/:roleid/dashboard/patient/mydata/' element={ <PatientRoute><PatientDataTab /></PatientRoute>} />
-        <Route path='/userrole/:roleid/dashboard/patient/mydata/forms/' element={<PatientForm />} />
-        <Route path='/userrole/:roleid/dashboard/patient/prescriptions/' element={<PatientPrescription />} />
-        <Route path='/userrole/:roleid/dashboard/patient/meeting/info/' element={<PatientMeetingInfo />} />
-        <Route path='/userrole/:roleid/dashboard/patient/profile/' element={<PatientProfile />} />
+        <Route path='/userrole/:roleid/dashboard/patient/mydata/forms/' element={<PatientRoute><PatientForm /></PatientRoute>} />
+        <Route path='/userrole/:roleid/dashboard/patient/prescriptions/' element={ <PatientRoute><PatientPrescription /></PatientRoute>} />
+        <Route path='/userrole/:roleid/dashboard/patient/meeting/info/' element={ <PatientRoute><PatientMeetingInfo /></PatientRoute>} />
+        <Route path='/userrole/:roleid/dashboard/patient/profile/' element={<PatientRoute><PatientProfile /></PatientRoute>}  />
         <Route path='/userrole/:roleid/dashboard/common/chat/' element={<UserChat />} />
         <Route path='/userrole/:roleid/dashboard/admin/' element={<AdminRoute><Admin /></AdminRoute>}/>
-        <Route path='/userrole/:roleid/dashboard/admin/patient/enrolment/view/' element={<EnrolmentsView />} />
-        <Route path='/userrole/:roleid/dashboard/admin/summary/employee/view/' element={<EmployeSummary />} />
+        <Route path='/userrole/:roleid/dashboard/admin/patient/enrolment/view/' element={ <AdminRoute><EnrolmentsView /></AdminRoute>} />
+        <Route path='/userrole/:roleid/dashboard/admin/summary/employee/view/' element={ <AdminRoute><EmployeSummary /></AdminRoute>} />
       </Routes>
     </BrowserRouter>
   );

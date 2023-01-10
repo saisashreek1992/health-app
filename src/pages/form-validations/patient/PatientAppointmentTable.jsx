@@ -26,9 +26,9 @@ const PatientAppointmentTable = () => {
   useEffect(() => {
     updateSampleSection();
   });
-  if(appointment){
-    console.log(appointment);
-  }
+  // if(appointment){
+  //   console.log(appointment);
+  // }
 
   const selectionsettings = { persistSelection: true };
   const toolbarOptions = ["Delete"];

@@ -33,13 +33,13 @@ const DocPatientTable = () => {
 
     }
   },[dispatch,doctorInfo]);
-  console.log(patients,'pt');
+  // console.log(patients,'pt');
 
   const selectionsettings = { persistSelection: false };
   const toolbarOptions = ["Delete"];
   const editing = { allowDeleting: false, allowEditing: false };
   const rowSelected=(args)=>{
-    console.log(args.data._id,'arg');
+    // console.log(args.data._id,'arg');
     navigate('/patient',{state:{id:args.data._id}})
   }
 

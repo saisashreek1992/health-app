@@ -45,7 +45,7 @@ const user = {
 const PatientNav = () => {
   const dispatch=useDispatch()
   const hello=()=>{
-     console.log('heysiri');
+    //  console.log('heysiri');
     dispatch(patientSignout())
   }
 

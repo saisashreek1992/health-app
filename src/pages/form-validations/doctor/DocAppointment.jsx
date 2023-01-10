@@ -15,12 +15,12 @@ const DocAppointment = () => {
 
      
   },[])
-  if(count){
-    console.log(count);
-  }
+  // if(count){
+  //   console.log(count);
+  // }
 
   const handleChange=(e)=>{
-   console.log(e.target.value,'e');
+  //  console.log(e.target.value,'e');
    const dates=e.target.value
     dispatch(getAppointmentOnDate(dates))
   }

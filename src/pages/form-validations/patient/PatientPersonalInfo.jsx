@@ -88,7 +88,7 @@ const PatientPersonalInfo = () => {
   useEffect(()=>{
     const arr=[]
     for(let i=0;i<healthPlan.selectedOptions.length;i++){
-      console.log(healthPlan.selectedOptions[i]._id,'id');
+      // console.log(healthPlan.selectedOptions[i]._id,'id');
       arr.push(healthPlan.selectedOptions[i]._id)
     }
     
@@ -126,7 +126,7 @@ const PatientPersonalInfo = () => {
        setPaymentNextDate(formState.inputs.paymentNextDate.value)
        setRefId(formState.inputs.refId.value)
     
-    console.log(amount,paymentMode,paymentDate,refId,paymentNextDate,'iss')
+    // console.log(amount,paymentMode,paymentDate,refId,paymentNextDate,'iss')
  
       dispatch(
         patientEnrollment(

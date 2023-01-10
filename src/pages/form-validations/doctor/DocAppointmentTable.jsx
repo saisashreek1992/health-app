@@ -43,7 +43,7 @@ const DocAppointmentTable = () => {
     <>
       <div className="py-16 bg-white rounded-3xl">
         {loading ? <LoadingBox></LoadingBox>:
-        error ? <MessageBox></MessageBox>:(
+        error ? <MessageBox>{error}</MessageBox>:(
         //   <GridComponent
         //   dataSource={appointment}
         //   enableHover={false}

@@ -33,7 +33,7 @@ function classNames(...classes) {
 const AdminNav = () => {
   const dispatch=useDispatch()
   const hello=()=>{
-    console.log('helloo');
+    // console.log('helloo');
     dispatch(adminSignout())
   }
 

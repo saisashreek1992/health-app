@@ -34,11 +34,11 @@ const LoginForm = () => {
 
   const dispatch = useDispatch();
 
-  console.log(doctorInfo,'addd');
+  // console.log(doctorInfo,'addd');
 
   const otpHandler = (e) => {
     e.preventDefault();
-    console.log("hey");
+    // console.log("hey");
     dispatch(
       patientOtp(
         formState.inputs.emailAddress.value,
@@ -158,7 +158,7 @@ const LoginForm = () => {
     // console.log(formState.inputs.role,'patinetinfo');
 
     if(formState.inputs.role.value === 'doctor' && doctorInfo){
-      console.log(doctorInfo,'yess');
+      // console.log(doctorInfo,'yess');
       navigate('/userrole/:roleid/dashboard/doctor/')
     }else if(formState.inputs.role.value === 'patient' && patientInfo){
       navigate('/userrole/:roleid/dashboard/patient/mydata/')
@@ -185,7 +185,7 @@ const LoginForm = () => {
     e.preventDefault()
     const user='admin'
     dispatch(adminLogin(formState.inputs.emailAddress.value,formState.inputs.password.value,user))
-    console.log('heyyyy');
+    // console.log('heyyyy');
 
   }
 

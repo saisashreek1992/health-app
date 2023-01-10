@@ -10,13 +10,13 @@ export const patientEnrollment=(phone,name,email,dob,gender,height,weight,careta
   try{
     const {data} = await axios.post(`${Url}/doctors/add-patient`,{phone,name,email,dob,gender,height,weight,caretakers_name,caretakers_relation,caretakers_phone,caretakers_time,doctors,health_plan_date,team,amount,payment_mode,payment_date,ref_id,next_payment_date},{
       headers: {
-        Authorization: `Bearer ${doctorInfo}`,
+        Authorization: `Bearer ${doctorInfo.token}`,
       },
     });
     dispatch({type:ENROLMENT_PATIENT_SUCCESS,payload:data});
    
   }catch(error){
-      console.log(error.response.data.message,'error')
+      // console.log(error.response.data.message,'error')
     const message =
     error.response && error.response.data.message
       ? error.response.data.message
@@ -30,11 +30,11 @@ export const patientEnrollment=(phone,name,email,dob,gender,height,weight,careta
 export const listPatients = () => async (dispatch,getState) => {
   dispatch({ type: GET_ALL_PATIENT_REQUEST });
   const { doctorSignin: { doctorInfo }} = getState();
-  console.log(doctorInfo,'infoss');    
+  // console.log(doctorInfo,'infoss');    
   try {    
     const { data } = await axios.get(`${Url}/doctors/get-all-patients`,{
       headers: {
-        Authorization: `Bearer ${doctorInfo}`,
+        Authorization: `Bearer ${doctorInfo.token}`,
       },
     });
     dispatch({ type: GET_ALL_PATIENT_SUCCESS, payload: data }); 
@@ -56,7 +56,7 @@ export const DetailsPatients = (id) => async (dispatch,getState) => {
   try {    
     const { data } = await axios.get(`${Url}/doctors/patient/${id}`,{
       headers: {
-        Authorization: `Bearer ${doctorInfo}`,
+        Authorization: `Bearer ${doctorInfo.token}`,
       },
     });      
     dispatch({ type: GET_PATIENT_DETAILS_SUCCESS, payload: data }); 
@@ -82,14 +82,14 @@ export const getForms = (user) => async (dispatch,getState) => {
     if(user=== 'admin'){
       const { data } = await axios.get(`${Url}/forms/get-all`,{
         headers: {
-          Authorization: `Bearer ${adminDocInfo}`,
+          Authorization: `Bearer ${adminDocInfo.token}`,
         },
       });  
        dispatch({ type: GET_ALL_PATIENT_FORMS_SUCCESS, payload: data }); 
     }else{
       const { data } = await axios.get(`${Url}/forms/get-all`,{
         headers: {
-          Authorization: `Bearer ${patientInfo}`,
+          Authorization: `Bearer ${patientInfo.token}`,
         },
       });  
        dispatch({ type: GET_ALL_PATIENT_FORMS_SUCCESS, payload: data }); 
@@ -112,12 +112,12 @@ export const createAppointment=(doctorId,date)=>async(dispatch,getState)=>{
   try{
     const {data} = await axios.post(`${Url}/appointments/create`,{doctorId,date},{
       headers: {
-        Authorization: `Bearer ${patientInfo}`,
+        Authorization: `Bearer ${patientInfo.token}`,
       },
     });      
     dispatch({type:CREATE_APPOINTMENT_SUCCESS,payload:data});  
   }catch(error){
-      console.log(error.response.data.message,'error')
+      // console.log(error.response.data.message,'error')
     const message =
     error.response && error.response.data.message
       ? error.response.data.message
@@ -131,20 +131,20 @@ export const getAppointments = (user) => async (dispatch,getState) => {
   dispatch({ type: GET_APPOINTMENT_REQUEST });
   const { doctorSignin: { doctorInfo }} = getState();
   const { patientSignin: { patientInfo }} = getState();
-
+  
 
   try {    
     if(user ==='doctor'){
       const { data } = await axios.get(`${Url}/appointments/get-all`,{
         headers: {
-          Authorization: `Bearer ${doctorInfo}`,
+          Authorization: `Bearer ${doctorInfo.token}`,
         },
       });      
       dispatch({ type: GET_APPOINTMENT_SUCCESS, payload: data }); 
     }else{
       const { data } = await axios.get(`${Url}/appointments/get-all`,{
         headers: {
-          Authorization: `Bearer ${patientInfo}`,
+          Authorization: `Bearer ${patientInfo.token}`,
         },
       });      
       dispatch({ type: GET_APPOINTMENT_SUCCESS, payload: data }); 
@@ -169,7 +169,7 @@ export const getPrescriptions = () => async (dispatch,getState) => {
   try {    
     const { data } = await axios.get(`${Url}/presc/get-all`,{
       headers: {
-        Authorization: `Bearer ${patientInfo}`,
+        Authorization: `Bearer ${patientInfo.token}`,
       },
     });      
     dispatch({ type: GET_PRESCRIPTION_SUCCESS, payload: data }); 
@@ -206,13 +206,13 @@ export const patientLogin =(email,user,otp)=>async(dispatch)=>{
     const {data}= await axios.post(`${Url}/auth/submit-otp`,{email,user,otp})
     if(user =='doctor'){
       dispatch({type:DOCTOR_LOGIN_SUCCESS,payload:data});
-      console.log(data.token,'dctrt');
-      localStorage.setItem('doctorInfo', JSON.stringify(data.token));
+      // console.log(data.token,'dctrt');
+      localStorage.setItem('doctorInfo', JSON.stringify(data));
 
     }else if(user =='patient'){
      dispatch({type:PATIENT_LOGIN_SUCCESS,payload:data});
-      console.log(data.token,'ptt');
-      localStorage.setItem('patientInfo', JSON.stringify(data.token));
+      // console.log(data.token,'ptt');
+      localStorage.setItem('patientInfo', JSON.stringify(data));
     }    
   }catch(error){
     const message =
@@ -239,7 +239,7 @@ export const listObservation = (id) => async (dispatch,getState) => {
   const { patientSignin: { patientInfo }} = getState();
   try {    
     const { data } = await axios.get(`${Url}/observations`,{
-      headers: {Authorization: `Bearer ${patientInfo}`}});      
+      headers: {Authorization: `Bearer ${patientInfo.token}`}});      
     dispatch({ type: GET_OBSERVATION_SUCCESS, payload: data }); 
   } catch (error) {
     const message =
@@ -256,7 +256,7 @@ export const createObservations=(desc)=>async(dispatch,getState)=>{
   try{
     const {data} = await axios.post(`${Url}/observations`,{desc},{
       headers: {
-        Authorization: `Bearer ${patientInfo}`,
+        Authorization: `Bearer ${patientInfo.token}`,
       },
     });
     dispatch({type:CREATE_OBSERVATION_SUCCESS,payload:data});  
@@ -275,7 +275,7 @@ export const getPatientProfile= () => async (dispatch,getState) => {
   const { patientSignin: { patientInfo }} = getState();
   try {    
     const { data } = await axios.get(`${Url}/profile/patient`,{
-      headers: {Authorization: `Bearer ${patientInfo}`}});      
+      headers: {Authorization: `Bearer ${patientInfo.token}`}});      
     dispatch({ type: GET_PATIENT_PROFILE_SUCCESS, payload: data }); 
   } catch (error) {
     const message =
@@ -293,12 +293,12 @@ export const submitForm=(doctorId,date)=>async(dispatch,getState)=>{
   try{
     const {data} = await axios.post(`${Url}/forms/submit-form`,{doctorId,date},{
       headers: {
-        Authorization: `Bearer ${patientInfo}`,
+        Authorization: `Bearer ${patientInfo.token}`,
       },
     });      
     dispatch({type:SUBMIT_FORM_SUCCESS,payload:data});  
   }catch(error){
-      console.log(error.response.data.message,'error')
+      // console.log(error.response.data.message,'error')
     const message =
     error.response && error.response.data.message
       ? error.response.data.message
@@ -314,7 +314,7 @@ export const getLatesPrescription= () => async (dispatch,getState) => {
   const { patientSignin: { patientInfo }} = getState();
   try {    
     const { data } = await axios.get(`${Url}/presc/latest-presc`,{
-      headers: {Authorization: `Bearer ${patientInfo}`}});      
+      headers: {Authorization: `Bearer ${patientInfo.token}`}});      
     dispatch({ type: GET_LATEST_PRESCRIPTION_SUCCESS, payload: data }); 
   } catch (error) {
     const message =
@@ -330,7 +330,7 @@ export const getLatesDietChart= () => async (dispatch,getState) => {
   const { patientSignin: { patientInfo }} = getState();
   try {    
     const { data } = await axios.get(`${Url}/diet-charts/latest-diets`,{
-      headers: {Authorization: `Bearer ${patientInfo}`}});      
+      headers: {Authorization: `Bearer ${patientInfo.token}`}});      
     dispatch({ type: GET_LATEST_DIET_CHART_SUCCESS, payload: data }); 
   } catch (error) {
     const message =
