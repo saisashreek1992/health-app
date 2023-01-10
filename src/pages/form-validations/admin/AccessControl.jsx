@@ -311,7 +311,7 @@ const AccessControl = () => {
           ) : (
             doctors &&
             doctors.map((doc, index) => (
-              <tbody key={doc.index}>
+              <tbody className="divide-y divide-gray-100" key={doc.index}>
                 <tr className="table__Body--Row">
                   <td className="table__Body--Row_Data">{index + 1}</td>
                   <td className="table__Body--Row_Data">{doc.name}</td>
