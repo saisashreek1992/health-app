@@ -156,7 +156,7 @@ export const adminSignout = () => (dispatch) => {
       }else{
         const {data} = await axios.get(`${Url}/diet-charts/get-all`,{
           headers: {
-            Authorization: `Bearer ${adminDocInfo}`,
+            Authorization: `Bearer ${adminDocInfo.token}`,
           },
         }); 
         dispatch({type:GET_ALL_DIET_CHART_SUCCESS,payload:data});
