@@ -173,6 +173,7 @@ const AccessControl = () => {
                       Enter Employee Name
                     </label>
                     <input
+                     value={name}
                       required
                       onChange={(e) => setName(e.target.value)}
                       type="text"
@@ -187,6 +188,7 @@ const AccessControl = () => {
                       Select Role
                     </label>
                     <select
+                    value={role}
                       required
                       onChange={(e) => setRole(e.target.value)}
                       id="role"
@@ -216,6 +218,7 @@ const AccessControl = () => {
                       id="employee-email"
                       autoComplete="given-name"
                       className="form__Input"
+                      value={email}
                     />
                   </div>
                   <div className="form__Cols--Span-6">
@@ -233,6 +236,7 @@ const AccessControl = () => {
                       id="employee-phone"
                       autoComplete="given-name"
                       className="form__Input"
+                      value={number}
                     />
                   </div>
                   <div className="form__Cols--Span-6">
@@ -250,6 +254,7 @@ const AccessControl = () => {
                       id="employee-regno"
                       autoComplete="given-name"
                       className="form__Input"
+                      value={regId}
                     />
                   </div>
                   <div className="form__Cols--Span-6">
@@ -278,7 +283,7 @@ const AccessControl = () => {
                 >
                   Cancel
                 </button>
-                <button type="submit" className="modal__Btn--Teal">
+                <button type="submit" data-bs-dismiss="modal" className="modal__Btn--Teal">
                   Create &amp; Save Employee
                 </button>
               </div>

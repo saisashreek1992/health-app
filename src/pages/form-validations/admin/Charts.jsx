@@ -148,7 +148,7 @@ const Charts = () => {
           {loading ? <LoadingBox></LoadingBox>:
           error ? <MessageBox>{error}</MessageBox>:
           forms.map((frm,index)=>(
-            <tbody>
+            <tbody key={frm._id}>
             <tr className="table__Body--Row">
               <td className="table__Body--Row_Data">
               {index + 1}
@@ -216,7 +216,7 @@ const Charts = () => {
           {loadingDiet ? <LoadingBox></LoadingBox>:
           errorDiet ? <MessageBox>{error}</MessageBox>:
           dietchart && dietchart.map((dt,index)=>(
-          <tbody>
+          <tbody key={dt._id}>
             <tr className="table__Body--Row">
               <td className="table__Body--Row_Data">
                 {index + 1}

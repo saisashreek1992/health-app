@@ -90,7 +90,7 @@ const PatientUploadDietChart = () => {
             </div>
             {loading ? <LoadingBox></LoadingBox>:
             error ? <MessageBox>{error}</MessageBox>:
-            deitChartLatest &&  (
+            deitChartLatest ?  (
               <div className="modal-body relative p-4">
               <div className="form__Grid--Cols-6">
                 <div className="form__Cols--Span-6">
@@ -185,7 +185,9 @@ const PatientUploadDietChart = () => {
                 </div>
               </div>
             </div>
-          )}
+          ):
+          <MessageBox>No latest Diet Chart</MessageBox>
+          }
            
             <div className="modal-footer flex flex-shrink-0 flex-wrap items-center justify-end p-4 border-t border-gray-200 rounded-b-md">
               <button
@@ -226,7 +228,7 @@ const PatientUploadDietChart = () => {
               {loadingDiet ? <LoadingBox></LoadingBox>:
               errorDiet ? <MessageBox>{error}</MessageBox>:
               dietchart.length > 0 ? dietchart.map((dt)=>(
-               <div className="p-2">
+               <div className="p-2" key={dt._id}>
                 <div className="relative w-full overflow-hidden">
                   <input
                     type="checkbox"

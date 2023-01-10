@@ -16,6 +16,7 @@ import {
   VALIDATOR_MINLENGTH,
   VALIDATOR_REQUIRE,
 } from "../../../utils/validators";
+import Swal from "sweetalert2";
 
 const PatientPersonalInfo = () => {
   const location = useLocation();
@@ -159,7 +160,10 @@ const PatientPersonalInfo = () => {
   useEffect(() => {
     if (success) {
       dispatch({ type: ENROLMENT_PATIENT_RESET });
-      alert("Patent Enrolled Succesfully");
+      Swal.fire({
+        icon: "success",
+        text: "Patient created successfully",
+      });
       navigate("/userrole/:roleid/dashboard/doctor/");
     }
   }, [success]);

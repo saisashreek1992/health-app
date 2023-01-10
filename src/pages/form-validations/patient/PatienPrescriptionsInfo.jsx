@@ -92,7 +92,7 @@ const PatienPrescriptionsInfo = () => {
                 aria-label="Close"
               ></button>
             </div>
-          {!loadingLatest && !errorLatest && prescLatest && (
+          {!loadingLatest && !errorLatest && prescLatest ? (
             <div className="modal-body relative p-4">
               <div className="form__Grid--Cols-6">
                 <div className="form__Cols--Span-6">
@@ -182,7 +182,9 @@ const PatienPrescriptionsInfo = () => {
                 </div>
               </div>
             </div>
-          )}
+          ):
+          <MessageBox>No latest Prescription</MessageBox>
+          }
             
             <div className="modal-footer flex flex-shrink-0 flex-wrap items-center justify-end p-4 border-t border-gray-200 rounded-b-md">
               <button
