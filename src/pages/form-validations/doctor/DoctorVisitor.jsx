@@ -68,22 +68,22 @@ const DoctorVisitor = () => {
       </div>
 
       <div className="my-10">
-        <table className="min-w-full table-auto">
-          <thead className="bg-gray-200">
+        <table className="w-full">
+          <thead className="bg-gray-50 border-b-2 border-gray-200">
             <tr>
-              <th className="text-lg font-bold text-gray-900 px-2 py-4">
+              <th className="w-20 p-3 text-lg font-semibold tracking-wide text-left">
                 Sl No.
               </th>
-              {/* <th className="text-lg font-bold text-gray-900 px-2 py-4">
+              {/* <th className="p-3 text-lg font-semibold tracking-wide text-left">
                 Doctor Name
               </th> */}
-              <th className="text-lg font-bold text-gray-900 px-2 py-4">
+              <th className="p-3 text-lg font-semibold tracking-wide text-left">
                 Patient Name
               </th>
-              <th className="text-lg font-bold text-gray-900 px-2 py-4">
-                Appointment Date
+              <th className="p-3 text-lg font-semibold tracking-wide text-left">
+                Date
               </th>
-              <th className="text-lg font-bold text-gray-900 px-2 py-4">
+              <th className="w-24 p-3 text-lg font-semibold tracking-wide text-left">
                 Actions
               </th>
             </tr>
@@ -96,20 +96,20 @@ const DoctorVisitor = () => {
             ) : (
               patients &&
               patients.map((itm, i) => (
-                <tr key={itm._id} className="bg-white border-b">
-                  <td className="px-6 py-4 whitespace-nowrap text-base font-medium text-gray-900 text-center">
+                <tr key={itm._id} className="bg-white">
+                  <td className="p-3 text-base text-gray-700 whitespace-nowrap">
                     {i + 1}
                   </td>
-                  {/* <td className="px-6 py-4 whitespace-nowrap text-base font-medium text-gray-900 text-center">
+                  {/* <td className="p-3 text-base text-gray-700 whitespace-nowrap">
                     {itm.team}
                   </td> */}
-                  <td className="px-6 py-4 whitespace-nowrap text-base font-medium text-gray-900 text-center">
+                  <td className="p-3 text-base text-gray-700 whitespace-nowrap">
                     {itm.name}
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-base font-medium text-gray-900 text-center">
+                  <td className="p-3 text-base text-gray-700 whitespace-nowrap">
                     11-10-2022
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-base font-medium text-gray-900 text-center">
+                  <td className="p-3 text-base text-gray-700 whitespace-nowrap">
                     <div className="flex flex-row justify-center">
                       <div className="inline-block p-6">
                         <FiEye

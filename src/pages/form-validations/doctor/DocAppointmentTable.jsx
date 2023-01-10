@@ -62,19 +62,19 @@ const DocAppointmentTable = () => {
         //   <Inject services={[Page, Selection, Edit, Toolbar, Sort, Filter]} />
         // </GridComponent>
         <div className="my-10">
-         <table className="min-w-full table-auto table-res">
-          <thead className="bg-gray-200">
+         <table className="w-full">
+          <thead className="bg-gray-50 border-b-2 border-gray-200">
             <tr>
-              <th className="text-lg font-bold text-gray-900 px-2 py-4">
+              <th className="w-20 p-3 text-lg font-semibold tracking-wide text-left">
                 Sl No.
               </th>
-              <th className="text-lg font-bold text-gray-900 px-2 py-4">
+              <th className="p-3 text-lg font-semibold tracking-wide text-left">
                 Doctor Name
               </th>
-              <th className="text-lg font-bold text-gray-900 px-2 py-4">
+              <th className="p-3 text-lg font-semibold tracking-wide text-left">
                 Patient Name
               </th>
-              <th className="text-lg font-bold text-gray-900 px-2 py-4">
+              <th className="p-3 text-lg font-semibold tracking-wide text-left">
                 Appointment Date
               </th>
               {/* <th className="text-lg font-bold text-gray-900 px-2 py-4">
@@ -88,17 +88,17 @@ const DocAppointmentTable = () => {
             appointment.length>0 ? appointment.map((ap,i)=>(
 
             
-            <tr className="bg-white border-b">
-              <td className="px-6 py-4 whitespace-nowrap text-base font-medium text-gray-900 text-center">
+            <tr className="bg-white">
+              <td className="p-3 text-base text-gray-700 whitespace-nowrap">
                 {i+1}
               </td>
-              <td className="px-6 py-4 whitespace-nowrap text-base font-medium text-gray-900 text-center">
+              <td className="p-3 text-base text-gray-700 whitespace-nowrap">
                 {ap.doctorId.name}
               </td>
-              <td className="px-6 py-4 whitespace-nowrap text-base font-medium text-gray-900 text-center">
+              <td className="p-3 text-base text-gray-700 whitespace-nowrap">
                 {ap.patientId.name}
               </td>
-              <td className="px-6 py-4 whitespace-nowrap text-base font-medium text-gray-900 text-center">
+              <td className="p-3 text-base text-gray-700 whitespace-nowrap">
                 {truncate(ap.date,11)}
               </td>
             
